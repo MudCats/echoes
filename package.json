@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/MudCats/echoes/issues"
   },
-  "homepage": "https://github.com/MudCats/echoes#readme"
+  "homepage": "https://github.com/MudCats/echoes#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "path": "^0.12.7"
+  }
 }
