@@ -6,9 +6,9 @@ var path = require('path');
 var session = require('express-session');
 var app = express();
 
-var appServer = require('./appRoutes.js');
-var authServer = require('./authRoutes.js');
-var newUserServer = require('./newUserRoutes.js');
+var appServer = require('./routes/appRoutes.js');
+var authServer = require('./routes/authRoutes.js');
+var newUserServer = require('./routes/newUserRoutes.js');
 
 // MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
@@ -20,7 +20,7 @@ app.use('/public', express.static(path.join(__dirname, '/../client')));
 app.use(session({
   secret: '666',
   resave: false,
-  saveUninitiailized: true
+  saveUninitialized: true
 }));
 
 // ROUTERS
@@ -30,7 +30,7 @@ app.use('/signup', newUserServer);
 app.use('/logout', authServer);
 app.use(function (req, res, next) {
   res.status(404).send('Sorry--we can\'t find that')
-}
+});
 
 // LISTENER
 app.listen(1337, function () {

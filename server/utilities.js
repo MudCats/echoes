@@ -5,7 +5,7 @@ var session = require('express-session')
 // middleware for verifying session
 exports.checkUser = function (req, res, next) {
   // if the user doesn't have an active session
-  // TODO: make sure session can be checked based on existence of user
+  // TODO: IS THIS HELPER NECESSARY?
   if (!req.session.user) {
     // send them back to the login page
     res.redirect('/signin')
