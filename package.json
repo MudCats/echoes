@@ -4,7 +4,8 @@
   "description": "A listening journal app build on React, PostgreSQL, Express, and Node.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/MudCats/echoes/issues"
   },
-  "homepage": "https://github.com/MudCats/echoes#readme"
+  "homepage": "https://github.com/MudCats/echoes#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7"
+  }
 }
