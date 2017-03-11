@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
+var session = require('express-session');
 var app = express();
 
 var appServer = require('./appRoutes.js');
@@ -15,10 +16,18 @@ app.use(bodyParser.json());
 app.use(morgan('combined'));
 app.use('/public', express.static(path.join(__dirname, '/../client')));
 
+// SESSION
+app.use(session({
+  secret: '666',
+  resave: false,
+  saveUninitiailized: true
+}));
+
 // ROUTERS
 app.use('/', appServer);
 app.use('/signin', authServer);
 app.use('/signup', newUserServer);
+app.use('/logout', authServer);
 app.use(function (req, res, next) {
   res.status(404).send('Sorry--we can\'t find that')
 }

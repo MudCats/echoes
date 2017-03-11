@@ -4,12 +4,12 @@ var path = require('path');
 var knex = require('knex');
 
 // get requests served static signup file
-router.get('/', function (req, res) {
+router.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, '/../../client/signup.html'));
 });
 
 // post requests add user to the database and begin session
-router.post('/', function (req, res) {
+router.post('/signup', function (req, res) {
   // get username and password from request body
   var username = req.body.username;
   var password = req.body.password;
@@ -25,3 +25,5 @@ router.post('/', function (req, res) {
 
   }
 });
+
+module.exports = router;
