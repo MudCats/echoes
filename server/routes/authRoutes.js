@@ -3,6 +3,7 @@ var session = require('express-session');
 var router = express.Router();
 var path = require('path');
 var knex = require('knex');
+var util = require('../utilities.js');
 
 // get requests are served static sign in page
 router.get('/signin', function (req, res) {
@@ -37,7 +38,7 @@ router.post('/signin', function (req, res) {
   }
 });
 
-router.get('/logout', function (req, res) {
+router.get('/logout', util.checkUser, function (req, res) {
   // remove authentication
   req.session.destroy(function (err) {
     if (err) {
