@@ -1,20 +1,22 @@
 // Update with your config settings.
-
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      database: 'music_info'
-    }
+      database: 'echoes'
+      username:,
+      password:
+    },
+    debug: true
   },
 
   staging: {
     client: 'pg',
     connection: {
-      database: 'music_info',
-      user:     'username',
-      password: 'password'
+      database: 'echoes',
+      username:,
+      password:
     },
     pool: {
       min: 2,
@@ -28,9 +30,9 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'music_info',
-      user:     'username',
-      password: 'password'
+      database: 'echoes',
+      username:,
+      password:
     },
     pool: {
       min: 2,
@@ -40,5 +42,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
