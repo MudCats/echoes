@@ -9,21 +9,21 @@
 
 <body>
     <h1>Sign In</h1>
-    <form action="ROUTE_TO_SERVER" method="get">
+    <form action="/signin" method="POST">
         <fieldset>
         <legend>Login information:</legend>
             Username:
             <br>
             <input type="text" name="username">
-            <br> 
+            <br>
             Password:
             <br>
-            <input type="password" name="userpswd">
+            <input type="password" name="password">
             <br>
 			<input type="submit" value="Sign In">
             <br>
             <br>
-            <a href="signup.html">Create an account</a>
+            <a href="/signup">Create an account</a>
         </fieldset>
     </form>
 
