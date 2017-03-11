@@ -1,0 +1,12 @@
+Fork from MudCats/echoes
+
+Implement something, whether on your own master branch or a personal feature branch
+
+If on a personal feature branch merge onto your personal master branch
+
+Commit and push to git push origin master to push changes onto your fork
+
+Submit pull request 
+
+Once approved run git pull --rebase upstream master to download updates, leave off the rebase flag to overwrite all your local
+files 
