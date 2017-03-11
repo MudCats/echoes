@@ -9,20 +9,28 @@
 
 <body>
 	<h1>Sign Up</h1>
-    <form>
+    <form action="ROUTE_TO_SERVER" method="post">
+    	<fieldset>
+    	<legend>Create an account:</legend>
         First name:
         <br>
         <input type="text" name="firstname">
-        <br> User name:
+        <br> Username:
         <br>
         <input type="text" name="username">
-        <br> User password:
+        <br> Password:
         <br>
-        <input type="password" name="userpswd">
+        <input type="password" name="userpswd">    		
+        <br>
+        <input type="submit" value="Sign In">
+        <br>
+        <br>
+        <a href="signin.html">I already have an account</a>
+    	</fieldset>
     </form>
 
 
-<a href="signin.html">I already have an account</a>
+
 
 
 </body>
