@@ -34,5 +34,5 @@ app.use(function (req, res, next) {
 
 // LISTENER
 app.listen(1337, function () {
-  console.log('Server is listening on port 1337.')
+  console.log('Satan is listening on port 1337.')
 });
