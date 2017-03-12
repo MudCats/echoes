@@ -11,6 +11,7 @@ class App extends React.Component {
   // when the component loads successfully
   componentDidMount () {
     // load all of the user's data
+    // call this.props.getUserEntries
   }
   // adds album to the database
   add (album) {
