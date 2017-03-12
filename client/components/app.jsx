@@ -8,6 +8,14 @@ class App extends React.Component {
       searchResults: []
     }
   }
+  // when the component loads successfully
+  componentDidMount () {
+    // load all of the user's data
+  }
+  // adds album to the database
+  add (album) {
+
+  }
   // calls iTunes search method on window object
   search (string) {
     // calls searchiTunes and sets state of searchResults
@@ -17,14 +25,16 @@ class App extends React.Component {
       });
     });
   }
-
+  // renders the app to the DOM
   render () {
     return (
       <div>
-        <SearchBar />
-      </div>
-      <div>
-        <EntryList />
+        <div>
+          <SearchBar />
+        </div>
+        <div>
+          <EntryList />
+        </div>
       </div>
     )
   }
