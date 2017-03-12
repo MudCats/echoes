@@ -4,10 +4,8 @@
   "description": "A listening journal app build on React, PostgreSQL, Express, and Node.",
   "main": "index.js",
   "scripts": {
-
     "test": "mocha",
     "start": "nodemon"
-
   },
   "repository": {
     "type": "git",
@@ -19,21 +17,23 @@
     "url": "https://github.com/MudCats/echoes/issues"
   },
   "homepage": "https://github.com/MudCats/echoes#readme",
-
   "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-react": "^6.23.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
   },
-
   "dependencies": {
     "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "express-session": "^1.15.1",
+    "knex": "^0.12.7",
     "morgan": "^1.8.1",
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
-    "dotenv": "^4.0.0",
-    "knex": "^0.12.7",
-    "pg": "^6.1.4"
+    "pg": "^6.1.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }
