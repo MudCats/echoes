@@ -25,6 +25,7 @@ app.use(session({
 
 // ROUTERS
 app.use('/', appServer);
+app.use('/querydb', appServer);
 app.use('/signin', authServer);
 app.use('/signup', newUserServer);
 app.use('/logout', authServer);

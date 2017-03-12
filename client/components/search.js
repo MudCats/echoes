@@ -6,7 +6,6 @@ var searchiTunes = function (userEntry, callback) {
   // creates search request from user input
   // allows search by any terms but returns up to five albums
   var searchUrl = `https://itunes.apple.com/search?term=?${query}&entity=album&limit=5`
-
   $.ajax({
     url: url,
     type: 'GET',
@@ -20,5 +19,5 @@ var searchiTunes = function (userEntry, callback) {
     }
   });
 }
-
+// make available on the window
 window.searchiTunes = searchiTunes;
