@@ -18,5 +18,5 @@ var getUserEntries = function (username, callback) {
   })
 };
 
-// make accessible on the window object
+// make accessible on the window
 window.getUserEntries = getUserEntries;
