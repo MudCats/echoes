@@ -1,6 +1,9 @@
 // Update with your config settings.
 var env = require('dotenv').config();
 
+var pg = require('pg');
+
+
 module.exports = {
 
   development: {
@@ -43,7 +46,7 @@ module.exports = {
   //     tableName: 'knex_migrations'
   //   }
   // }
-};
+//};
 
 // Update with your config settings.
 // var env = require('dotenv').config();
