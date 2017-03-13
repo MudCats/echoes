@@ -25,6 +25,7 @@ app.use(session({
 
 // ROUTERS
 app.use('/', appServer);
+app.use('/querydb', appServer);
 app.use('/signin', authServer);
 app.use('/signup', newUserServer);
 app.use('/logout', authServer);
@@ -34,5 +35,5 @@ app.use(function (req, res, next) {
 
 // LISTENER
 app.listen(1337, function () {
-  console.log('Server is listening on port 1337.')
+  console.log('Satan is listening on port 1337.')
 });

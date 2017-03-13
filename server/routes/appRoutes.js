@@ -16,9 +16,14 @@ router.get('/', function (req, res) {
   }
 });
 
-router.post('/', function (req, res) {
+// queries database and returns user's album entries
+router.get('/querydb', function (req, res) {
 
-  // handle addition of new data from user input
+});
+
+// post new album to the database
+router.post('/querydb', function (req, res) {
+
 });
 
 module.exports = router;

@@ -1,0 +1,21 @@
+'use strict';
+
+var session = require('express-session');
+
+// AUTHENTICATION
+
+// middleware for verifying session
+exports.checkUser = function (req, res, next) {
+  // if the user doesn't have an active session
+  // TODO: IS THIS HELPER NECESSARY?
+  if (!req.session.user) {
+    // send them back to the login page
+    res.redirect('/signin');
+  } else {
+    // otherwise, let them continue
+    next();
+  }
+};
+
+// DATABASE QUERIES
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NlcnZlci91dGlsaXRpZXMuanMiXSwibmFtZXMiOlsic2Vzc2lvbiIsInJlcXVpcmUiLCJleHBvcnRzIiwiY2hlY2tVc2VyIiwicmVxIiwicmVzIiwibmV4dCIsInVzZXIiLCJyZWRpcmVjdCJdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFJQSxVQUFVQyxRQUFRLGlCQUFSLENBQWQ7O0FBRUE7O0FBRUE7QUFDQUMsUUFBUUMsU0FBUixHQUFvQixVQUFVQyxHQUFWLEVBQWVDLEdBQWYsRUFBb0JDLElBQXBCLEVBQTBCO0FBQzVDO0FBQ0E7QUFDQSxNQUFJLENBQUNGLElBQUlKLE9BQUosQ0FBWU8sSUFBakIsRUFBdUI7QUFDckI7QUFDQUYsUUFBSUcsUUFBSixDQUFhLFNBQWI7QUFDRCxHQUhELE1BR087QUFDTDtBQUNBRjtBQUNEO0FBQ0YsQ0FWRDs7QUFZQSIsImZpbGUiOiJ1dGlsaXRpZXMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJ2YXIgc2Vzc2lvbiA9IHJlcXVpcmUoJ2V4cHJlc3Mtc2Vzc2lvbicpXG5cbi8vIEFVVEhFTlRJQ0FUSU9OXG5cbi8vIG1pZGRsZXdhcmUgZm9yIHZlcmlmeWluZyBzZXNzaW9uXG5leHBvcnRzLmNoZWNrVXNlciA9IGZ1bmN0aW9uIChyZXEsIHJlcywgbmV4dCkge1xuICAvLyBpZiB0aGUgdXNlciBkb2Vzbid0IGhhdmUgYW4gYWN0aXZlIHNlc3Npb25cbiAgLy8gVE9ETzogSVMgVEhJUyBIRUxQRVIgTkVDRVNTQVJZP1xuICBpZiAoIXJlcS5zZXNzaW9uLnVzZXIpIHtcbiAgICAvLyBzZW5kIHRoZW0gYmFjayB0byB0aGUgbG9naW4gcGFnZVxuICAgIHJlcy5yZWRpcmVjdCgnL3NpZ25pbicpXG4gIH0gZWxzZSB7XG4gICAgLy8gb3RoZXJ3aXNlLCBsZXQgdGhlbSBjb250aW51ZVxuICAgIG5leHQoKTtcbiAgfVxufVxuXG4vLyBEQVRBQkFTRSBRVUVSSUVTXG4iXX0=

@@ -1,0 +1,23 @@
+{
+  "name": "echoes",
+  "description": "A listening journal app build on React, PostgreSQL, Express, and Node.",
+  "main": "index.js",
+  "authors": [
+    "Christian Arredondo",
+    "Tyler Holzer",
+    "Megan Rabuse",
+    "and Daniel Ricaud"
+  ],
+  "license": "ISC",
+  "homepage": "https://www.github.com/mudCats/echoes",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
