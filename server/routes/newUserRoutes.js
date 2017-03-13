@@ -18,7 +18,7 @@ router.post('/signup', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   // knex query to search database for user
-  var query = knex.('user').where('username', username);
+  var query = knex('user').where('username', username);
 
 
 
@@ -31,11 +31,11 @@ router.post('/signup', function (req, res) {
 
    bcrypt.genSalt(saltRounds, function(err, salt) {
        bcrypt.hash(password, salt, null, function(err, hash) {
-           // Store hash in your password DB. 
+           // Store hash in your password DB.
           knex('user').returning(['id', 'name', 'username']).insert({name: name, username: username, password: hash});
        });
    });
-   
+
     // log them in
 
   }
