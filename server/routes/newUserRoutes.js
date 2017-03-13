@@ -32,7 +32,7 @@ router.post('/signup', function (req, res) {
    bcrypt.genSalt(saltRounds, function(err, salt) {
        bcrypt.hash(password, salt, null, function(err, hash) {
            // Store hash in your password DB. 
-          knex('user').returning(['id',, 'name', 'username']).insert({name: name, username: username, password: hash});
+          knex('user').returning(['id', 'name', 'username']).insert({name: name, username: username, password: hash});
        });
    });
    
