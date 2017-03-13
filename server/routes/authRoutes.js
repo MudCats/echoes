@@ -38,7 +38,7 @@ router.post('/signin', function (req, res) {
   }
 });
 
-router.get('/logout', util.checkUser, function (req, res) {
+router.get('/signout', util.checkUser, function (req, res) {
   // remove authentication
   req.session.destroy(function (err) {
     if (err) {

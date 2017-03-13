@@ -28,7 +28,7 @@ app.use('/', appServer);
 app.use('/querydb', appServer);
 app.use('/signin', authServer);
 app.use('/signup', newUserServer);
-app.use('/logout', authServer);
+app.use('/signout', authServer);
 app.use(function (req, res, next) {
   res.status(404).send('Sorry--we can\'t find that')
 });

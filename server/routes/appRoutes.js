@@ -3,6 +3,8 @@ var router = express.Router();
 var path = require('path');
 var session = require('express-session');
 var util = require('../utilities.js');
+var knex = require('knex')
+
 
 router.get('/', function (req, res) {
   // if the user has a session
@@ -18,7 +20,7 @@ router.get('/', function (req, res) {
 
 // queries database and returns user's album entries
 router.get('/querydb', function (req, res) {
-
+  // get the user's albums
 });
 
 // post new album to the database
