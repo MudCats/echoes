@@ -3,7 +3,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
+var pg = require('pg');
 var session = require('express-session');
+var db = require('../db/db.js')
 var app = express();
 
 var appServer = require('./routes/appRoutes.js');

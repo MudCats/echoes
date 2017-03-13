@@ -9,6 +9,7 @@ module.exports = {
       database: 'echoes'
     },
     debug: true
+    }
   }
 
   // staging: {
@@ -43,3 +44,54 @@ module.exports = {
   //   }
   // }
 };
+
+// Update with your config settings.
+// var env = require('dotenv').config();
+//
+// module.exports = {
+//
+//   development: {
+//     client: 'pg',
+//     connection: {
+//       host: '104.131.23.141',
+//       user: 'echoes',
+//       password: '666mudcat',
+//       database: 'echoes'
+//     },
+//     debug: true
+//   },
+//
+//   staging: {
+//     client: 'pg',
+//     connection: {
+//       host: '104.131.23.141',
+//       user: 'echoes',
+//       password: '666mudcat',
+//       database: 'echoes'
+//     },
+//     pool: {
+//       min: 2,
+//       max: 10
+//     },
+//     migrations: {
+//       tableName: 'knex_migrations'
+//     }
+//   },
+//
+//   production: {
+//     client: 'pg',
+//     connection: {
+//       host: '104.131.23.141',
+//       user: 'echoes',
+//       password: '666mudcat',
+//       database: 'echoes'
+//     },
+//     pool: {
+//       min: 2,
+//       max: 10
+//     },
+//     migrations: {
+//       tableName: 'knex_migrations'
+//     }
+//   }
+// };
