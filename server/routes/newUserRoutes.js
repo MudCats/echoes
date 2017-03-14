@@ -35,10 +35,12 @@ router.post('/', function (req, res) {
           knex('user').returning(['id', 'name', 'username'])
                       .insert({name: name, username: username, password: hash})
                       .then(function (result) {
+                        //start new session for new user
                         req.session.regenerate(function (err) {
                           if (err) {
                             throw err;
                           }
+                          //redirect user to dashboard
                           res.status(302).redirect('/');
                         })
                       })
