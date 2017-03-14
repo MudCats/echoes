@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
 var pg = require('pg');
-var session = require('express-session');
-var db = require('../db/db.js')
+var db = require('../db/db.js');
+var cookie = require('cookie-parser');
 var app = express();
 
 // ROUTE MODULE DEPENDENCIES
@@ -19,14 +19,9 @@ var signoutServer = require('./routes/signoutRoute.js');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(morgan('combined'));
+// TODO: add cookie secret!
+app.use(cookie());
 app.use('/public', express.static(path.join(__dirname, '/../client')));
-
-// SESSION
-app.use(session({
-  secret: '666',
-  resave: false,
-  saveUninitialized: true
-}));
 
 // ROUTERS
 app.use('/', appServer);

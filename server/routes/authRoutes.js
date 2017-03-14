@@ -1,5 +1,4 @@
 var express = require('express');
-var session = require('express-session');
 var router = express.Router();
 var path = require('path');
 var knex = require('../../db/db.js');
@@ -32,19 +31,16 @@ router.post('/', function (req, res) {
            if (err) {
              throw err;
            } else {
-             //if password is correct
+             // if password is correct
              if (result) {
-               //create a new session
-               req.session.regenerate(function (err) {
-                 if (err) {
-                   throw err;
-                 }
-               });
-               //redirect to dashboard
+               // set cookies
+               res.cookie('signedIn', true);
+               res.cookie('username', username);
+               // redirect to dashboard
                res.redirect('/');
-               //if password is incorrect
+               // if password is incorrect
              } else {
-               //send error
+               // send error
                res.status(401).send('Your password is incorrect');
              }
            }
