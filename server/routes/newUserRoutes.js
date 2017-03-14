@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var knex = require('knex');
+var util = require('../utilities.js');
 
 
 // get requests served static signup file
@@ -17,17 +18,26 @@ router.post('/', function (req, res) {
   var password = req.body.password;
   // knex query to search database for user
   var query = knex('user').where('username', username);
-  // if the query returns a user
-  if (query) {
-    // respond with status
-    res.status(401).send('This username has already been taken.');
-  } else {
-    // Hash password with bcrypt before executing the insert statement
+
+  query.then(function (result) {
+    // if the query returns a user
+    if (result) {
+      // respond with status
+      console.log(result);
+      res.status(401).send('This username has already been taken.');
+    } else {
+      console.log(result);
+      // Hash password with bcrypt before executing the insert statement
 
 
-    // log them in
+      // log them in
 
-  }
+    }
+
+  }).catch(function (error) {
+    console.log(error);
+    throw error;
+  })
 });
 
 module.exports = router;
