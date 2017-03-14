@@ -21,7 +21,8 @@ app.use(bodyParser.json());
 app.use(morgan('combined'));
 // TODO: add cookie secret!
 app.use(cookie());
-app.use('/public', express.static(path.join(__dirname, '/../client')));
+app.use('/public', express.static(path.join(__dirname, '/../compiled/client')));
+app.use('/node_modules', express.static(path.join(__dirname, '/../node_modules')));
 
 // ROUTERS
 app.use('/', appServer);

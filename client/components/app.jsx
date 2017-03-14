@@ -30,7 +30,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <div>
+        <div>Hello!
           <SearchBar />
         </div>
         <div>
@@ -40,3 +40,5 @@ class App extends React.Component {
     )
   }
 }
+
+window.App = App;
