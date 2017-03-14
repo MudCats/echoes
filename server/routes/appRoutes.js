@@ -7,7 +7,8 @@ var knex = require('../../db/db.js');
 
 router.get('/', function (req, res) {
   // if the user has a session
-  if (req.session.user) {
+  console.log('req.session', req.session);
+  if (req.session) {
     // serve the dashboard
     res.sendFile(path.join(__dirname, '/../../client/dashboard.html'));
     // if the user doesn't have a session
