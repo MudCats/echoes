@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var knex = require('knex');
+var knex = require('../../db/db.js');
 var util = require('../utilities.js');
-
 
 // get requests served static signup file
 router.get('/', function (req, res) {
@@ -21,7 +20,7 @@ router.post('/', function (req, res) {
 
   query.then(function (result) {
     // if the query returns a user
-    if (result) {
+    if (result.length) {
       // respond with status
       console.log(result);
       res.status(401).send('This username has already been taken.');

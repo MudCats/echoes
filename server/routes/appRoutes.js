@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var session = require('express-session');
 var util = require('../utilities.js');
-var knex = require('knex')
+var knex = require('../../db/db.js');
 
 router.get('/', function (req, res) {
   // if the user has a session

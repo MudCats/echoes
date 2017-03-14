@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   // knex query to search database for user
-  var query;
+  var query = knex
   // if the user is not in the database
   if (!query) {
     // respond with status
