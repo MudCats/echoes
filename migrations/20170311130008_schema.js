@@ -33,7 +33,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title');
       table.integer('album_id');
-      table.foreign('album_id').references('id').inTable('album');
+      table.foreign('album_id').references('album.id');
       table.unique(['title', 'album_id']);
     }),
 
