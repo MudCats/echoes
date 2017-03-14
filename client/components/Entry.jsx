@@ -9,3 +9,5 @@ class Entry extends React.Component {
     </tr>
   }
 }
+
+window.Entry = Entry;

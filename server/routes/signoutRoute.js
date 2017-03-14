@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var session = require('express-session');
 var util = require('../utilities.js');
 
 router.get('/', function (req, res) {
