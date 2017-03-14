@@ -9,9 +9,8 @@ module.exports = {
       database: 'echoes'
     },
     debug: true
-    }
   }
-
+}
   // staging: {
   //   client: 'pg',
   //   connection: {
