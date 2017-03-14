@@ -18,17 +18,10 @@ exports.checkUser = function (req, res, next) {
 };
 
 // helper for hashing password before storing in db
-exports.hashPassword  = function (password) {
+exports.hashPassword  = function (password, callback) {
   bcrypt.genSalt(saltRounds, function(err, salt) {
-       bcrypt.hash(password, salt, null, function(err, hash) {
-         if (err) {
-           console.log(err);
-           throw err;
-         } else {
-           // Store hash in password DB.
-           knex('user').returning(['id', 'name', 'username']).insert({name: name, username: username, password: hash});
-         }
-       });
+       console.log('look at dis salt', salt);
+       bcrypt.hash(password, salt, callback);
    });
 };
 
