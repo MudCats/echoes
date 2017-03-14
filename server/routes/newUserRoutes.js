@@ -25,34 +25,28 @@ router.post('/', function (req, res) {
       // respond with status
       res.status(401).send('This username has already been taken.');
     } else {
-      // Hash password with bcrypt before executing the insert statement
+      // hash password with bcrypt before executing the insert statement
       util.hashPassword(password, function(err, hash) {
         if (err) {
           console.log(err);
           throw err;
         } else {
-          // Store hash in password DB.
+          // store hash in password DB.
           knex('user').returning(['id', 'name', 'username'])
                       .insert({name: name, username: username, password: hash})
                       .then(function (result) {
-                        //start new session for new user
-                        req.session.regenerate(function (err) {
-                          if (err) {
-                            throw err;
-                          }
-                          //redirect user to dashboard
-                          res.status(302).redirect('/');
-                        })
+                        // set cookies
+                        res.cookie('signedIn', true);
+                        res.cookie('username', username);
+                        // redirect to dashboard
+                        res.status(302).redirect('/');
                       })
                       .catch(function (err) {
                         throw err;
                       });
         }
       });
-      // log them in
-
     }
-
   }).catch(function (error) {
     console.log(error);
     throw error;
