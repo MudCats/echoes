@@ -4,7 +4,7 @@ var path = require('path');
 var session = require('express-session');
 var util = require('../utilities.js');
 
-router.get('/signout', util.checkUser, function (req, res) {
+router.get('/', function (req, res) {
   // remove authentication
   req.session.destroy(function (err) {
     if (err) {

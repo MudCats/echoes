@@ -18,17 +18,37 @@ router.post('/', function (req, res) {
   // knex query to search database for user
   var query = knex('user').where('username', username);
 
+  //query returns promise
   query.then(function (result) {
     // if the query returns a user
     if (result.length) {
       // respond with status
-      console.log(result);
       res.status(401).send('This username has already been taken.');
     } else {
-      console.log(result);
       // Hash password with bcrypt before executing the insert statement
-
-
+      util.hashPassword(password, function(err, hash) {
+        if (err) {
+          console.log(err);
+          throw err;
+        } else {
+          // Store hash in password DB.
+          knex('user').returning(['id', 'name', 'username'])
+                      .insert({name: name, username: username, password: hash})
+                      .then(function (result) {
+                        //start new session for new user
+                        req.session.regenerate(function (err) {
+                          if (err) {
+                            throw err;
+                          }
+                          //redirect user to dashboard
+                          res.status(302).redirect('/');
+                        })
+                      })
+                      .catch(function (err) {
+                        throw err;
+                      });
+        }
+      });
       // log them in
 
     }
