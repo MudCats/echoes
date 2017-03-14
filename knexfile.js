@@ -1,9 +1,6 @@
 // Update with your config settings.
 var env = require('dotenv').config();
 
-var pg = require('pg');
-
-
 module.exports = {
 
   development: {
