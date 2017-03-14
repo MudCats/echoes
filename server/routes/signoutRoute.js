@@ -5,13 +5,7 @@ var session = require('express-session');
 var util = require('../utilities.js');
 
 router.get('/', function (req, res) {
-  // remove authentication
-  // req.session.destroy(function (err) {
-  //   if (err) {
-  //     console.log(err);
-  //     throw err;
-  //   }
-  // });
+  //clear cookies
   res.cookie('signedIn', false);
   res.clearCookie('username');
   // send user back to the login page
