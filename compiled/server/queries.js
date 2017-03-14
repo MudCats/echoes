@@ -1,0 +1,9 @@
+'use strict';
+
+// DATABASE QUERIES
+var Promise = require('bluebird');
+
+// query to retrieve all data for a particular user
+
+// query to add new album to the database
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NlcnZlci9xdWVyaWVzLmpzIl0sIm5hbWVzIjpbIlByb21pc2UiLCJyZXF1aXJlIl0sIm1hcHBpbmdzIjoiOztBQUFBO0FBQ0EsSUFBSUEsVUFBVUMsUUFBUSxVQUFSLENBQWQ7O0FBRUE7O0FBRUEiLCJmaWxlIjoicXVlcmllcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIERBVEFCQVNFIFFVRVJJRVNcbnZhciBQcm9taXNlID0gcmVxdWlyZSgnYmx1ZWJpcmQnKTtcblxuLy8gcXVlcnkgdG8gcmV0cmlldmUgYWxsIGRhdGEgZm9yIGEgcGFydGljdWxhciB1c2VyXG5cbi8vIHF1ZXJ5IHRvIGFkZCBuZXcgYWxidW0gdG8gdGhlIGRhdGFiYXNlXG4iXX0=

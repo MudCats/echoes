@@ -5,7 +5,7 @@ class Entry extends React.Component {
 
   render () {
     <tr>
-      // <td>'s for each category sent via props
+      
     </tr>
   }
 }
