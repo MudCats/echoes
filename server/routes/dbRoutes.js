@@ -15,9 +15,10 @@ router.get('/', function (req, res) {
       .join('album', 'album_impression.album_id', 'album.id')
       .join('artist', 'artist.id', 'album.artist_id')
       .join('listen_date', 'listen_date.album_impression_id', 'album_impression.id')
-      .select('listen_date.date',
+      .select('user.user',
+              'listen_date.date',
               'album.title', 'artist.name', 'album.genre', 'album.year',
-              'album_impression.rating', 'album_impression.impression',
+              'album_impression.rating', 'album_impression.impression', 'album_impression_id',
               'album.art_url60', 'album.art_url100')
       .then(function (result) {
         // send the result back to the user
@@ -34,7 +35,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   var album = req.body.results.album;
   var date = req.body.results.date;
-  var username = req.body.results.username;
+  var username = req.cookies.username;
   // check if artist is in db
   knex.from('artist')
     .select('id')
@@ -62,7 +63,7 @@ router.post('/', function (req, res) {
                     }).then(function() {
                       res.status(201).send('Successful Post!');
                     });
-                  //if user has not listened to album 
+                  //if user has not listened to album
                   } else {
                     //add an album_impression for the user
                     knex('album_impression').returning('id')
@@ -72,7 +73,7 @@ router.post('/', function (req, res) {
                         }).then(function(impressId) {
                           var impressId = impressId[0];
                           // add new listen date for album
-                          knex('listen_date').insert({'date': date, 
+                          knex('listen_date').insert({'date': date,
                             'album_impression_id': impressId}).then(function() {
                               res.status(201).send('Successful Post!');
                             });
@@ -81,10 +82,10 @@ router.post('/', function (req, res) {
                 });
             // if album does not exist
             } else {
-              // insert album 
+              // insert album
               knex('album').returning('id')
                 .insert({
-                  title: album.collectionName, 
+                  title: album.collectionName,
                   artist_id: artistId,
                   genre: album.primaryGenreName,
                   year: album.releaseDate,
@@ -106,12 +107,12 @@ router.post('/', function (req, res) {
                         }).then(function(impressId) {
                           var impressId = impressId[0];
                           // add new listen date for album
-                          knex('listen_date').insert({'date': date, 
+                          knex('listen_date').insert({'date': date,
                             'album_impression_id': impressId}).then(function() {
                               res.status(201).send('Successful Post!');
                             });
                         });
-                      
+
                     });
                 });
             }
@@ -125,7 +126,7 @@ router.post('/', function (req, res) {
           // add album to db
           knex('album').returning('id')
           .insert({
-            title: album.collectionName, 
+            title: album.collectionName,
             artist_id: artistId,
             genre: album.primaryGenreName,
             year: album.releaseDate,
@@ -147,15 +148,15 @@ router.post('/', function (req, res) {
                   }).then(function(impressId) {
                     var impressId = impressId[0];
                     // add new listen date for album
-                    knex('listen_date').insert({'date': date, 
+                    knex('listen_date').insert({'date': date,
                       'album_impression_id': impressId}).then(function() {
                         res.status(201).send('Successful Post!');
                       });
                   });
-                
+
               });
           });
-        }); 
+        });
       }
     });
 });
@@ -190,7 +191,7 @@ router.post('/remove', function (req, res) {
       // if album_impress_id = 1
       if (dates.length === 1) {
         // delete album_impression
-          knex('album_impression') 
+          knex('album_impression')
             .where('id', listenEntry.impressionId)
             .del();
       }
