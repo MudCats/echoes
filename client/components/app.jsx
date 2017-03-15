@@ -31,7 +31,7 @@ class App extends React.Component {
     return (
       <div>
         <div>Hello!
-          <SearchBar />
+          <Search />
         </div>
         <div>
           <EntryList />
