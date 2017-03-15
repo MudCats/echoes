@@ -38,14 +38,14 @@ class Search extends React.Component {
 				console.log(error);
 				return;
 			}
-
 		})
-
 	}
 
 	render() {
     return (
    	  <div className=''>
+				<input type="date" name="date" class="hidden"></input>
+				<br></br>
 	      <SearchBar search={_.debounce(this.onInputChange.bind(this), 300)} className="search-bar" />
 	      <ResultsList albums={this.state.results} addNewEntry={this.props.addNewEntry} setSelected={this.setSelected.bind(this)} className='results-container' />
 	   </div>
