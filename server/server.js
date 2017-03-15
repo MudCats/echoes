@@ -8,7 +8,7 @@ var db = require('../db/db.js');
 var cookie = require('cookie-parser');
 var app = express();
 
-// ROUTE MODULE DEPENDENCIES
+// ROUTE MODULES
 var appServer = require('./routes/appRoutes.js');
 var authServer = require('./routes/authRoutes.js');
 var newUserServer = require('./routes/newUserRoutes.js');

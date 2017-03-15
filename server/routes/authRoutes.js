@@ -23,6 +23,7 @@ router.post('/', function (req, res) {
       res.status(401).send('This user does not exist!');
       // if user exists
     } else {
+      // find their hashed password in the db
       var hash = knex('user').where('username', username).select('password');
       hash.then(function (hash) {
         //knex returns an array with hash object at index 0
@@ -41,13 +42,13 @@ router.post('/', function (req, res) {
                // if password is incorrect
              } else {
                // send error
-               res.status(401).send('Your password is incorrect');
+               res.status(401).send('Your password is incorrect!');
              }
            }
          });
       })
       .catch(function (err) {
-        console.log('Something went wrong comparing passwords');
+        console.log('Something went wrong comparing passwords!');
         throw err;
       });
     }
