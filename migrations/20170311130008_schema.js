@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     //users
     knex.schema.createTable('user', function(table) {
       table.increments('id').primary();
-      table.string('name');
+      table.string('user');
       table.string('username').unique().notNullable();
       table.string('password').notNullable();
     }),
