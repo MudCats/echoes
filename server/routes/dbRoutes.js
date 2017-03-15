@@ -36,72 +36,120 @@ router.post('/', function (req, res) {
   var date = req.body.results.date;
   var username = req.body.results.username;
   // check if artist is in db
-  knex.from('album')
-      .select('artist_id')
-      .where('artist', album.artistName)
-      .then(function(result) {
-      // if artist exists
-        if (!result.length) {
-        // check if the album is already in the database
-
-          // if it is, check if the user has listened to it before
-
-            // if they have, add a new listen date for the album
-
-            // if they haven't, add an album_impression for the user
-
-               // then add a new listen date for the album
-
-        // if the album isn't in the db, add it to the db with album_impression
-
-      // if artist does not exist
-        } else {
-        // add artist to db
-        knex('artist').returning('id')
-          .insert({name: album.artistName})
-          .then(function(result) {
-            // add album to db
-            knex('album').returning('id')
-            .insert({
-              title: album.collectionName, 
-              artist_id: result,
-              genre: album.primaryGenreName,
-              year: album.releaseDate,
-              art_url60: album.artworkUrl60,
-              art_url100: album.artworkUrl100
-             }).then(function(result) {
-              // find user's id
-              knex.from('user')
-                .select('id')
-                .where('username', username)
-                .then(function(username) {
-                  // add album impression from user
-                  knex('album_impression').returning('id')
-                    .insert({
-                      user_id: username,
-                      album_id: result
-                    }).then(function(impressId) {
-                      // add new listen date for album
-                      knex('listen_date').insert({'date': date, 
-                        'album_impression_id': impressId}).then(function() {
-                          res.status(200).send('Successful Post!');
-                        });
+  knex.from('artist')
+    .select('id')
+    .where('name', album.artistName)
+    .then(function(artistId) {
+    // if artist exists
+      if (artistId.length) {
+      // check if the album is already in the database
+        knex.from('album')
+          .select('id')
+          .where('title', album.collectionName)
+          .then(function(albumId) {
+            // if the album exists
+            if (album_id.length) {
+              // check if the user has listened to it before
+              knex('album_impression').select('id')
+                .where('album_id', albumId)
+                .then(function(impressId) {
+                  // if user has listened to album
+                  if (impressId.length) {
+                    // Add a new listen date
+                    knex('listen_date').insert({
+                      date: date,
+                      album_impression_id: impressId
+                    }).then(function() {
+                      res.status(200).send('Successful Post!');
                     });
-                  
+                  //if user has not listened to album 
+                  } else {
+                    //add an album_impression for the user
+                    knex('album_impression').returning('id')
+                        .insert({
+                          user_id: username,
+                          album_id: albumId
+                        }).then(function(impressId) {
+                          // add new listen date for album
+                          knex('listen_date').insert({'date': date, 
+                            'album_impression_id': impressId}).then(function() {
+                              res.status(200).send('Successful Post!');
+                            });
+                        });
+                  }
                 });
-            });
+            // if album does not exist
+            } else {
+              // insert album 
+              knex('album').returning('id')
+                .insert({
+                  title: album.collectionName, 
+                  artist_id: artistId,
+                  genre: album.primaryGenreName,
+                  year: album.releaseDate,
+                  art_url60: album.artworkUrl60,
+                  art_url100: album.artworkUrl100
+                 }).then(function(albumId) {
+                  // find user's id
+                  knex.from('user')
+                    .select('id')
+                    .where('username', username)
+                    .then(function(username) {
+                      // add album impression from user
+                      knex('album_impression').returning('id')
+                        .insert({
+                          user_id: username,
+                          album_id: albumId
+                        }).then(function(impressId) {
+                          // add new listen date for album
+                          knex('listen_date').insert({'date': date, 
+                            'album_impression_id': impressId}).then(function() {
+                              res.status(200).send('Successful Post!');
+                            });
+                        });
+                      
+                    });
+                });
+            }
           });
-
-
-
-          
-        }
-      });
-
-
-        
-
-
+      } else {
+      // add artist to db
+      knex('artist').returning('id')
+        .insert({name: album.artistName})
+        .then(function(artistId) {
+          // add album to db
+          knex('album').returning('id')
+          .insert({
+            title: album.collectionName, 
+            artist_id: artistId,
+            genre: album.primaryGenreName,
+            year: album.releaseDate,
+            art_url60: album.artworkUrl60,
+            art_url100: album.artworkUrl100
+           }).then(function(albumId) {
+            // find user's id
+            knex.from('user')
+              .select('id')
+              .where('username', username)
+              .then(function(username) {
+                // add album impression from user
+                knex('album_impression').returning('id')
+                  .insert({
+                    user_id: username,
+                    album_id: albumId
+                  }).then(function(impressId) {
+                    // add new listen date for album
+                    knex('listen_date').insert({'date': date, 
+                      'album_impression_id': impressId}).then(function() {
+                        res.status(200).send('Successful Post!');
+                      });
+                  });
+                
+              });
+          });
+        }); 
+      }
+    });
 });
 
 // add/update impression
