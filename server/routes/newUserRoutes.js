@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 // post requests add user to the database and begin session
 router.post('/', function (req, res) {
   // get username and password from request body
-  var name = req.body.name;
+  var user = req.body.user;
   var username = req.body.username;
   var password = req.body.password;
   // knex query to search database for user
@@ -32,8 +32,8 @@ router.post('/', function (req, res) {
           throw err;
         } else {
           // store hash in password DB.
-          knex('user').returning(['id', 'name', 'username'])
-                      .insert({name: name, username: username, password: hash})
+          knex('user').returning(['id', 'user', 'username'])
+                      .insert({user: user, username: username, password: hash})
                       .then(function (result) {
                         // set cookies
                         res.cookie('signedIn', true);
