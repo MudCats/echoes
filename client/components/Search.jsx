@@ -36,8 +36,8 @@ class Search extends React.Component {
 	render() {
     return (
    	  <div className=''>
-	      <SearchBar search={this.onInputChange.bind(this)} className="search-bar" />
-	      <ResultsList data={this.state.results} className='results-container' />
+	      <SearchBar search={_.debounce(this.onInputChange.bind(this), 300)} className="search-bar" />
+	      <ResultsList albums={this.state.results} className='results-container' />
 	   </div>
     );
   };
