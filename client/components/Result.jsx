@@ -7,6 +7,7 @@ class Result extends React.Component {
 		return (
 		<div>
 			<img src={this.props.album.artworkUrl100}/>
+			<div>{}</div>
 		</div>
 
 		)
