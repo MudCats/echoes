@@ -8,7 +8,7 @@ class EntryList extends React.Component {
     <div className='entryList'>
       {this.props.allEntries.map((entry) => {
         return (
-          <Entry date={entry.date}
+          <Entry date={entry.date.slice(0,10)}
                  title={entry.title}
                  artist={entry.name}
                  genre={entry.genre}
