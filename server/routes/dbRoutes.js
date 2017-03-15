@@ -33,8 +33,10 @@ router.get('/', function (req, res) {
 // TODO: check frontend to make sure this is correct format!
 // post new album to the database
 router.post('/', function (req, res) {
-  var album = req.body.results.album;
-  var date = req.body.results.date;
+
+  var album = req.body.album;
+  // put date into correct format for db
+  var date = req.body.date.slice(0, 11);
   var username = req.cookies.username;
   // check if artist is in db
   knex.from('artist')
@@ -44,7 +46,7 @@ router.post('/', function (req, res) {
     // if artist exists
       if (artistId.length) {
       // check if the album is already in the database
-        knex.from('album')
+        knex('album')
           .select('id')
           .where('title', album.collectionName)
           .then(function(albumId) {

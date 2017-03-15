@@ -15,6 +15,7 @@ class App extends React.Component {
     this.props.getUserEntries(function (results) {
       context.setState({allEntries: results});
     });
+
   }
 
   // renders the app to the DOM
@@ -22,7 +23,7 @@ class App extends React.Component {
     return (
       <div>
         <div>Hello!
-          <Search addNewEntry={this.addNewEntry.bind(this)}/>
+          <Search />
         </div>
         <div>
           <EntryList allEntries={this.state.allEntries}/>
