@@ -5,9 +5,15 @@ class Search extends React.Component {
 		this.state = {
 			term: '',
 			results: [],
-		  current: {}
+		  selected: {}
 		};
 
+	}
+
+	setSelected (album) {
+		this.setState({
+			results: [album]
+		});
 	}
 
 	onInputChange(term){
@@ -41,7 +47,7 @@ class Search extends React.Component {
     return (
    	  <div className=''>
 	      <SearchBar search={_.debounce(this.onInputChange.bind(this), 300)} className="search-bar" />
-	      <ResultsList albums={this.state.results} addNewEntry={this.props.addNewEntry} className='results-container' />
+	      <ResultsList albums={this.state.results} addNewEntry={this.props.addNewEntry} setSelected={this.setSelected.bind(this)} className='results-container' />
 	   </div>
     );
   };
