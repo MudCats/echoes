@@ -60,7 +60,7 @@ router.post('/', function (req, res) {
                       date: date,
                       album_impression_id: impressId
                     }).then(function() {
-                      res.status(200).send('Successful Post!');
+                      res.status(201).send('Successful Post!');
                     });
                   //if user has not listened to album 
                   } else {
@@ -70,10 +70,11 @@ router.post('/', function (req, res) {
                           user_id: username,
                           album_id: albumId
                         }).then(function(impressId) {
+                          var impressId = impressId[0];
                           // add new listen date for album
                           knex('listen_date').insert({'date': date, 
                             'album_impression_id': impressId}).then(function() {
-                              res.status(200).send('Successful Post!');
+                              res.status(201).send('Successful Post!');
                             });
                         });
                   }
@@ -90,21 +91,24 @@ router.post('/', function (req, res) {
                   art_url60: album.artworkUrl60,
                   art_url100: album.artworkUrl100
                  }).then(function(albumId) {
+                  var albumId = albumId[0];
                   // find user's id
                   knex.from('user')
                     .select('id')
                     .where('username', username)
-                    .then(function(username) {
+                    .then(function(userId) {
+                      var userId = userId[0];
                       // add album impression from user
                       knex('album_impression').returning('id')
                         .insert({
-                          user_id: username,
+                          user_id: userId,
                           album_id: albumId
                         }).then(function(impressId) {
+                          var impressId = impressId[0];
                           // add new listen date for album
                           knex('listen_date').insert({'date': date, 
                             'album_impression_id': impressId}).then(function() {
-                              res.status(200).send('Successful Post!');
+                              res.status(201).send('Successful Post!');
                             });
                         });
                       
@@ -117,6 +121,7 @@ router.post('/', function (req, res) {
       knex('artist').returning('id')
         .insert({name: album.artistName})
         .then(function(artistId) {
+          var artistId = artistId[0];
           // add album to db
           knex('album').returning('id')
           .insert({
@@ -127,21 +132,24 @@ router.post('/', function (req, res) {
             art_url60: album.artworkUrl60,
             art_url100: album.artworkUrl100
            }).then(function(albumId) {
+            var albumId = albumId[0];
             // find user's id
             knex.from('user')
               .select('id')
               .where('username', username)
-              .then(function(username) {
+              .then(function(userId) {
+                var userId = userId[0];
                 // add album impression from user
                 knex('album_impression').returning('id')
                   .insert({
-                    user_id: username,
+                    user_id: userId,
                     album_id: albumId
                   }).then(function(impressId) {
+                    var impressId = impressId[0];
                     // add new listen date for album
                     knex('listen_date').insert({'date': date, 
                       'album_impression_id': impressId}).then(function() {
-                        res.status(200).send('Successful Post!');
+                        res.status(201).send('Successful Post!');
                       });
                   });
                 
@@ -154,21 +162,42 @@ router.post('/', function (req, res) {
 
 // add/update impression
 router.post('/update', function (req, res) {
-  //find the listen_date Entry
-    // find the corresponding album_impression
-      //update impression and rating w/ req.body
+  var impress = req.body.results;
+  // find the corresponding album_impression
+  knex('album_impression')
+    .where('id', impress.id)
+    //update impression and rating w/ req.body
+    .update({
+      impression:impress.impression,
+      rating: impress.rating
+    }).then(function () {
+      res.status(201).send('Updated current album');
+    })
 });
 
 // remove listen_date
 router.post('/remove', function (req, res) {
+  var listenEntry = req.body.results
   //find the listen_date Entry
+  knex('listen_date')
     // check if there is more than 1 date for that impression_id
-      // if listen_date w/ album_impress_id > 1
+    .where('album_impression_id', listenEntry.impressionId)
+    .then(function (dates) {
         // delete listen_date entry
+        knex('listen_date').where('album_impression_id', listenEntry.impressionId)
+          .where('date', listenEntry.date)
+          .del();
       // if album_impress_id = 1
-        // save album_impress_id
-        // delete listen_date Entry
-        // delete album_impress
+      if (dates.length === 1) {
+        // delete album_impression
+          knex('album_impression') 
+            .where('id', listenEntry.impressionId)
+            .del();
+      }
+    })
+    .then(function () {
+      res.status(201).send('Successfully removed album');
+    });
 });
 
 module.exports = router;
