@@ -7,11 +7,9 @@ class ResultsList extends React.Component {
 		return (
 			<table>
 				<tbody>
-					{this.props.albums.map((album) => <Result album={album}/>)}
+					{this.props.albums.map((album) => <Result key={album.collectionId} album={album}/>)}
 				</tbody>
 			</table>
-
-			<Result />
 		);
 	}
 

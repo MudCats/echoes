@@ -22,7 +22,7 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				console.log(data);
-				this.setState({results: data});
+				this.setState({results: data.results});
 			},
 			error: (error) => {
 				console.log(error);
