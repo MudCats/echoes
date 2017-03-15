@@ -16,16 +16,13 @@ class App extends React.Component {
       context.setState({allEntries: results});
     });
   }
-  // adds album to the database
-  add (album) {
 
-  }
   // renders the app to the DOM
   render () {
     return (
       <div>
         <div>Hello!
-          <Search />
+          <Search addNewEntry={this.addNewEntry.bind(this)}/>
         </div>
         <div>
           <EntryList allEntries={this.state.allEntries}/>

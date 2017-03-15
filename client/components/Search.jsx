@@ -2,7 +2,11 @@ class Search extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.state = {term: '', results: []};
+		this.state = {
+			term: '',
+			results: [],
+		  current: {}
+		};
 
 	}
 
@@ -37,7 +41,7 @@ class Search extends React.Component {
     return (
    	  <div className=''>
 	      <SearchBar search={_.debounce(this.onInputChange.bind(this), 300)} className="search-bar" />
-	      <ResultsList albums={this.state.results} className='results-container' />
+	      <ResultsList albums={this.state.results} addNewEntry={this.props.addNewEntry} className='results-container' />
 	   </div>
     );
   };
