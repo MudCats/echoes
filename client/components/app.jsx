@@ -9,22 +9,16 @@ class App extends React.Component {
     }
   }
   // when the component loads successfully
-  componentDidMount () {
+  componentWillMount () {
     // load all of the user's data
-    // call this.props.getUserEntries
+    var context = this;
+    this.props.getUserEntries(function (results) {
+      context.setState({allEntries: results});
+    });
   }
   // adds album to the database
   add (album) {
 
-  }
-  // calls iTunes search method on window object
-  search (string) {
-    // calls searchiTunes and sets state of searchResults
-    this.props.searchiTunes(string, (albums) => {
-      this.setState({
-        searchResults: albums
-      });
-    });
   }
   // renders the app to the DOM
   render () {
@@ -34,7 +28,7 @@ class App extends React.Component {
           <Search />
         </div>
         <div>
-          <EntryList />
+          <EntryList allEntries={this.state.allEntries}/>
         </div>
       </div>
     )

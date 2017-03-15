@@ -1,15 +1,12 @@
 // retrieves user data from database
 // pass username for database search
 // TODO: verify that user data can be send with get request
-var getUserEntries = function (username, callback) {
+var getUserEntries = function (callback) {
   $.ajax({
     url: '/querydb',
     type: 'GET',
-    data: {
-      username: username
-    },
     success: function (response) {
-      return callback(response);
+      callback(response);
     },
     error: function (error) {
       console.log(error);
