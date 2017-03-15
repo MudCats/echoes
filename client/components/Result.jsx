@@ -5,11 +5,14 @@ class Result extends React.Component {
 
 	render () {
 		return (
-		<div></div>
-			
+		<div>
+			<img src={this.props.album.artworkUrl100}/>
+			<div>{}</div>
+		</div>
+
 		)
 	}
-	
+
 }
 
 window.Result = Result;

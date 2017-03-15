@@ -5,13 +5,9 @@ class ResultsList extends React.Component {
 
 	render () {
 		return (
-			<table>
-				<tbody>
-					{this.props.albums.map((album) => <Result album={album}/>)}
-				</tbody>
-			</table>
-
-			<Result />
+			<div>
+				{this.props.albums.map((album) => <Result key={album.collectionId} album={album}/>)}
+			</div>
 		);
 	}
 
