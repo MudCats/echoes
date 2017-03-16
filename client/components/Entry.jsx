@@ -19,7 +19,7 @@ class Entry extends React.Component {
           <div>{this.props.impression}</div>
           <div>{this.props.rating}</div>
         </div>
-        <button className='update'>Update</button>
+        <UpdateBox impressionId={this.props.impressionId} />
       </div>
     )
   }

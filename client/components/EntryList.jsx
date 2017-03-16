@@ -17,7 +17,7 @@ class EntryList extends React.Component {
                  impression={entry.impression}
                  art_url60={entry.art_url60}
                  art_url100={entry.art_url100}
-                 album_impression_id={entry.album_impression_id}
+                 impressionId={entry.id}
             />
         )})
       }
