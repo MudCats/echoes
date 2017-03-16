@@ -46,7 +46,7 @@ class Search extends React.Component {
 	// send selected album and listen date to db via post request
 	addNewEntry (album, date) {
 		// send object with keys album and date
-		var newEntry = {album: album, date: date};
+		var newEntry = {album: album, date: date.slice(0,10)};
 		// user can only submit one album
 		if (this.state.results.length === 1 && this.state.selectedListenDate) {
 			$.ajax({

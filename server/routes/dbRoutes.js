@@ -20,6 +20,7 @@ router.get('/', function (req, res) {
               'album.title', 'artist.name', 'album.genre', 'album.year',
               'album_impression.rating', 'album_impression.impression', 'album_impression_id',
               'album.art_url60', 'album.art_url100')
+      .orderBy('listen_date.date', 'desc')
       .then(function (result) {
         // send the result back to the user
         console.log(result);
@@ -33,54 +34,82 @@ router.get('/', function (req, res) {
 // TODO: check frontend to make sure this is correct format!
 // post new album to the database
 router.post('/', function (req, res) {
-
   var album = req.body.album;
   // put date into correct format for db
-  var date = req.body.date.slice(0, 11);
+  var date = req.body.date.slice(0, 10);
   var username = req.cookies.username;
   // check if artist is in db
-  knex.from('artist')
+  knex('artist')
+    .where({name : album.artistName})
     .select('id')
-    .where('name', album.artistName)
     .then(function(artistId) {
-    // if artist exists
-      if (artistId.length) {
+      var artistId = artistId[0].id;
+      if (artistId) {
       // check if the album is already in the database
         knex('album')
           .select('id')
           .where('title', album.collectionName)
           .then(function(albumId) {
+            var albumId = albumId[0].id;
             // if the album exists
-            if (album_id.length) {
+            if (albumId) {
               // check if the user has listened to it before
               knex('album_impression').select('id')
                 .where('album_id', albumId)
                 .then(function(impressId) {
+                  var impressId = impressId[0].id;
                   // if user has listened to album
-                  if (impressId.length) {
+                  if (impressId) {
                     // Add a new listen date
                     knex('listen_date').insert({
                       date: date,
                       album_impression_id: impressId
                     }).then(function() {
                       res.status(201).send('Successful Post!');
+                    })
+                    .catch(function (err) {
+                      console.log('Problem with inserting listen_date #1');
+                      throw err;
                     });
                   //if user has not listened to album
                   } else {
                     //add an album_impression for the user
-                    knex('album_impression').returning('id')
+                    knex('user').select('id')
+                      .where('username', username)
+                      .then(function (userId) {
+                        var userId = userId[0].id;
+                        knex('album_impression').returning('id')
                         .insert({
-                          user_id: username,
+                          user_id: userId,
                           album_id: albumId
                         }).then(function(impressId) {
-                          var impressId = impressId[0];
+                          var impressId = impressId[0].id;
                           // add new listen date for album
-                          knex('listen_date').insert({'date': date,
-                            'album_impression_id': impressId}).then(function() {
-                              res.status(201).send('Successful Post!');
-                            });
+                          knex('listen_date').insert({
+                            'date': date,
+                            'album_impression_id': impressId
+                          }).then(function() {
+                            res.status(201).send('Successful Post!');
+                          })
+                          .catch(function (err) {
+                            console.log('Problem with inserting listen_date #2');
+                            throw err;
+                          });
+                        })
+                        .catch(function (err) {
+                          console.log('Problem with inserting impressId #1');
+                          throw err;
                         });
+                      })
+                      .catch(function (err) {
+                        console.log('Problem grabbing userId #1')
+                        throw err;
+                      });
                   }
+                })
+                .catch(function (err) {
+                  console.log('Problem with grabbing impressId #2');
+                  throw err;
                 });
             // if album does not exist
             } else {
@@ -90,7 +119,7 @@ router.post('/', function (req, res) {
                   title: album.collectionName,
                   artist_id: artistId,
                   genre: album.primaryGenreName,
-                  year: album.releaseDate,
+                  year: album.releaseDate.slice(0,4),
                   art_url60: album.artworkUrl60,
                   art_url100: album.artworkUrl100
                  }).then(function(albumId) {
@@ -100,31 +129,52 @@ router.post('/', function (req, res) {
                     .select('id')
                     .where('username', username)
                     .then(function(userId) {
-                      var userId = userId[0];
+                      var userId = userId[0].id;
                       // add album impression from user
                       knex('album_impression').returning('id')
                         .insert({
                           user_id: userId,
                           album_id: albumId
                         }).then(function(impressId) {
-                          var impressId = impressId[0];
+                          var impressId = impressId[0].id;
                           // add new listen date for album
-                          knex('listen_date').insert({'date': date,
-                            'album_impression_id': impressId}).then(function() {
-                              res.status(201).send('Successful Post!');
-                            });
+                          knex('listen_date').insert({
+                            'date': date,
+                            'album_impression_id': impressId})
+                          .then(function() {
+                            res.status(201).send('Successful Post!');
+                          })
+                          .catch(function (err) {
+                            console.log('Problem with inserting listen_date #3');
+                            throw err;
+                          });
+                        })
+                        .catch(function (err) {
+                          console.log('Problem with grabbing impressId #3');
+                          throw err;
                         });
-
+                    })
+                    .catch(function (err) {
+                      console.log('Problem with grabbing userId #2');
+                      throw err;
                     });
+                })
+                .catch(function (err) {
+                  console.log('Problem with inserting album #1');
+                  throw err;
                 });
             }
+          })
+          .catch(function (err) {
+            console.log('Problem with grabbing album id #1');
+            throw err;
           });
       } else {
       // add artist to db
       knex('artist').returning('id')
         .insert({name: album.artistName})
         .then(function(artistId) {
-          var artistId = artistId[0];
+          var artistId = artistId[0].id;
           // add album to db
           knex('album').returning('id')
           .insert({
@@ -151,15 +201,39 @@ router.post('/', function (req, res) {
                     var impressId = impressId[0];
                     // add new listen date for album
                     knex('listen_date').insert({'date': date,
-                      'album_impression_id': impressId}).then(function() {
+                      'album_impression_id': impressId})
+                      .then(function() {
                         res.status(201).send('Successful Post!');
+                      })
+                      .catch(function (err) {
+                        console.log('Problem with inserting listen_date #4');
+                        throw err;
                       });
+                  })
+                  .catch(function (err) {
+                    console.log('Problem with inserting impressId #4');
+                    throw err;
                   });
-
+              })
+              .catch(function (err) {
+                console.log('Problem with selecting userId #3');
+                throw err;
               });
+          })
+          .catch(function (err) {
+            console.log('Problem with inserting album id #2');
+            throw err;
           });
-        });
+        })
+        .catch(function (err) {
+          console.log('Problem with inserting artist id #1');
+          throw err;
+        });;
       }
+    })
+    .catch(function (err) {
+      console.log('Problem with grabbing artist id #1');
+      throw err;
     });
 });
 
