@@ -43,23 +43,23 @@ router.post('/', function (req, res) {
     .where({name : album.artistName})
     .select('id')
     .then(function(artistId) {
+      if (artistId.length) {
       var artistId = artistId[0].id;
-      if (artistId) {
       // check if the album is already in the database
         knex('album')
           .select('id')
           .where('title', album.collectionName)
           .then(function(albumId) {
-            var albumId = albumId[0].id;
             // if the album exists
-            if (albumId) {
+            if (albumId.length) {
+              var albumId = albumId[0].id;
               // check if the user has listened to it before
               knex('album_impression').select('id')
                 .where('album_id', albumId)
                 .then(function(impressId) {
-                  var impressId = impressId[0].id;
                   // if user has listened to album
-                  if (impressId) {
+                  if (impressId.length) {
+                    var impressId = impressId[0].id;
                     // Add a new listen date
                     knex('listen_date').insert({
                       date: date,
@@ -181,7 +181,7 @@ router.post('/', function (req, res) {
             title: album.collectionName,
             artist_id: artistId,
             genre: album.primaryGenreName,
-            year: album.releaseDate,
+            year: album.releaseDate.slice(0,4),
             art_url60: album.artworkUrl60,
             art_url100: album.artworkUrl100
            }).then(function(albumId) {
@@ -191,7 +191,7 @@ router.post('/', function (req, res) {
               .select('id')
               .where('username', username)
               .then(function(userId) {
-                var userId = userId[0];
+                var userId = userId[0].id;
                 // add album impression from user
                 knex('album_impression').returning('id')
                   .insert({
