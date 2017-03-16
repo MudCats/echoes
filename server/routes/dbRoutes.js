@@ -20,6 +20,7 @@ router.get('/', function (req, res) {
               'album.title', 'artist.name', 'album.genre', 'album.year',
               'album_impression.rating', 'album_impression.impression', 'album_impression_id',
               'album.art_url60', 'album.art_url100')
+      .orderBy('listen_date.date', 'desc')
       .then(function (result) {
         // send the result back to the user
         console.log(result);
