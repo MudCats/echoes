@@ -31,7 +31,6 @@ router.get('/', function (req, res) {
       })
 });
 
-// TODO: check frontend to make sure this is correct format!
 // post new album to the database
 router.post('/', function (req, res) {
   var album = req.body.album;
@@ -49,6 +48,7 @@ router.post('/', function (req, res) {
         knex('album')
           .select('id')
           .where('title', album.collectionName)
+          .where('artist_id', artistId)
           .then(function(albumId) {
             // if the album exists
             if (albumId.length) {
@@ -59,23 +59,35 @@ router.post('/', function (req, res) {
                 .then(function (userId) {
                   var userId = userId[0].id;
                   knex('album_impression').select('id')
-                  .where('album_id', albumId)
                   .where('user_id', userId)
+                  .where('album_id', albumId)
                   .then(function(impressId) {
                     // if user has listened to album
                     if (impressId.length) {
                       var impressId = impressId[0].id;
                       // Add a new listen date
-                      knex('listen_date').insert({
-                        date: date,
-                        album_impression_id: impressId
-                      }).then(function() {
-                        res.status(201).send('Successful Post!');
-                      })
-                      .catch(function (err) {
-                        console.log('Problem with inserting listen_date #1');
-                        throw err;
-                      });
+                      knex('listen_date').select('id')
+                        .where('album_impression_id', impressId)
+                        .then( function (listenId) {
+                          if (listenId.length) {
+                            res.status(400).send('You already listened to this album that day.');
+                          } else {
+                            knex('listen_date').insert({
+                              date: date,
+                              album_impression_id: impressId
+                            }).then(function() {
+                              res.status(201).send('Successful Post!');
+                            })
+                            .catch(function (err) {
+                              console.log('Problem with inserting listen_date #1');
+                              throw err;
+                            });
+                          }
+                        })
+                        .catch(function (err) {
+                          console.log('Problem with grabbing listenDateId #1');
+                          throw err;
+                        });
                       //if user has not listened to album
                     } else {
                       //add an album_impression for the user
