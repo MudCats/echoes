@@ -97,18 +97,18 @@ router.post('/', function (req, res) {
                           });
                         })
                         .catch(function (err) {
-                          console.log('Problem with inserting impressId #1');
+                          console.log('Problem with inserting album_impression #1');
                           throw err;
                         });
                       })
                       .catch(function (err) {
-                        console.log('Problem grabbing userId #1')
+                        console.log('Problem with grabbing user_id #1')
                         throw err;
                       });
                   }
                 })
                 .catch(function (err) {
-                  console.log('Problem with grabbing impressId #2');
+                  console.log('Problem with grabbing album_impression_id #1');
                   throw err;
                 });
             // if album does not exist
@@ -150,7 +150,7 @@ router.post('/', function (req, res) {
                           });
                         })
                         .catch(function (err) {
-                          console.log('Problem with grabbing impressId #3');
+                          console.log('Problem with inserting album_impression #2');
                           throw err;
                         });
                     })
@@ -166,7 +166,7 @@ router.post('/', function (req, res) {
             }
           })
           .catch(function (err) {
-            console.log('Problem with grabbing album id #1');
+            console.log('Problem with grabbing albumId #1');
             throw err;
           });
       } else {
@@ -211,7 +211,7 @@ router.post('/', function (req, res) {
                       });
                   })
                   .catch(function (err) {
-                    console.log('Problem with inserting impressId #4');
+                    console.log('Problem with inserting album_impression #3');
                     throw err;
                   });
               })
@@ -221,18 +221,18 @@ router.post('/', function (req, res) {
               });
           })
           .catch(function (err) {
-            console.log('Problem with inserting album id #2');
+            console.log('Problem with inserting album #2');
             throw err;
           });
         })
         .catch(function (err) {
-          console.log('Problem with inserting artist id #1');
+          console.log('Problem with inserting artist #1');
           throw err;
         });;
       }
     })
     .catch(function (err) {
-      console.log('Problem with grabbing artist id #1');
+      console.log('Problem with grabbing artistId #1');
       throw err;
     });
 });
