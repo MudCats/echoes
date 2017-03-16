@@ -43,23 +43,23 @@ router.post('/', function (req, res) {
     .where({name : album.artistName})
     .select('id')
     .then(function(artistId) {
+      if (artistId.length) {
       var artistId = artistId[0].id;
-      if (artistId) {
       // check if the album is already in the database
         knex('album')
           .select('id')
           .where('title', album.collectionName)
           .then(function(albumId) {
-            var albumId = albumId[0].id;
             // if the album exists
-            if (albumId) {
+            if (albumId.length) {
+              var albumId = albumId[0].id;
               // check if the user has listened to it before
               knex('album_impression').select('id')
                 .where('album_id', albumId)
                 .then(function(impressId) {
-                  var impressId = impressId[0].id;
                   // if user has listened to album
-                  if (impressId) {
+                  if (impressId.length) {
+                    var impressId = impressId[0].id;
                     // Add a new listen date
                     knex('listen_date').insert({
                       date: date,
@@ -97,18 +97,18 @@ router.post('/', function (req, res) {
                           });
                         })
                         .catch(function (err) {
-                          console.log('Problem with inserting impressId #1');
+                          console.log('Problem with inserting album_impression #1');
                           throw err;
                         });
                       })
                       .catch(function (err) {
-                        console.log('Problem grabbing userId #1')
+                        console.log('Problem with grabbing user_id #1')
                         throw err;
                       });
                   }
                 })
                 .catch(function (err) {
-                  console.log('Problem with grabbing impressId #2');
+                  console.log('Problem with grabbing album_impression_id #1');
                   throw err;
                 });
             // if album does not exist
@@ -150,7 +150,7 @@ router.post('/', function (req, res) {
                           });
                         })
                         .catch(function (err) {
-                          console.log('Problem with grabbing impressId #3');
+                          console.log('Problem with inserting album_impression #2');
                           throw err;
                         });
                     })
@@ -166,7 +166,7 @@ router.post('/', function (req, res) {
             }
           })
           .catch(function (err) {
-            console.log('Problem with grabbing album id #1');
+            console.log('Problem with grabbing albumId #1');
             throw err;
           });
       } else {
@@ -181,7 +181,7 @@ router.post('/', function (req, res) {
             title: album.collectionName,
             artist_id: artistId,
             genre: album.primaryGenreName,
-            year: album.releaseDate,
+            year: album.releaseDate.slice(0,4),
             art_url60: album.artworkUrl60,
             art_url100: album.artworkUrl100
            }).then(function(albumId) {
@@ -191,7 +191,7 @@ router.post('/', function (req, res) {
               .select('id')
               .where('username', username)
               .then(function(userId) {
-                var userId = userId[0];
+                var userId = userId[0].id;
                 // add album impression from user
                 knex('album_impression').returning('id')
                   .insert({
@@ -211,7 +211,7 @@ router.post('/', function (req, res) {
                       });
                   })
                   .catch(function (err) {
-                    console.log('Problem with inserting impressId #4');
+                    console.log('Problem with inserting album_impression #3');
                     throw err;
                   });
               })
@@ -221,18 +221,18 @@ router.post('/', function (req, res) {
               });
           })
           .catch(function (err) {
-            console.log('Problem with inserting album id #2');
+            console.log('Problem with inserting album #2');
             throw err;
           });
         })
         .catch(function (err) {
-          console.log('Problem with inserting artist id #1');
+          console.log('Problem with inserting artist #1');
           throw err;
         });;
       }
     })
     .catch(function (err) {
-      console.log('Problem with grabbing artist id #1');
+      console.log('Problem with grabbing artistId #1');
       throw err;
     });
 });

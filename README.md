@@ -24,3 +24,10 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 3. Run: knex seed:run
 4. Put foreign key constraints back in
 5. Run: knex migrate:rollback && knex migrate:latest
+
+#Viewing Console-Logs For Server Request#
+To view console logs for server request, go into the knexfile and uncomment 'debug: true'.
+Then, any time you make changes server side:
+1. Run: npm start (This recompiles your changes, which is what the app is reading)
+2. Exit out of npm start (npm start, while running the server, will not show console logs)
+3. Run: node server/server.js (This will restart the server w/o recompiling, but allows you to view your server-side console logs)
