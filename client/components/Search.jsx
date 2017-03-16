@@ -23,8 +23,6 @@ class Search extends React.Component {
 
   // displays only the clicked album
 	setSelected (album) {
-		// gets date from input field
-    var date = $('input').val();
     // sets state to display one album and sets state of listen date
 		this.setState({
 			results: [album],
