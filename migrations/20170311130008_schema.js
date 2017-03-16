@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
       table.integer('year').notNullable();
       table.string('art_url60').notNullable(); //saves album art 60px size square
       table.string('art_url100').notNullable(); //saves album art 100px size square
-      // table.foreign('artist_id').references('artist.id');
+      table.foreign('artist_id').references('artist.id');
       table.unique(['title', 'artist_id']); //guarantees no repeated albums for an artist
     }),
 
@@ -33,7 +33,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title');
       table.integer('album_id');
-      // table.foreign('album_id').references('album.id');
+      table.foreign('album_id').references('album.id');
       table.unique(['title', 'album_id']);
     }),
 
@@ -44,8 +44,8 @@ exports.up = function(knex, Promise) {
       table.integer('album_id');
       table.integer('rating');
       table.string('impression');
-      // table.foreign('user_id').references('user.id');
-      // table.foreign('album_id').references('album.id');
+      table.foreign('user_id').references('user.id');
+      table.foreign('album_id').references('album.id');
       table.unique(['user_id', 'album_id']);
     }),
 
@@ -54,7 +54,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.integer('album_impression_id');
       table.date('date').notNullable();
-      // table.foreign('album_impression_id').references('album_impression.id');
+      table.foreign('album_impression_id').references('album_impression.id');
       table.unique(['album_impression_id', 'date']);
     })
   ]);
