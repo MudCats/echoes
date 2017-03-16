@@ -68,6 +68,7 @@ router.post('/', function (req, res) {
                       // Add a new listen date
                       knex('listen_date').select('id')
                         .where('album_impression_id', impressId)
+                        .where('date', date)
                         .then( function (listenId) {
                           if (listenId.length) {
                             res.status(400).send('You already listened to this album that day.');
