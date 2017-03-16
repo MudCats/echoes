@@ -8,7 +8,7 @@ module.exports = {
     connection: {
       database: 'echoes'
     },
-    // debug: true
+    debug: true
   }
 }
 
