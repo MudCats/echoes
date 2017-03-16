@@ -23,6 +23,8 @@ class Search extends React.Component {
 
   // displays only the clicked album
 	setSelected (album) {
+		// date defaults to current date
+		var date = $('input').val() || this.state.selectedListenDate;
     // sets state to display one album and sets state of listen date
 		this.setState({
 			results: [album],
@@ -30,7 +32,7 @@ class Search extends React.Component {
 		});
 	}
   // sends request to iTunes api
-	iTunesSearch (term){
+	iTunesSearch (term) {
 		this.setState({term});
 		// used percent encoding for iTunes API search
 		var query = this.state.term.split(' ').join('%20');
@@ -61,21 +63,22 @@ class Search extends React.Component {
 		// send object with keys album and date
 		var newEntry = {album: album, date: date.slice(0,10)};
 		// user can only submit one album
-		if (this.state.results.length === 1 && this.state.selectedListenDate) {
+		if (this.state.results.length === 1) {
 			$.ajax({
 				url: '/querydb',
 				type: 'POST',
-				dataType: 'json',
+				dataType: 'text',
 				contentType: 'application/json',
 				data: JSON.stringify(newEntry),
-				success: function (results) {
-					console.log(results);
+				success: (results) => {
 					// clears previously set state
 					this.setState({
 						term: '',
 						results: [],
-						selectedListDate: null
-					})
+						selectedListenDate: null
+					});
+
+					this.props.getUserEntries();
 				},
 				error: function (error) {
 					console.log(error);
