@@ -252,7 +252,7 @@ router.post('/', function (req, res) {
 });
 
 // add/update impression
-router.post('/update', function (req, res) {
+router.put('/', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
@@ -266,12 +266,12 @@ router.post('/update', function (req, res) {
       impression:impress.impression,
       rating: impress.rating
     }).then(function () {
-      res.status(201).redirect('Updated current album');
+      res.status(201).end();
     })
 });
 
 // remove listen_date
-router.post('/remove', function (req, res) {
+router.delete('/', function (req, res) {
   var listenEntry = req.body.results
   //find the listen_date Entry
   knex('listen_date')
