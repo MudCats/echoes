@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
 	render(){
 		return (
 			<input type='text'
-      		   onChange={event => this.props.search(event.target.value)}
+      		   onKeyUp={event => this.props.search(event.target.value)}
       		/>
 		)
 	}

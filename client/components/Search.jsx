@@ -2,6 +2,7 @@ class Search extends React.Component {
 
 	constructor(props){
 		super(props);
+
 		this.state = {
 			term: '',
 			results: [],
@@ -9,9 +10,11 @@ class Search extends React.Component {
 		};
 	}
 
+  // displays only the clicked album
 	setSelected (album) {
+		// gets date from input field
     var date = $('input').val();
-
+    // sets state to display one album and sets state of listen date
 		this.setState({
 			results: [album],
 			selectedListenDate: date
@@ -20,10 +23,10 @@ class Search extends React.Component {
   // sends request to iTunes api
 	iTunesSearch (term){
 		this.setState({term});
-		var query = this.state.term.split(' ').join('&20');
-		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=8';
-
-		console.log(searchUrl);
+		// used percent encoding for iTunes API search
+		var query = this.state.term.split(' ').join('%20');
+		// creates search URL with limit of four results
+		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=4';
 
 		$.ajax({
 			url: searchUrl,
@@ -34,6 +37,7 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				console.log(data);
+				// changes state of results, which triggers view change
 				this.setState({results: data.results});
 			},
 			error: (error) => {
@@ -57,6 +61,7 @@ class Search extends React.Component {
 				data: JSON.stringify(newEntry),
 				success: function (results) {
 					console.log(results);
+					// clears previously set state
 					this.setState({
 						term: '',
 						results: [],
@@ -72,6 +77,7 @@ class Search extends React.Component {
 	}
 
 	render() {
+
     return (
    	  <div className=''>
 				<input type="date" name="date"></input>
