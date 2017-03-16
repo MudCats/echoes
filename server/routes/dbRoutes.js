@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
       .select('user.user',
               'listen_date.date',
               'album.title', 'artist.name', 'album.genre', 'album.year',
-              'album_impression.rating', 'album_impression.impression', 'album_impression_id',
+              'album_impression.rating', 'album_impression.impression', 'album_impression.id',
               'album.art_url60', 'album.art_url100')
       .orderBy('listen_date.date', 'desc')
       .then(function (result) {
@@ -252,7 +252,11 @@ router.post('/', function (req, res) {
 
 // add/update impression
 router.post('/update', function (req, res) {
-  var impress = req.body.results;
+  var impress = req.body;
+  var id = Number(impress.id);
+  var rating = Number(impress.rating);
+  console.log('impress', impress);
+
   // find the corresponding album_impression
   knex('album_impression')
     .where('id', impress.id)
@@ -261,7 +265,7 @@ router.post('/update', function (req, res) {
       impression:impress.impression,
       rating: impress.rating
     }).then(function () {
-      res.status(201).send('Updated current album');
+      res.status(201).redirect('Updated current album');
     })
 });
 
