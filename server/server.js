@@ -23,6 +23,7 @@ app.use(morgan('combined'));
 app.use(cookie());
 app.use('/public', express.static(path.join(__dirname, '/../compiled/client')));
 app.use('/node_modules', express.static(path.join(__dirname, '/../node_modules')));
+app.use('/styles', express.static(path.join(__dirname, '/../client/styles')));
 
 // ROUTERS
 app.use('/', appServer);

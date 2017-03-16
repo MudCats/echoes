@@ -11,19 +11,31 @@ class App extends React.Component {
   // when the component loads successfully
   componentWillMount () {
     // load all of the user's data
-    var context = this;
-    this.props.getUserEntries(function (results) {
-      context.setState({allEntries: results});
-    });
-
+    this.getUserEntries();
   }
+
+  getUserEntries () {
+    $.ajax({
+      url: '/querydb',
+      type: 'GET',
+      success: (response) => {
+        this.setState({
+          allEntries: response
+        })
+      },
+      error: function (error) {
+        console.log(error);
+        throw error;
+      }
+    })
+  };
 
   // renders the app to the DOM
   render () {
     return (
       <div>
         <div>Hello!
-          <Search />
+          <Search getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
         <div>
           <EntryList allEntries={this.state.allEntries}/>
