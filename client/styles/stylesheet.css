@@ -54,6 +54,10 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+body.dashboard {
+	background: #f9f9f9;
+}
+
 span {
   color: #4b6ecc;
 }
@@ -112,12 +116,18 @@ IMAGES
 
 .header.logo {
   width: 25%;
+	margin-top:-80px;
+	margin-bottom:-20px;
 }
 
 .albumArt {
 	display: inline-block;
 	height: 100%;
 	vertical-align: middle;
+}
+
+span.close {
+	width: 5%;
 }
 
 /*-------------------------
@@ -144,7 +154,6 @@ a:hover {
 a.signout {
   float: right;
   margin-right: 20px;
-
 }
 
 button.update {
@@ -252,6 +261,11 @@ header {
 header.navbar {
   border-radius: 0;
 }
+
+tbody {
+	background-color: white;
+}
+
 /*Sign-in style*/
 .form-signin {
   max-width: 380px;
@@ -295,3 +309,4 @@ header.navbar {
 		  z-index: 2;
 		}
 	}
+
