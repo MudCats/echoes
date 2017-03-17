@@ -34,7 +34,7 @@ class Entry extends React.Component {
           </div>
         </td>
         <td className='impression col-md-4'>{this.props.impression}</td>
-        <td className='rating col-md-1'>{this.props.rating}</td>
+        <td className='rating col-md-1'><h3>{this.props.rating}</h3></td>
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
