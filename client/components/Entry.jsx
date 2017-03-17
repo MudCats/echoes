@@ -22,7 +22,6 @@ class Entry extends React.Component {
           <span className='day'><h4>{this.props.date.slice(8, 10)}</h4></span>
           <br></br>
           <span className='year'>{this.props.date.slice(0,4)}</span>
-
         </td>
         <td className='albumArt col-md-1'>
           <img src={this.props.art_url100} />

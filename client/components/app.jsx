@@ -75,21 +75,25 @@ class App extends React.Component {
   // renders the app to the DOM
   render () {
     return (
-      <div className="container-fluid">
-        <div className="col-md-2">Hello, {this.state.currentUser}!
+      <div>
+        <div className="container-fluid">
           <Search getUserEntries={this.getUserEntries.bind(this)}/>
-        </div>
-        <div className="col-md-10">
-          <div>
-            <h1 className="title">echoes</h1>
+          <div className="col-md-10">
+            <header className="navbar">
+              <div><h5>Hello, {this.state.currentUser}!</h5></div>
+              <img className='navbar-center header logo' src="styles/logo.svg"></img>
+              <a href="/signout" className='navbar-right signout'>
+                <button className="btn btn-default landing"><span>Sign Out</span></button>
+              </a>
+            </header>
+            <table className="table-hover table-responsive">
+              <EntryList allEntries={this.state.allEntries}
+                updateUserEntries={this.updateUserEntries.bind(this)}
+                getUserEntries={this.getUserEntries.bind(this)}
+                deleteUserEntries={this.deleteUserEntries.bind(this)}/>
+              </table>
+            </div>
           </div>
-          <table className="table-hover table-responsive">
-          <EntryList allEntries={this.state.allEntries}
-                     updateUserEntries={this.updateUserEntries.bind(this)}
-                     getUserEntries={this.getUserEntries.bind(this)}
-                     deleteUserEntries={this.deleteUserEntries.bind(this)}/>
-          </table>
-        </div>
       </div>
     )
   }

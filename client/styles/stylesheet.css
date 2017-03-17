@@ -77,6 +77,16 @@ IMAGES
   width: 40px;
 }
 
+.header.logo {
+  width: 30%;
+}
+
+.albumArt {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
 /*-------------------------
 BUTTONS
 -------------------------*/
@@ -92,6 +102,10 @@ button.btn.btn-default.landing {
 
 a:hover {
   text-decoration: none;
+}
+
+a.signout {
+  margin-right: 20px;
 }
 /*-------------------------
 TEXT
@@ -144,4 +158,12 @@ h1.title {
 
 .updateBox {
   position: absolute;
+}
+
+header {
+  background-color: #4b6ecc;
+}
+
+.navbar {
+	vertical-align: middle;
 }
