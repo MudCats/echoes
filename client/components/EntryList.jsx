@@ -20,6 +20,7 @@ class EntryList extends React.Component {
                  impressionId={entry.id}
                  updateUserEntries={this.props.updateUserEntries}
                  getUserEntries={this.props.getUserEntries}
+                 deleteUserEntries={this.props.deleteUserEntries}
             />
         )})
       }

@@ -20,8 +20,10 @@ class Entry extends React.Component {
           <div>{this.props.rating}</div>
         </div>
         <UpdateBox impressionId={this.props.impressionId}
+                   date={this.props.date}
                    updateUserEntries={this.props.updateUserEntries}
-                   getUserEntries={this.props.getUserEntries}/>
+                   getUserEntries={this.props.getUserEntries}
+                   deleteUserEntries={this.props.deleteUserEntries}/>
       </div>
     )
   }
