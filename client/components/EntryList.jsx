@@ -18,6 +18,8 @@ class EntryList extends React.Component {
                  art_url60={entry.art_url60}
                  art_url100={entry.art_url100}
                  impressionId={entry.id}
+                 updateUserEntries={this.props.updateUserEntries}
+                 getUserEntries={this.props.getUserEntries}
             />
         )})
       }

@@ -19,7 +19,9 @@ class Entry extends React.Component {
           <div>{this.props.impression}</div>
           <div>{this.props.rating}</div>
         </div>
-        <UpdateBox impressionId={this.props.impressionId} />
+        <UpdateBox impressionId={this.props.impressionId}
+                   updateUserEntries={this.props.updateUserEntries}
+                   getUserEntries={this.props.getUserEntries}/>
       </div>
     )
   }

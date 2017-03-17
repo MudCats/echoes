@@ -252,7 +252,7 @@ router.post('/', function (req, res) {
 });
 
 // add/update impression
-router.put('/', function (req, res) {
+router.post('/update', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
@@ -271,7 +271,7 @@ router.put('/', function (req, res) {
 });
 
 // remove listen_date
-router.delete('/', function (req, res) {
+router.post('/remove', function (req, res) {
   var listenEntry = req.body.results
   //find the listen_date Entry
   knex('listen_date')

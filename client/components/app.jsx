@@ -30,6 +30,21 @@ class App extends React.Component {
     })
   };
 
+  updateUserEntries (id, rating, impression, callback) {
+    $.ajax({
+      url:'/querydb/update',
+      type: 'POST',
+      data:{
+        id: id,
+        rating: rating,
+        impression: impression
+      },
+      success: function (response) {
+         callback();
+      }
+    })
+  }
+
   // renders the app to the DOM
   render () {
     return (
@@ -38,7 +53,9 @@ class App extends React.Component {
           <Search getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
         <div>
-          <EntryList allEntries={this.state.allEntries}/>
+          <EntryList allEntries={this.state.allEntries}
+                     updateUserEntries={this.updateUserEntries.bind(this)}
+                     getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
       </div>
     )
