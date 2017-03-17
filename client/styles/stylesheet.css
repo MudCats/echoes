@@ -51,6 +51,11 @@ BODY
 
 body {
   background: #4b6ecc;
+  font-family: 'Raleway', sans-serif;
+}
+
+.landing.container {
+  padding-top: 100px;
 }
 
 /*-------------------------
@@ -60,7 +65,16 @@ IMAGES
 .logo {
   display: block;
   margin: auto;
-  margin-bottom: -350px ;
+  margin-top: -50px;
+  margin-bottom: -50px;
+}
+
+.github-octocat {
+  margin: auto;
+  margin-top: 20px;
+  display: block;
+  height: 40px;
+  width: 40px;
 }
 
 /*-------------------------
@@ -69,9 +83,17 @@ BUTTONS
 
 .btn {
   margin: 0 10px 0 10px;
-  font-family: 'Raleway', sans-serif;
   font-weight: 500;
 }
+
+button.btn.btn-default.landing {
+  margin-bottom: 20px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 
 /*-------------------------
 TEXT
@@ -80,7 +102,27 @@ TEXT
 .blurb {
   font-family: 'Raleway', sans-serif;
   color: #fff;
-  margin-bottom: 20px;
+  margin: 20px;
   font-size: 18px;
   font-weight: 500px;
+}
+
+div.col-md-6.text-center {
+  border: 1px;
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 5px;
+  background: #4b6ecc;
+}
+
+.navbar-fixed-bottom.landing {
+  color: #4b6ecc;
+  text-align: right;
+  padding: 24px;
+  background: #fff;
+  vertical-align: middle;
+}
+
+.author-credit {
+  display: inline;
 }
