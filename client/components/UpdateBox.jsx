@@ -43,7 +43,7 @@ class UpdateBox extends React.Component {
       return (
         <td className='col-md-3'>
           {!this.state.modalActive && (
-            <div>
+            <div className='btn-group'>
               <button className='update' onClick={this.openModal.bind(this)}>Update</button>
               <br></br>
               <button className='remove' onClick={this.handleDelete.bind(this)}>Remove</button>
@@ -51,7 +51,7 @@ class UpdateBox extends React.Component {
           )}
           {this.state.modalActive && (
             <div className='update'>
-              <span className='close glyphicon glyphicon-remove-circle' onClick={this.closeModal.bind(this)}></span>
+              <span className='close glyphicon glyphicon-remove' onClick={this.closeModal.bind(this)}></span>
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
                 <textarea id='impression' name='impression'
                                           cols='25'

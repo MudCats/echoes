@@ -151,6 +151,17 @@ button.update {
 button.remove {
 	margin-left: 100px;
 }
+table tr td div.btn-group {
+	display:none;
+}
+
+table tr:hover td div.btn-group {
+	display:inline-block;
+}
+
+table tr.entry:hover {
+	background-color:#f9f9f9;
+}
 /*-------------------------
 TEXT
 -------------------------*/

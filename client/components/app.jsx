@@ -97,7 +97,7 @@ class App extends React.Component {
             <Search getUserEntries={this.getUserEntries.bind(this)}/>
           </div>
           <div className="col-md-10">
-            <table className="table-hover table-responsive">
+            <table className="table-responsive table">
               <EntryList allEntries={this.state.allEntries}
                 updateUserEntries={this.updateUserEntries.bind(this)}
                 getUserEntries={this.getUserEntries.bind(this)}
