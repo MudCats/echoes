@@ -158,6 +158,10 @@ h1.title {
 
 .updateBox {
   position: absolute;
+  margin: auto;
+  border-style: solid;
+  border: 1px;
+  border-radius: 5px;
 }
 
 header {
