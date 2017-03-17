@@ -181,7 +181,7 @@ div.col-md-6.text-center {
   border: 1px;
   border-style: solid;
   border-color: #fff;
-  border-radius: 5px;
+  border-radius: 25px;
   background: #4b6ecc;
 }
 
@@ -259,7 +259,7 @@ header.navbar {
   margin: 0 auto;
   border-radius: 25px;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 
@@ -281,7 +281,7 @@ header.navbar {
   margin: 0 auto;
   border-radius: 25px;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 	.form-control {
