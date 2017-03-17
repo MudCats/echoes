@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
   res.cookie('signedIn', false);
   res.clearCookie('username');
   // send user back to the login page
-  res.redirect('/signin');
+  res.redirect('/');
 
 });
 

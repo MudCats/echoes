@@ -92,7 +92,7 @@ class Search extends React.Component {
 	render() {
 
     return (
-   	  <div className='search-container'>
+   	  <div className='search-container col-md-2'>
 				<input type="date" name="date"></input>
 				<br></br>
 	      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
