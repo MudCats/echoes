@@ -20,7 +20,6 @@ class Entry extends React.Component {
         <td className='listenDate col-md-1'>
           <span className='month'><h4>{moment.months(this.state.month - 1)}</h4> </span>
           <span className='day'><h4>{this.props.date.slice(8, 10)}</h4></span>
-          <br></br>
           <span className='year'>{this.props.date.slice(0,4)}</span>
         </td>
         <td className='albumArt col-md-1'>
@@ -34,8 +33,8 @@ class Entry extends React.Component {
             <p>{this.props.genre}</p>
           </div>
         </td>
-        <td className='impression col-md-6'>{this.props.impression}</td>
-        <td className='rating col-md-2'>{this.props.rating}</td>
+        <td className='impression col-md-4'>{this.props.impression}</td>
+        <td className='rating col-md-1'>{this.props.rating}</td>
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
