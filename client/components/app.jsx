@@ -33,7 +33,7 @@ class App extends React.Component {
       }
     })
   };
-  // deletes a 
+  // deletes a
   deleteUserEntries (id, date, callback) {
     $.ajax({
       url:'/querydb/delete',
@@ -75,11 +75,11 @@ class App extends React.Component {
   // renders the app to the DOM
   render () {
     return (
-      <div>
-        <div>Hello, {this.state.currentUser}!
+      <div className="container-fluid">
+        <div className="col-md-3">Hello, {this.state.currentUser}!
           <Search getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
-        <div>
+        <div className="col-md-9">
           <EntryList allEntries={this.state.allEntries}
                      updateUserEntries={this.updateUserEntries.bind(this)}
                      getUserEntries={this.getUserEntries.bind(this)}
