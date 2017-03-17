@@ -86,15 +86,18 @@ class App extends React.Component {
 
       <div>
         <div className="container-fluid">
-          <Search getUserEntries={this.getUserEntries.bind(this)}/>
+          <header className="navbar">
+            <div><h2 className="greeting">Hello, {this.state.currentUser}!</h2></div>
+            <img className='navbar-center header logo' src="styles/logo.svg"></img>
+            <a href="/signout" className='navbar-right signout'>
+              <button className="btn btn-default landing"><span>Sign Out</span></button>
+            </a>
+          </header>
+          <div  className="col-md-2 search">
+
+            <Search getUserEntries={this.getUserEntries.bind(this)}/>
+          </div>
           <div className="col-md-10">
-            <header className="navbar">
-              <div><h5>Hello, {this.state.currentUser}!</h5></div>
-              <img className='navbar-center header logo' src="styles/logo.svg"></img>
-              <a href="/signout" className='navbar-right signout'>
-                <button className="btn btn-default landing"><span>Sign Out</span></button>
-              </a>
-            </header>
             <table className="table-hover table-responsive">
               <EntryList allEntries={this.state.allEntries}
                 updateUserEntries={this.updateUserEntries.bind(this)}
