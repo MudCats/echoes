@@ -290,12 +290,18 @@ router.post('/delete', function (req, res) {
         // if album_impress_id = 1
       } else {
         // delete album_impression
-        knex('album_impression')
+        knex('listen_date')
+        .where('album_impression_id', listenEntry.impressionId)
+        .where('date', listenEntry.date)
+        .del()
+        .then(function () {
+          knex('album_impression')
           .where('id', listenEntry.impressionId)
           .del()
           .then(function () {
             res.status(201).send('Successfully removed album');
           });
+        });
       }
     });
 });
