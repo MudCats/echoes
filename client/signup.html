@@ -3,33 +3,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>title</title>
-    <link rel="stylesheet" href="styles/stylesheet.css" type="text/css">
+    <title>Sign Up</title>
+    <img class="logo" src='styles/logo.svg'>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/stylesheet.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
 
 </head>
 
 <body>
-	<h1>Sign Up</h1>
+	<div class="form-signup">
     <form action="/signup" method="post">
     	<fieldset>
+        <h2>
     	<legend>Create an account:</legend>
+        </h2>
         First name:
         <br>
-        <input type="text" name="user" required>
+        <input type="text" class="form-control" name="user" placeholder="Name" required>
         <br> Username:
         <br>
-        <input type="text" name="username" required>
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
         <br> Password:
         <br>
-        <input type="password" name="password" minlength="8" required>
+        <input type="password" class="form-control" name="password" placeholder="Password" minlength="8" required>
         <br>
-        <input type="submit" value="Sign Up">
+        <input class="btn btn-default" type="submit" value="Sign Up">
         <br>
         <br>
         <a href="/signin">I already have an account</a>
     	</fieldset>
     </form>
+    </div>
 </body>
 
 </html>
