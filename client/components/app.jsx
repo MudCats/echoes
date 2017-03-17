@@ -94,7 +94,6 @@ class App extends React.Component {
             </a>
           </header>
           <div  className="col-md-2 search">
-
             <Search getUserEntries={this.getUserEntries.bind(this)}/>
           </div>
           <div className="col-md-10">
