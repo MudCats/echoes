@@ -8,14 +8,13 @@ class EntryList extends React.Component {
     <tbody className='container-fluid entryList'>
       <tr className='row'>
         <th className='col-md-1'>
-          <span className='glyphicon glyphicon-calendar'>
-          </span>
+          <span className='glyphicon glyphicon-calendar'></span>
         </th>
         <th className='col-md-1'>Album</th>
         <th className='col-md-2'></th>
-        <th className='impression col-md-6'>Impression</th>
+        <th className='impression col-md-4'>Impression</th>
         <th className='rating col-md-1'>Rating</th>
-        <th className='col-md-1'></th>
+        <th className='col-md-2'></th>
       </tr>
       {this.props.allEntries.map((entry) => {
         return (

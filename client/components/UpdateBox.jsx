@@ -41,15 +41,26 @@ class UpdateBox extends React.Component {
 
   render () {
       return (
-        <td className='col-md-1 updateBox'>
+        <td className='col-md-3'>
           {!this.state.modalActive && (
-            <button onClick={this.openModal.bind(this)}>Update</button>
+            <div>
+              <button className='update' onClick={this.openModal.bind(this)}>Update</button>
+              <br></br>
+              <button className='remove' onClick={this.handleDelete.bind(this)}>Remove</button>
+            </div>
           )}
           {this.state.modalActive && (
-            <div>
+            <div className='update'>
+              <span className='close glyphicon glyphicon-remove-circle' onClick={this.closeModal.bind(this)}></span>
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
-                <textarea id='impression' name='impression' cols='45' rows='5' value={this.state.impression} onChange={this.handleInputChange.bind(this)}></textarea>
-                <select name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
+                <textarea id='impression' name='impression'
+                                          cols='25'
+                                          rows='4'
+                                          value={this.state.impression}
+                                          onChange={this.handleInputChange.bind(this)}
+                                          required></textarea>
+                <br></br>
+                <select name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)} required>
                   <option value={null}>Rating</option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
@@ -64,8 +75,6 @@ class UpdateBox extends React.Component {
                 </select>
                 <input type='submit' id="submit" name='button' value='Save'></input>
               </form>
-              <button onClick={this.handleDelete.bind(this)}>Delete Entry</button>
-              <button onClick={this.closeModal.bind(this)}>Close</button>
             </div>
           )}
       </td>

@@ -143,6 +143,14 @@ a:hover {
 a.signout {
   margin-right: 20px;
 }
+
+button.update {
+	margin-left: 100px;
+}
+
+button.remove {
+	margin-left: 100px;
+}
 /*-------------------------
 TEXT
 -------------------------*/
@@ -190,7 +198,7 @@ h2.greeting {
 }
 
 .impression {
-  text-align:right;
+  text-align:left;
 }
 
 .rating {
@@ -215,4 +223,14 @@ header {
 
 .navbar {
 	vertical-align: middle;
+}
+
+.update.close {
+	text-align: right;
+}
+
+.update {
+	display:inline-block;
+	height: 100%;
+	vertical-align:middle;
 }
