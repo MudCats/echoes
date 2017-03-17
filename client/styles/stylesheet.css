@@ -54,9 +54,37 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+span {
+  color: #4b6ecc;
+}
+
 .landing.container {
   padding-top: 100px;
 }
+
+/*-------------------------
+CONTAINERS
+-------------------------*/
+.results-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search-result {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.search-result:hover {
+  cursor: pointer;
+  background-color: #F4F8FB;
+}
+
+.search-bar {
+  width: 100%
+}
+
 
 /*-------------------------
 IMAGES

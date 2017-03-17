@@ -33,6 +33,14 @@ class App extends React.Component {
       }
     })
   };
+
+  greetUser () {
+    if (this.state.currentUser) {
+      return `Hello, ${this.state.currentUser}!`
+    } else {
+      return `Hello!`
+    }
+  }
   // deletes a
   deleteUserEntries (id, date, callback) {
     $.ajax({
@@ -75,6 +83,7 @@ class App extends React.Component {
   // renders the app to the DOM
   render () {
     return (
+
       <div>
         <div className="container-fluid">
           <Search getUserEntries={this.getUserEntries.bind(this)}/>

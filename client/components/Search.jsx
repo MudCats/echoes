@@ -92,20 +92,25 @@ class Search extends React.Component {
 	render() {
 
     return (
+
    	  <div className='search-container col-md-2'>
-				<input type="date" name="date"></input>
+				<input type="date" name="date" className="form-group search-bar"></input>
 				<br></br>
 	      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
 					         className="search-bar" />
 
-				<button type="button"
-					      onClick={() => this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}>Add an album</button>
 
-	      <ResultsList albums={this.state.results}
-					           addNewEntry={this.props.addNewEntry}
-										 setSelected={this.setSelected.bind(this)}
-										 className='results-container' />
-	   </div>
+					<button type="button" className="btn btn-default"
+						onClick={() => this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}>Add an album</button>
+				</div>
+				<div className="results-container">
+					<ResultsList albums={this.state.results}
+						addNewEntry={this.props.addNewEntry}
+						setSelected={this.setSelected.bind(this)}
+						className='results-container' />
+				</div>
+			</div>
+
     );
   };
 };
