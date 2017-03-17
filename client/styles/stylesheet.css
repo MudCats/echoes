@@ -85,8 +85,9 @@ CONTAINERS
   width: 100%
 }
 
-.search-container {
-  margin-top: 40px;
+.container-fluid.app {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 
@@ -98,7 +99,7 @@ IMAGES
   display: block;
   margin: auto;
   margin-top: -50px;
-  margin-bottom: -50px;
+  margin-bottom: -30px;
 }
 
 .github-octocat {
@@ -141,7 +142,9 @@ a:hover {
 }
 
 a.signout {
+  float: right;
   margin-right: 20px;
+
 }
 
 button.update {
@@ -204,7 +207,8 @@ h2.greeting {
   font-weight: 300;
   font-size: 24px;
   color: #fff;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
   margin-bottom: 0px;
 }
 
@@ -244,4 +248,8 @@ header {
 	display:inline-block;
 	height: 100%;
 	vertical-align:middle;
+}
+
+header.navbar {
+  border-radius: 0;
 }
