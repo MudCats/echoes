@@ -252,7 +252,7 @@ router.post('/', function (req, res) {
 });
 
 // add/update impression
-router.put('/', function (req, res) {
+router.post('/update', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
@@ -271,27 +271,32 @@ router.put('/', function (req, res) {
 });
 
 // remove listen_date
-router.delete('/', function (req, res) {
-  var listenEntry = req.body.results
+router.post('/delete', function (req, res) {
+  var listenEntry = req.body;
   //find the listen_date Entry
   knex('listen_date')
     // check if there is more than 1 date for that impression_id
     .where('album_impression_id', listenEntry.impressionId)
     .then(function (dates) {
+      if (dates.length > 1) {
         // delete listen_date entry
-        knex('listen_date').where('album_impression_id', listenEntry.impressionId)
-          .where('date', listenEntry.date)
-          .del();
-      // if album_impress_id = 1
-      if (dates.length === 1) {
+        knex('listen_date')
+        .where('album_impression_id', listenEntry.impressionId)
+        .where('date', listenEntry.date)
+        .del()
+        .then(function () {
+          res.status(201).send('Successfully removed album');
+        });
+        // if album_impress_id = 1
+      } else {
         // delete album_impression
-          knex('album_impression')
-            .where('id', listenEntry.impressionId)
-            .del();
+        knex('album_impression')
+          .where('id', listenEntry.impressionId)
+          .del()
+          .then(function () {
+            res.status(201).send('Successfully removed album');
+          });
       }
-    })
-    .then(function () {
-      res.status(201).send('Successfully removed album');
     });
 });
 

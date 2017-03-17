@@ -30,6 +30,44 @@ class App extends React.Component {
     })
   };
 
+  deleteUserEntries (id, date, callback) {
+    $.ajax({
+      url:'/querydb/delete',
+      type:'POST',
+      data: {
+        impressionId: id,
+        date: date
+      },
+      success: function (response) {
+        console.log(response);
+        callback();
+      },
+      error: function (error) {
+        console.log(error);
+        throw error;
+      }
+    })
+  }
+
+  updateUserEntries (id, rating, impression, callback) {
+    $.ajax({
+      url:'/querydb/update',
+      type:'POST',
+      data:{
+        id: id,
+        rating: rating,
+        impression: impression
+      },
+      success: function (response) {
+         callback();
+      },
+      error: function (error) {
+        console.log(error);
+        throw error;
+      }
+    })
+  }
+
   // renders the app to the DOM
   render () {
     return (
@@ -38,7 +76,10 @@ class App extends React.Component {
           <Search getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
         <div>
-          <EntryList allEntries={this.state.allEntries}/>
+          <EntryList allEntries={this.state.allEntries}
+                     updateUserEntries={this.updateUserEntries.bind(this)}
+                     getUserEntries={this.getUserEntries.bind(this)}
+                     deleteUserEntries={this.deleteUserEntries.bind(this)}/>
         </div>
       </div>
     )
