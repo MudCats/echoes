@@ -20,7 +20,6 @@ class Search extends React.Component {
 			selectedListenDate: formattedDate
 		});
 	}
-
   // displays only the clicked album
 	setSelected (album) {
 		// date defaults to current date
@@ -77,8 +76,10 @@ class Search extends React.Component {
 						results: [],
 						selectedListenDate: null
 					});
-
+          // gets user entries from db and rerenders entry list
 					this.props.getUserEntries();
+					// clear the search bar
+					$('.search-bar').val('');
 				},
 				error: function (error) {
 					console.log(error);
@@ -94,9 +95,16 @@ class Search extends React.Component {
    	  <div className=''>
 				<input type="date" name="date"></input>
 				<br></br>
-	      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)} className="search-bar" />
-				<button type="button" onClick={() => this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}>Add an album</button>
-	      <ResultsList albums={this.state.results} addNewEntry={this.props.addNewEntry} setSelected={this.setSelected.bind(this)} className='results-container' />
+	      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
+					         className="search-bar" />
+
+				<button type="button"
+					      onClick={() => this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}>Add an album</button>
+
+	      <ResultsList albums={this.state.results}
+					           addNewEntry={this.props.addNewEntry}
+										 setSelected={this.setSelected.bind(this)}
+										 className='results-container' />
 	   </div>
     );
   };

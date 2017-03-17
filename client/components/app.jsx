@@ -5,7 +5,8 @@ class App extends React.Component {
     this.state = {
       viewingEntry: '',
       allEntries: [],
-      searchResults: []
+      searchResults: [],
+      currentUser: ''
     }
   }
   // when the component loads successfully
@@ -13,14 +14,17 @@ class App extends React.Component {
     // load all of the user's data
     this.getUserEntries();
   }
-
+  // gets all entries from a user
   getUserEntries () {
     $.ajax({
       url: '/querydb',
       type: 'GET',
       success: (response) => {
+        // sets state of all entries
+        // sets current user name
         this.setState({
-          allEntries: response
+          allEntries: response,
+          currentUser: response[0].user
         })
       },
       error: function (error) {
@@ -29,7 +33,7 @@ class App extends React.Component {
       }
     })
   };
-
+  // deletes a 
   deleteUserEntries (id, date, callback) {
     $.ajax({
       url:'/querydb/delete',
@@ -72,7 +76,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <div>Hello!
+        <div>Hello, {this.state.currentUser}!
           <Search getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
         <div>
