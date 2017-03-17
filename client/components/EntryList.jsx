@@ -21,6 +21,7 @@ class EntryList extends React.Component {
                  updateUserEntries={this.props.updateUserEntries}
                  getUserEntries={this.props.getUserEntries}
                  deleteUserEntries={this.props.deleteUserEntries}
+                 key={entry.date + entry.id}
             />
         )})
       }

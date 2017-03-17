@@ -1,3 +1,4 @@
+// Component generatees each search result entry
 class ResultsList extends React.Component {
 	constructor(props){
 		super(props);
@@ -6,7 +7,15 @@ class ResultsList extends React.Component {
 	render () {
 		return (
 			<div>
-				{this.props.albums.map((album) => <Result addNewEntry={this.props.addNewEntry} setSelected={this.props.setSelected} key={album.collectionId} album={album}/>)}
+				{this.props.albums.map((album) => {
+					return (
+						<Result addNewEntry={this.props.addNewEntry}
+							      setSelected={this.props.setSelected}
+										key={album.collectionId}
+										album={album}/>
+						)}
+					)
+				}
 			</div>
 		);
 	}

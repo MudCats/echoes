@@ -1,3 +1,4 @@
+// Searches iTunes
 class SearchBar extends React.Component {
 
 	constructor(props){
@@ -5,10 +6,9 @@ class SearchBar extends React.Component {
 
 	}
 
-
 	render(){
 		return (
-			<input type='text'
+			<input type='text' className="search-bar"
       		   onKeyUp={event => this.props.search(event.target.value)}
       		/>
 		)
