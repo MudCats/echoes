@@ -45,7 +45,6 @@ class UpdateBox extends React.Component {
           {!this.state.modalActive && (
             <div className='btn-group'>
               <button className='update' onClick={this.openModal.bind(this)}>Update</button>
-              <br></br>
               <button className='remove' onClick={this.handleDelete.bind(this)}>Remove</button>
             </div>
           )}
