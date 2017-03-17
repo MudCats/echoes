@@ -93,8 +93,6 @@ button.btn.btn-default.landing {
 a:hover {
   text-decoration: none;
 }
-
-
 /*-------------------------
 TEXT
 -------------------------*/
@@ -106,6 +104,7 @@ TEXT
   font-size: 18px;
   font-weight: 500px;
 }
+
 
 div.col-md-6.text-center {
   border: 1px;
@@ -125,4 +124,20 @@ div.col-md-6.text-center {
 
 .author-credit {
   display: inline;
+}
+
+h1.title {
+  text-align: center;
+}
+
+.impression {
+  text-align:right;
+}
+
+.rating {
+  text-align:center;
+}
+
+.entry {
+  border: 1px, solid, #000;
 }

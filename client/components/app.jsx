@@ -76,14 +76,19 @@ class App extends React.Component {
   render () {
     return (
       <div className="container-fluid">
-        <div className="col-md-3">Hello, {this.state.currentUser}!
+        <div className="col-md-2">Hello, {this.state.currentUser}!
           <Search getUserEntries={this.getUserEntries.bind(this)}/>
         </div>
-        <div className="col-md-9">
+        <div className="col-md-10">
+          <div>
+            <h1 className="title">echoes</h1>
+          </div>
+          <table className="table-hover table-responsive">
           <EntryList allEntries={this.state.allEntries}
                      updateUserEntries={this.updateUserEntries.bind(this)}
                      getUserEntries={this.getUserEntries.bind(this)}
                      deleteUserEntries={this.deleteUserEntries.bind(this)}/>
+          </table>
         </div>
       </div>
     )

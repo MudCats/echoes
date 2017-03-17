@@ -5,7 +5,18 @@ class EntryList extends React.Component {
 
   render () {
     return (
-    <div className='entryList'>
+    <tbody className='container-fluid entryList'>
+      <tr className='row'>
+        <th className='col-md-1'>
+          <span className='glyphicon glyphicon-calendar'>
+          </span>
+        </th>
+        <th className='col-md-1'>Album</th>
+        <th className='col-md-2'></th>
+        <th className='impression col-md-6'>Impression</th>
+        <th className='rating col-md-1'>Rating</th>
+        <th className='col-md-1'></th>
+      </tr>
       {this.props.allEntries.map((entry) => {
         return (
           <Entry date={entry.date.slice(0,10)}
@@ -25,7 +36,7 @@ class EntryList extends React.Component {
             />
         )})
       }
-    </div>
+    </tbody>
     );
   }
 };

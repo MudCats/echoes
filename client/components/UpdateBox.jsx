@@ -41,13 +41,15 @@ class UpdateBox extends React.Component {
 
   render () {
       return (
-        <div>
+
           {!this.state.modalActive && (
+            <td className='impression col-md-6'>{this.props.impression}</td>
+          <td className='rating col-md-2'>{this.props.rating}</td>
+          <td className='col-md-1'>
             <button onClick={this.openModal.bind(this)}>Update</button>
           )}
 
           {this.state.modalActive && (
-            <div className='updateBox'>
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
                 <textarea id='impression' name='impression' cols='45' rows='5' value={this.state.impression} onChange={this.handleInputChange.bind(this)}></textarea>
                 <select name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
@@ -69,7 +71,7 @@ class UpdateBox extends React.Component {
               <button onClick={this.closeModal.bind(this)}>Close</button>
             </div>
           )}
-        </div>
+        </td>
       )
     }
 }
