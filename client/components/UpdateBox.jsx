@@ -45,32 +45,30 @@ class UpdateBox extends React.Component {
           {!this.state.modalActive && (
             <button onClick={this.openModal.bind(this)}>Update</button>
           )}
-        </td>
-        <div>
-        {this.state.modalActive && (
-          <div className='updateBox col-md-1'>
-            <form id='update' onSubmit={this.handleSubmit.bind(this)}>
-              <textarea id='impression' name='impression' cols='45' rows='5' value={this.state.impression} onChange={this.handleInputChange.bind(this)}></textarea>
-              <select name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
-                <option value={null}>Rating</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
-                <option value={8}>8</option>
-                <option value={9}>9</option>
-                <option value={10}>10</option>
-              </select>
-              <input type='submit' id="submit" name='button' value='Save'></input>
-            </form>
-            <button onClick={this.handleDelete.bind(this)}>Delete Entry</button>
-            <button onClick={this.closeModal.bind(this)}>Close</button>
-          </div>
-        )}
-      <
+          {this.state.modalActive && (
+            <div className='updateBox col-md-1'>
+              <form id='update' onSubmit={this.handleSubmit.bind(this)}>
+                <textarea id='impression' name='impression' cols='45' rows='5' value={this.state.impression} onChange={this.handleInputChange.bind(this)}></textarea>
+                <select name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
+                  <option value={null}>Rating</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
+                  <option value={7}>7</option>
+                  <option value={8}>8</option>
+                  <option value={9}>9</option>
+                  <option value={10}>10</option>
+                </select>
+                <input type='submit' id="submit" name='button' value='Save'></input>
+              </form>
+              <button onClick={this.handleDelete.bind(this)}>Delete Entry</button>
+              <button onClick={this.closeModal.bind(this)}>Close</button>
+            </div>
+          )}
+      </td>
       )
     }
 }

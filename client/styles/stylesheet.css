@@ -141,3 +141,7 @@ h1.title {
 .entry {
   border: 1px, solid, #000;
 }
+
+.updateBox {
+  position: absolute;
+}
