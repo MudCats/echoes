@@ -93,12 +93,13 @@ class Search extends React.Component {
 
     return (
       <div>
-   	    <div className='search-container'>
-				<input type="date" name="date" className="form-group search-bar"></input>
-				<br></br>
-	      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
-					         className="search-bar" />
 
+	   	  <div className='search-container'>
+					<h3 className='search-prompt'>Add an album:</h3>
+					<input type="date" name="date" className="form-group search-bar"></input>
+					<br></br>
+		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
+						         className="search-bar" />
 
 					<button type="button" className="btn btn-default"
 						onClick={() => this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}>Add an album</button>

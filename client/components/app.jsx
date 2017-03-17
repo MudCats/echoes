@@ -85,13 +85,13 @@ class App extends React.Component {
     return (
 
       <div>
-        <div className="container-fluid">
+        <div className="container-fluid app">
           <header className="navbar">
             <div><h2 className="greeting">Hello, {this.state.currentUser}!</h2></div>
-            <img className='navbar-center header logo' src="styles/logo.svg"></img>
             <a href="/signout" className='navbar-right signout'>
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
+            <img className='navbar-center header logo' src="styles/logo.svg"></img>
           </header>
           <div  className="col-md-2 search">
             <Search getUserEntries={this.getUserEntries.bind(this)}/>
