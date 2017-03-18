@@ -162,7 +162,7 @@ a.signout {
 	vertical-align:middle;
 }
 .btn-group button {
-	margin-left:100px;
+	margin-left:170px;
 }
 button.update {
 	margin-bottom: 20px;
@@ -258,10 +258,8 @@ header {
 	text-align: right;
 }
 
-.update {
-	display:inline-block;
-	height: 100%;
-	vertical-align:middle;
+div.update {
+  margin-left: 50px;
 }
 
 header.navbar {
