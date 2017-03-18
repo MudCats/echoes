@@ -156,19 +156,25 @@ a.signout {
   margin-right: 20px;
 }
 
+.btn-group {
+	display:inline-block;
+	margin-top:40px;
+	vertical-align:middle;
+}
+.btn-group button {
+	margin-left:100px;
+}
 button.update {
-	margin-left: 100px;
+	margin-bottom: 20px;
 }
 
-button.remove {
-	margin-left: 100px;
-}
 table tr td div.btn-group {
 	display:none;
 }
 
 table tr:hover td div.btn-group {
 	display:inline-block;
+	vertical-align: middle;
 }
 
 table tr.entry:hover {
@@ -308,4 +314,8 @@ tbody {
 		&:focus {
 		  z-index: 2;
 		}
+	}
+
+	td {
+		vertical-align: middle;
 	}
