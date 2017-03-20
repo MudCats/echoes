@@ -67,6 +67,6 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('song'),
     knex.schema.dropTable('album'),
     knex.schema.dropTable('artist'),
-    knex.schema.dropTable('user')
+    knex.schema.dropTable('users')
   ]);
 };
