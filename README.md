@@ -40,7 +40,7 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 # Stretch Goals #
 1. Implement a pages view so that you dont have to scroll continuously to view old albums
 2. Implement a filter to rank albums by rating, date, or other criteria
-3. Use the iTunes genius api or another service to recommend new albums a user may  be interested 
+3. Use the iTunes genius api or another service to recommend new albums a user may  be interested
 4. Add albums based on listening to a sound sample, like Shazam
 5. Implement a more robust authentication system
 6. Add a queue of new albums to checkout in the future
