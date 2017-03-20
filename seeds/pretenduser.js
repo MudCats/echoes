@@ -1,10 +1,10 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('user').del()
+  return knex('users').del()
     .then(function () {
       // Inserts seed entries
-      return knex('user').insert([
+      return knex('users').insert([
         //password: megan
         {user: 'Megan', username: 'megan', password: '$2a$10$BRAo12aONMpXSPSOPzTqOugyM.44Nw2Id6MKByQUQ6GV5YzZa2z6G'},
         //password: tyler

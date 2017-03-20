@@ -61,7 +61,7 @@ class UpdateBox extends React.Component {
               {/*  delete button */}
               <a onClick={this.handleDelete.bind(this)}>
                 <button className='remove btn btn-default'>
-                  {/* remove icon */}
+                  {/* remove button */}
                   <span className='glyphicon glyphicon-remove-circle'></span>
                 </button>
               </a>
@@ -69,8 +69,10 @@ class UpdateBox extends React.Component {
           )}
           {this.state.modalActive && (
             <div className='update'>
+              {/* remove icon */}
               <span className='close glyphicon glyphicon-remove' onClick={this.closeModal.bind(this)}></span>
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
+                {/* impression box */}
                 <textarea className='form-control' id='impression' name='impression'
                                           cols='25'
                                           rows='4'
@@ -79,6 +81,7 @@ class UpdateBox extends React.Component {
                                           placeholder='Write your impression...'></textarea>
                 <br></br>
                 <div className='input-group'>
+                  {/* rating dropdown */}
                   <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
                     <option value={null}>Rating</option>
                     <option value={1}>1</option>
@@ -93,7 +96,7 @@ class UpdateBox extends React.Component {
                     <option value={10}>10</option>
                   </select>
                   <span className='input-group-btn'>
-                    <input className='btn btn-default' type='submit' id="submit" name='button' value='Save'></input>
+                    <button className='btn btn-default' type='submit' id="submit" name='button' value='Save'></button>
                   </span>
                 </div>
               </form>
