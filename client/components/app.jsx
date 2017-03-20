@@ -22,10 +22,12 @@ class App extends React.Component {
       success: (response) => {
         // sets state of all entries
         // sets current user name
-        this.setState({
-          allEntries: response,
-          currentUser: response[0].user
-        })
+        if (response.length) {
+          this.setState({
+            allEntries: response,
+            currentUser: response[0].user
+          })
+        }
       },
       error: function (error) {
         console.log(error);
@@ -90,7 +92,7 @@ class App extends React.Component {
       <div>
         <div className="container-fluid app">
           <header className="navbar">
-            <div><h2 className="greeting">Hello, {this.state.currentUser}!</h2></div>
+            <div><h2 className="greeting">{this.greetUser()}</h2></div>
             <a href="/signout" className='navbar-right signout'>
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
