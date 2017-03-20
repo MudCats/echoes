@@ -15,7 +15,7 @@ router.post('/', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   // knex query to search database for user
-  var query = knex('user').where('username', username);
+  var query = knex('users').where('username', username);
   query.then(function(result) {
     //if user does not exist
     if (!result.length) {
@@ -24,7 +24,7 @@ router.post('/', function (req, res) {
       // if user exists
     } else {
       // find their hashed password in the db
-      var hash = knex('user').where('username', username).select('password');
+      var hash = knex('users').where('username', username).select('password');
       hash.then(function (hash) {
         //knex returns an array with hash object at index 0
         hash = hash[0].password;
