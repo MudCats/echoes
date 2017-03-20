@@ -276,6 +276,10 @@ tbody {
 }
 
 /*Sign-in style*/
+.signin {
+	font-size: 25px;
+}
+
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
@@ -298,6 +302,10 @@ tbody {
 		}
 	}
 /*Sign-up style*/
+.signup {
+	font-size: 20px;
+}
+
 .form-signup {
   max-width: 380px;
   padding: 15px 35px 45px;
