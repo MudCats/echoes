@@ -36,6 +36,6 @@ app.use(function (req, res, next) {
 });
 
 // LISTENER
-app.listen(process.env.PORT), function () {
+app.listen(process.env.PORT, function () {
   console.log('Satan is listening.')
 });
