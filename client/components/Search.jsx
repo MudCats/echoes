@@ -47,7 +47,7 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				console.log(data);
-				// changes state of results, which triggers view change
+				// changes state of results, triggering view change
 				this.setState({results: data.results});
 			},
 			error: (error) => {
@@ -93,7 +93,6 @@ class Search extends React.Component {
 
     return (
       <div>
-
 	   	  <div className='search-container'>
 					<h3 className='search-prompt'>Add an album:</h3>
 					<input type="date" name="date" className="form-group search-bar"></input>
