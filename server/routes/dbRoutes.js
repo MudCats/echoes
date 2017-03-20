@@ -256,10 +256,32 @@ router.post('/update', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
+  var impression = impress.impression;
   console.log('impress', impress);
 
-  // find the corresponding album_impression
-  knex('album_impression')
+  // if impression exists and rating doesn't
+  if (impression && !rating) {
+    knex('album_impression')
+    .where('id', impress.id)
+    //update impression w/ req.body
+    .update({
+      impression:impression,
+    }).then(function () {
+      res.status(201).end();
+    })
+  // if rating exists and impression doesn't
+  } else if (rating && !impression) {
+    knex('album_impression')
+    .where('id', impress.id)
+    //update rating w/ req.body
+    .update({
+      rating: rating
+    }).then(function () {
+      res.status(201).end();
+    })
+  // if rating and impression exist
+  } else if (rating && impression) {
+    knex('album_impression')
     .where('id', impress.id)
     //update impression and rating w/ req.body
     .update({
@@ -268,6 +290,11 @@ router.post('/update', function (req, res) {
     }).then(function () {
       res.status(201).end();
     })
+  // if the user sent a blank save
+  } else {
+    // do nothing
+    res.end();
+  }
 });
 
 // remove listen_date
