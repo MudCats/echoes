@@ -111,6 +111,7 @@ class Search extends React.Component {
 				</div>
 			</div>
 
+
     );
   };
 };
