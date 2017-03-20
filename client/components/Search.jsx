@@ -91,6 +91,7 @@ class Search extends React.Component {
 
 	render() {
 
+
     return (
       <div>
 	   	  <div className='search-container'>
@@ -99,8 +100,8 @@ class Search extends React.Component {
 					<br></br>
 		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
 						         className="search-bar" />
-                   <a onClick={() => this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}>
-									   <button type="button" className="btn btn-default">Add an album</button>
+                   <a onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate); $('#add-album-btn').toggle()}}>
+									   <button type="button" className="btn btn-default" id='add-album-btn'>Add an album</button>
 					         </a>
 				</div>
 				<div className="results-container">
@@ -110,6 +111,7 @@ class Search extends React.Component {
 						className='results-container' />
 				</div>
 			</div>
+
 
     );
   };
