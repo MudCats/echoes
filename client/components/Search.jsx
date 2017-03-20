@@ -11,14 +11,18 @@ class Search extends React.Component {
 	}
   // sets default date for calendar input field
 	componentWillMount () {
+		this.setState({
+			selectedListenDate: this.setDate()
+		})
+	}
+  // gets the current date
+	setDate () {
 		// generates current date
 		var todayDate = new Date();
 		// uses moment.js to format date
 		var formattedDate = moment(todayDate).format('YYYY-MM-DD');
-    // sets state when component mounts
-		this.setState({
-			selectedListenDate: formattedDate
-		});
+    // return the date
+		return formattedDate;
 	}
   // displays only the clicked album
 	setSelected (album) {
@@ -70,11 +74,13 @@ class Search extends React.Component {
 				contentType: 'application/json',
 				data: JSON.stringify(newEntry),
 				success: (results) => {
+					console.log('SUCCESS!')
+					// assigns current date to state
 					// clears previously set state
 					this.setState({
 						term: '',
 						results: [],
-						selectedListenDate: null
+						selectedListenDate: this.setDate()
 					});
           // gets user entries from db and rerenders entry list
 					this.props.getUserEntries();
@@ -91,7 +97,6 @@ class Search extends React.Component {
 
 	render() {
 
-
     return (
       <div>
 	   	  <div className='search-container'>
@@ -100,8 +105,8 @@ class Search extends React.Component {
 					<br></br>
 		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
 						         className="search-bar" />
-                   <a onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate); $('#add-album-btn').toggle()}}>
-									   <button type="button" className="btn btn-default" id='add-album-btn'>Add an album</button>
+                   <a id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
+									   <button type="button" className="btn btn-default">Add an album</button>
 					         </a>
 				</div>
 				<div className="results-container">
