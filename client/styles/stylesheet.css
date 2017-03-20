@@ -126,6 +126,14 @@ span.close {
 	width: 5%;
 }
 
+.blurb {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  margin: 20px;
+  font-size: 18px;
+  font-weight: 500px;
+}
+
 /*-----------------------------
 	UPDATE BOX/DASHBOARD
 ------------------------------*/
@@ -135,7 +143,6 @@ span.close {
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 #add-album-btn {
   display: none;
 }
@@ -182,17 +189,7 @@ table tr.entry:hover {
 	margin-bottom: 10px;
 	margin-right:10px;
 }
-/*-------------------------
-TEXT
--------------------------*/
 
-.blurb {
-  font-family: 'Raleway', sans-serif;
-  color: #fff;
-  margin: 20px;
-  font-size: 18px;
-  font-weight: 500px;
-}
 
 div.col-md-6.text-center {
   border: 1px;
