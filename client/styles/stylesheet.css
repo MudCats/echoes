@@ -180,6 +180,11 @@ table tr:hover td div.btn-group {
 table tr.entry:hover {
 	background-color:#f9f9f9;
 }
+
+.close {
+	margin-bottom: 10px;
+	margin-right:10px;
+}
 /*-------------------------
 TEXT
 -------------------------*/
