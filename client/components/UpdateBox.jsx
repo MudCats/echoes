@@ -64,11 +64,10 @@ class UpdateBox extends React.Component {
                                           cols='25'
                                           rows='4'
                                           value={this.state.impression}
-                                          onChange={this.handleInputChange.bind(this)}
-                                          required></textarea>
+                                          onChange={this.handleInputChange.bind(this)}></textarea>
                 <br></br>
                 <div className='input-group'>
-                  <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)} required>
+                  <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
                     <option value={null}>Rating</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>

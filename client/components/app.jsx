@@ -14,7 +14,7 @@ class App extends React.Component {
     // load all of the user's data
     this.getUserEntries();
   }
-  // gets all entries from a user
+
   getUserEntries () {
     $.ajax({
       url: '/querydb',
@@ -85,6 +85,7 @@ class App extends React.Component {
     })
   }
 
+
   // renders the app to the DOM
   render () {
     return (
@@ -110,6 +111,7 @@ class App extends React.Component {
               </table>
             </div>
           </div>
+
       </div>
     )
   }
