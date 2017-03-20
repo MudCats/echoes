@@ -42,12 +42,12 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 # How to deploy app to Heroku #
 1. Create a heroku app and attach a postgresql add-on to it. That will automatically create the env var 'DATABASE_URL'
 2. Recompile data by running ``` npm start ``` or in cl:
- babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline
+``` babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline ```
 3. Comment out 'compiled/' in gitignore
 4. Make var env in db.js set to production.
 5. git add/commit
-6. Run: git push heroku master
-7. If this is your first time setting up your database, run: heroku run knex migrate:latest
+6. Run: ``` git push heroku master ```
+7. If this is your first time setting up your database, run: ``` heroku run knex migrate:latest ```
 8. You're reading to go!
 
 # Stretch Goals #
