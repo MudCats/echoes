@@ -4,5 +4,4 @@ bower_components/
 
 build/
 dist/
-config.env
 compiled/
