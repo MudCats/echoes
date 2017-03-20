@@ -6,7 +6,7 @@ class Result extends React.Component {
 	render () {
 		return (
 
-		<div onClick={() => this.props.setSelected(this.props.album)} className="search-result">
+		<div onClick={() => {this.props.setSelected(this.props.album); $('#add-album-btn').toggle()}} className="search-result">
 			<img src={this.props.album.artworkUrl100}/>
 			<div>{this.props.album.artistName}</div>
 			<div>{this.props.album.collectionName}</div>
