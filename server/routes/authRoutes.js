@@ -20,7 +20,7 @@ router.post('/', function (req, res) {
     //if user does not exist
     if (!result.length) {
       // respond with status
-      res.status(401).send('This user does not exist!');
+      res.status(401).redirect('/signin');
       // if user exists
     } else {
       // find their hashed password in the db
@@ -42,7 +42,7 @@ router.post('/', function (req, res) {
                // if password is incorrect
              } else {
                // send error
-               res.status(401).send('Your password is incorrect!');
+               res.status(401).redirect('/signin');
              }
            }
          });

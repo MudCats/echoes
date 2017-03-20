@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
     // if the query returns a user
     if (result.length) {
       // respond with status
-      res.status(401).send('This username has already been taken.');
+      res.status(401).redirect('/signup');
     } else {
       // hash password with bcrypt before executing the insert statement
       util.hashPassword(password, function(err, hash) {
