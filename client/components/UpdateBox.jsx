@@ -75,7 +75,8 @@ class UpdateBox extends React.Component {
                                           cols='25'
                                           rows='4'
                                           value={this.state.impression}
-                                          onChange={this.handleInputChange.bind(this)}></textarea>
+                                          onChange={this.handleInputChange.bind(this)}
+                                          placeholder='Write your impression...'></textarea>
                 <br></br>
                 <div className='input-group'>
                   <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
