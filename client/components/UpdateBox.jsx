@@ -8,14 +8,17 @@ class UpdateBox extends React.Component {
     };
   }
 
+  //show updateBox
   openModal () {
     this.setState({ modalActive:true})
   }
 
+  //hide updateBox
   closeModal () {
     this.setState({modalActive:false})
   }
 
+  // handles all form value changes
   handleInputChange(e) {
     const target = e.target;
     const value = target.value;
@@ -26,12 +29,14 @@ class UpdateBox extends React.Component {
     });
   }
 
+  //handles submiting form
   handleSubmit (e) {
     e.preventDefault();
     this.props.updateUserEntries(this.props.impressionId, this.state.rating, this.state.impression, this.props.getUserEntries);
     this.closeModal();
   }
 
+  // handles deleting whole entry from the database
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.getUserEntries);
@@ -41,16 +46,22 @@ class UpdateBox extends React.Component {
 
   render () {
       return (
+        // td
         <td className='col-md-3'>
           {!this.state.modalActive && (
             <div className='btn-group' role="group">
+              {/* update button -- do not remove a tags.
+                They are necessary to maintain working buttons while keeping bootstrap styling */}
               <a onClick={this.openModal.bind(this)}>
                 <button className='update btn btn-default'>
+                  {/* pencil icon */}
                   <span className='glyphicon glyphicon-pencil'></span>
                 </button>
               </a>
+              {/*  delete button */}
               <a onClick={this.handleDelete.bind(this)}>
                 <button className='remove btn btn-default'>
+                  {/* remove icon */}
                   <span className='glyphicon glyphicon-remove-circle'></span>
                 </button>
               </a>
@@ -64,7 +75,8 @@ class UpdateBox extends React.Component {
                                           cols='25'
                                           rows='4'
                                           value={this.state.impression}
-                                          onChange={this.handleInputChange.bind(this)}></textarea>
+                                          onChange={this.handleInputChange.bind(this)}
+                                          placeholder='Write your impression...'></textarea>
                 <br></br>
                 <div className='input-group'>
                   <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
