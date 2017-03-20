@@ -9,7 +9,11 @@
  1. Navigate into the echoes directory in terminal
  2. Enter: ``` createdb echoes ```
  3. Enter: ``` knex migrate:latest ```
+<<<<<<< HEAD
 4. To access database in terminal: ``` psql echoes ```
+=======
+4. To access database in terminal: ``` psql echoes ```
+>>>>>>> Updated the README
 
 Highly recommended that you install Postico. Like DB Browser for SQLITE, it will allow you to view and interact with your database easily.
 
