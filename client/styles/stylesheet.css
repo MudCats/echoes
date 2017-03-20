@@ -1,5 +1,5 @@
 /*-------------------------
-CLEAR
+		  CLEAR
 -------------------------*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -46,7 +46,7 @@ table {
 }
 
 /*-------------------------
-BODY
+		  BODY
 -------------------------*/
 
 body {
@@ -62,42 +62,49 @@ span {
   color: #4b6ecc;
 }
 
+/*-------------------------
+        LANDING
+-------------------------*/
+
 .landing.container {
   padding-top: 100px;
 }
 
-/*-------------------------
-CONTAINERS
--------------------------*/
-.results-container {
-  margin-top: 20px;
+button.btn.btn-default.landing {
   margin-bottom: 20px;
 }
 
-.search-result {
-  margin-bottom: 10px;
-  padding-top: 10px;
-  padding-left: 10px;
+.blurb {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  margin: 20px;
+  font-size: 18px;
+  font-weight: 500px;
 }
 
-.search-result:hover {
-  cursor: pointer;
-  background-color: #fff;
+div.col-md-6.text-center {
+  border: 1px;
+  border-style: solid;
+  border-color: #fff;
+  border-radius: 25px;
+  background: #4b6ecc;
 }
 
-.search-bar {
-  width: 100%
+.navbar-fixed-bottom.landing {
+  color: #4b6ecc;
+  text-align: right;
+  padding: 24px;
+  background: #fff;
+  vertical-align: middle;
 }
 
-.container-fluid.app {
-  padding-left: 0px;
-  padding-right: 0px;
+.author-credit {
+  display: inline;
 }
 
-
-/*-------------------------
-IMAGES
--------------------------*/
+h1.title {
+  text-align: center;
+}
 
 .logo {
   display: block;
@@ -114,35 +121,21 @@ IMAGES
   width: 40px;
 }
 
-.header.logo {
-  width: 25%;
-	margin-top:-80px;
-	margin-bottom:-20px;
-}
-
-.albumArt {
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-}
 
 span.close {
 	width: 5%;
 }
 
-/*-------------------------
-BUTTONS
--------------------------*/
+/*-----------------------------
+	UPDATE BOX/DASHBOARD
+------------------------------*/
 
-.btn {
-  margin: 0 10px 0 10px;
-  font-weight: 500;
-}
-
-button.btn.btn-default.landing {
+.results-container {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 #add-album-btn {
   display: none;
 }
@@ -209,20 +202,24 @@ div.col-md-6.text-center {
   background: #4b6ecc;
 }
 
-.navbar-fixed-bottom.landing {
-  color: #4b6ecc;
-  text-align: right;
-  padding: 24px;
-  background: #fff;
-  vertical-align: middle;
+.search-result {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
-.author-credit {
-  display: inline;
+.search-result:hover {
+  cursor: pointer;
+  background-color: #fff;
 }
 
-h1.title {
-  text-align: center;
+.search-bar {
+  width: 100%
+}
+
+.container-fluid.app {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 h2.greeting {
@@ -233,6 +230,18 @@ h2.greeting {
   margin-top: 20px;
   margin-left: 20px;
   margin-bottom: 0px;
+}
+
+.header.logo {
+  width: 25%;
+	margin-top:-80px;
+	margin-bottom:-20px;
+}
+
+.albumArt {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
 }
 
 .impression {
@@ -279,7 +288,59 @@ tbody {
 	background-color: white;
 }
 
-/*Sign-in style*/
+.btn {
+  margin: 0 10px 0 10px;
+  font-weight: 500;
+}
+
+.add-album {
+  margin: auto;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a.signout {
+  float: right;
+  margin-right: 20px;
+}
+
+.btn-group {
+	display:inline-block;
+	margin-top:40px;
+	vertical-align:middle;
+}
+
+.btn-group button {
+	margin-left:170px;
+}
+
+button.update {
+	margin-bottom: 20px;
+}
+
+table tr td div.btn-group {
+	display:none;
+}
+
+table tr:hover td div.btn-group {
+	display:inline-block;
+	vertical-align: middle;
+}
+
+table tr.entry:hover {
+	background-color:#f9f9f9;
+}
+
+.close {
+	margin-bottom: 10px;
+	margin-right:10px;
+}
+
+/*--------------------------
+          SIGN IN
+---------------------------*/
 .signin {
 	font-size: 25px;
 }
@@ -305,7 +366,10 @@ tbody {
 		  z-index: 2;
 		}
 	}
-/*Sign-up style*/
+
+/*-------------------------
+      	  SIGN UP
+---------------------------*/
 .signup {
 	font-size: 20px;
 }
