@@ -18,6 +18,7 @@ Utilizes **postgresql**. It is being run in db.js. If you wish to log the sql co
 
 #Seed Files#
 Seed data is pre-fabricated data that allows you to interact with a filled database without making a billion calls to the API.
+
 ##To use seed files:##
 1. Comment out all foreign key constraints in the migration file
 2. Run: knex migrate:rollback && knex migrate:latest
