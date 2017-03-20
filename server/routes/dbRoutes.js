@@ -9,13 +9,13 @@ router.get('/', function (req, res) {
   // get username from the cookie
   var username = req.cookies.username;
   // find all listen instances by the user
-  knex.from('user')
-      .join('album_impression', 'user.id', 'album_impression.user_id')
-      .where('user.username', username)
+  knex.from('users')
+      .join('album_impression', 'users.id', 'album_impression.user_id')
+      .where('users.username', username)
       .join('album', 'album_impression.album_id', 'album.id')
       .join('artist', 'artist.id', 'album.artist_id')
       .join('listen_date', 'listen_date.album_impression_id', 'album_impression.id')
-      .select('user.user',
+      .select('users.user',
               'listen_date.date',
               'album.title', 'artist.name', 'album.genre', 'album.year',
               'album_impression.rating', 'album_impression.impression', 'album_impression.id',
@@ -54,7 +54,7 @@ router.post('/', function (req, res) {
             if (albumId.length) {
               var albumId = albumId[0].id;
               // check if the user has listened to it before
-              knex('user').select('id')
+              knex('users').select('id')
                 .where('username', username)
                 .then(function (userId) {
                   var userId = userId[0].id;
@@ -138,7 +138,7 @@ router.post('/', function (req, res) {
                  }).then(function(albumId) {
                   var albumId = albumId[0];
                   // find user's id
-                  knex.from('user')
+                  knex.from('users')
                     .select('id')
                     .where('username', username)
                     .then(function(userId) {
@@ -201,7 +201,7 @@ router.post('/', function (req, res) {
            }).then(function(albumId) {
             var albumId = albumId[0];
             // find user's id
-            knex.from('user')
+            knex.from('users')
               .select('id')
               .where('username', username)
               .then(function(userId) {

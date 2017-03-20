@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
     //users
-    knex.schema.createTable('user', function(table) {
+    knex.schema.createTable('users', function(table) {
       table.increments('id').primary();
       table.string('user');
       table.string('username').unique().notNullable();
@@ -44,7 +44,7 @@ exports.up = function(knex, Promise) {
       table.integer('album_id');
       table.integer('rating');
       table.string('impression');
-      table.foreign('user_id').references('user.id');
+      table.foreign('user_id').references('users.id');
       table.foreign('album_id').references('album.id');
       table.unique(['user_id', 'album_id']);
     }),
@@ -67,6 +67,6 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('song'),
     knex.schema.dropTable('album'),
     knex.schema.dropTable('artist'),
-    knex.schema.dropTable('user')
+    knex.schema.dropTable('users')
   ]);
 };

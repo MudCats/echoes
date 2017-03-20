@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   // knex query to search database for user
-  var query = knex('user').where('username', username);
+  var query = knex('users').where('username', username);
 
   //query returns promise
   query.then(function (result) {
@@ -32,7 +32,7 @@ router.post('/', function (req, res) {
           throw err;
         } else {
           // store hash in password DB.
-          knex('user').returning(['id', 'user', 'username'])
+          knex('users').returning(['id', 'user', 'username'])
                       .insert({user: user, username: username, password: hash})
                       .then(function (result) {
                         // set cookies
