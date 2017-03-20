@@ -14,7 +14,9 @@
 Highly recommended that you install Postico. Like DB Browser for SQLITE, it will allow you to view and interact with your database easily.
 
 ## Inside the Knexfile ##
-Utilizes **postgresql**. It is being run in db.js. If you wish to log the sql commands that knex runs in your terminal, uncomment 'debug:true'
+Utilizes **postgresql**. It is being run in db.js. You'll notice two environments: development and environment. If you are running the app locally on your computer, make sure 'env' in db.js is equal to development. If you are deploying on a site like heroku that can run it's own postgresql database, set 'env' to production.
+
+While in development, if you wish to log the sql commands that knex runs in your terminal, uncomment 'debug:true'
 
 # Seed Files #
 Seed data is pre-fabricated data that allows you to interact with a filled database without making a billion calls to the API.
@@ -37,6 +39,17 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 2. ``` node server/server.js ``` on the same terminal window after ctrl-c, leave this window running
 3. Navigate to localhost:1337 on your browser
 
+# How to deploy app to Heroku #
+1. Create a heroku app and attach a postgresql add-on to it. That will automatically create the env var 'DATABASE_URL'
+2. Recompile data by running ``` npm start ``` or in cl:
+ babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline
+3. Comment out 'compiled/' in gitignore
+4. Make var env in db.js set to production.
+5. git add/commit
+6. Run: git push heroku master
+7. If this is your first time setting up your database, run: heroku run knex migrate:latest
+8. You're reading to go!
+
 # Stretch Goals #
 1. Implement a pages view so that you dont have to scroll continuously to view old albums
 2. Implement a filter to rank albums by rating, date, or other criteria
@@ -46,3 +59,4 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 6. Add a queue of new albums to checkout in the future
 7. Integrate with Spotify so that when a new album is listened to that album is automatically added
 8. Automate babel compiling
+9. Add pop out module of albums (including list of songs for each album)
