@@ -5,6 +5,7 @@ class ResultsList extends React.Component {
 	}
 
 	render () {
+
 		return (
 			<div>
 				{this.props.albums.map((album) => {

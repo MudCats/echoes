@@ -143,9 +143,6 @@ span.close {
   margin-bottom: 20px;
 }
 
-#add-album-btn {
-  display: none;
-}
 
 .add-album {
   margin: auto;
@@ -190,6 +187,9 @@ table tr.entry:hover {
 	margin-right:10px;
 }
 
+/*-------------------------
+TEXT
+-------------------------*/
 
 div.col-md-6.text-center {
   border: 1px;
