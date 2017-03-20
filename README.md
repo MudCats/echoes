@@ -32,7 +32,17 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 3. Exit out of npm start using ctrl-c (npm start, while running the server, will not show console logs)
 4. Run: ``` node server/server.js ``` (This will restart the server w/o recompiling, but allows you to view your server-side console logs)
 
-#How to run website after initial setup complete
+#How to run website after initial setup complete#
 1. ```npm start ``` the terminal will hang after compiling spec/serverSpec.js so then push ctrl-c
 2. ``` node server/server.js ``` on the same terminal window after ctrl-c, leave this window running
 3. Navigate to localhost:1337 on your browser
+
+#Stretch Goals#
+1. Implement a pages view so that you dont have to scroll continuously to view old albums
+2. Implement a filter to rank albums by rating, date, or other criteria
+3. Use the iTunes genius api or another service to recommend new albums a user may  be interested 
+4. Add albums based on listening to a sound sample, like Shazam
+5. Implement a more robust authentication system
+6. Add a queue of new albums to checkout in the future
+7. Integrate with Spotify so that when a new album is listened to that album is automatically added
+8. Automate babel compiling
