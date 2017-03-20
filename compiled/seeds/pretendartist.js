@@ -1,0 +1,10 @@
+'use strict';
+
+exports.seed = function (knex, Promise) {
+  // Deletes ALL existing entries
+  return knex('artist').del().then(function () {
+    // Inserts seed entries
+    return knex('artist').insert([{ name: 'Fleet Foxes' }, { name: 'The Replacements' }, { name: 'Kanye West' }]);
+  });
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NlZWRzL3ByZXRlbmRhcnRpc3QuanMiXSwibmFtZXMiOlsiZXhwb3J0cyIsInNlZWQiLCJrbmV4IiwiUHJvbWlzZSIsImRlbCIsInRoZW4iLCJpbnNlcnQiLCJuYW1lIl0sIm1hcHBpbmdzIjoiOztBQUNBQSxRQUFRQyxJQUFSLEdBQWUsVUFBU0MsSUFBVCxFQUFlQyxPQUFmLEVBQXdCO0FBQ3JDO0FBQ0EsU0FBT0QsS0FBSyxRQUFMLEVBQWVFLEdBQWYsR0FDSkMsSUFESSxDQUNDLFlBQVk7QUFDaEI7QUFDQSxXQUFPSCxLQUFLLFFBQUwsRUFBZUksTUFBZixDQUFzQixDQUMzQixFQUFDQyxNQUFNLGFBQVAsRUFEMkIsRUFFM0IsRUFBQ0EsTUFBTSxrQkFBUCxFQUYyQixFQUczQixFQUFDQSxNQUFNLFlBQVAsRUFIMkIsQ0FBdEIsQ0FBUDtBQUtELEdBUkksQ0FBUDtBQVNELENBWEQiLCJmaWxlIjoicHJldGVuZGFydGlzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuZXhwb3J0cy5zZWVkID0gZnVuY3Rpb24oa25leCwgUHJvbWlzZSkge1xuICAvLyBEZWxldGVzIEFMTCBleGlzdGluZyBlbnRyaWVzXG4gIHJldHVybiBrbmV4KCdhcnRpc3QnKS5kZWwoKVxuICAgIC50aGVuKGZ1bmN0aW9uICgpIHtcbiAgICAgIC8vIEluc2VydHMgc2VlZCBlbnRyaWVzXG4gICAgICByZXR1cm4ga25leCgnYXJ0aXN0JykuaW5zZXJ0KFtcbiAgICAgICAge25hbWU6ICdGbGVldCBGb3hlcyd9LFxuICAgICAgICB7bmFtZTogJ1RoZSBSZXBsYWNlbWVudHMnfSxcbiAgICAgICAge25hbWU6ICdLYW55ZSBXZXN0J31cbiAgICAgIF0pO1xuICAgIH0pO1xufTtcbiJdfQ==
