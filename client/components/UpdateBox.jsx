@@ -43,36 +43,48 @@ class UpdateBox extends React.Component {
       return (
         <td className='col-md-3'>
           {!this.state.modalActive && (
-            <div className='btn-group'>
-              <button className='update' onClick={this.openModal.bind(this)}>Update</button>
-              <button className='remove' onClick={this.handleDelete.bind(this)}>Remove</button>
+            <div className='btn-group' role="group">
+              <a onClick={this.openModal.bind(this)}>
+                <button className='update btn btn-default'>
+                  <span className='glyphicon glyphicon-pencil'></span>
+                </button>
+              </a>
+              <a onClick={this.handleDelete.bind(this)}>
+                <button className='remove btn btn-default'>
+                  <span className='glyphicon glyphicon-remove-circle'></span>
+                </button>
+              </a>
             </div>
           )}
           {this.state.modalActive && (
             <div className='update'>
               <span className='close glyphicon glyphicon-remove' onClick={this.closeModal.bind(this)}></span>
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
-                <textarea id='impression' name='impression'
+                <textarea className='form-control' id='impression' name='impression'
                                           cols='25'
                                           rows='4'
                                           value={this.state.impression}
                                           onChange={this.handleInputChange.bind(this)}
                                           required></textarea>
                 <br></br>
-                <select name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)} required>
-                  <option value={null}>Rating</option>
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                  <option value={4}>4</option>
-                  <option value={5}>5</option>
-                  <option value={6}>6</option>
-                  <option value={7}>7</option>
-                  <option value={8}>8</option>
-                  <option value={9}>9</option>
-                  <option value={10}>10</option>
-                </select>
-                <input type='submit' id="submit" name='button' value='Save'></input>
+                <div className='input-group'>
+                  <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)} required>
+                    <option value={null}>Rating</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={7}>7</option>
+                    <option value={8}>8</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
+                  </select>
+                  <span className='input-group-btn'>
+                    <input className='btn btn-default' type='submit' id="submit" name='button' value='Save'></input>
+                  </span>
+                </div>
               </form>
             </div>
           )}
