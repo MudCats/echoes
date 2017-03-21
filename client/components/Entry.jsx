@@ -5,6 +5,7 @@ class Entry extends React.Component {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       month:'',
       sampleURL: '',
+      track: '',
       rating: this.props.rating
     }
     this.sampleSearch(this.props.title, this.props.artist);
@@ -30,7 +31,7 @@ class Entry extends React.Component {
       dataType: 'jsonp',
       success: (data) => {
         console.log('data', data);
-        this.setState({sampleURL: data.results[0].previewUrl});
+        this.setState({sampleURL: data.results[0].previewUrl, track: data.results[0].trackName});
       },
       error: (error) => {
         console.log(error);
@@ -82,6 +83,7 @@ class Entry extends React.Component {
         </td>
 
         <td className='sample col-md-2'>
+          <h4>{this.state.track}</h4>
           <audio src={this.state.sampleURL} type="audio/mpeg" controls>
           </audio>
         </td>
