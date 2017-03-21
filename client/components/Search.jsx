@@ -50,7 +50,6 @@ class Search extends React.Component {
 			type: 'GET',
 			dataType: 'jsonp',
 			success: (data) => {
-				console.log(data);
 				// changes state of results, triggering view change
 				this.setState({results: data.results});
 			},

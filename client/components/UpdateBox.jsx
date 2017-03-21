@@ -47,7 +47,7 @@ class UpdateBox extends React.Component {
   render () {
       return (
         // td
-        <td className='col-md-3'>
+        <td className='col-md-2'>
           {!this.state.modalActive && (
             <div className='btn-group' role="group">
               {/* update button -- do not remove a tags.
@@ -74,7 +74,7 @@ class UpdateBox extends React.Component {
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
                 {/* impression box */}
                 <textarea className='form-control' id='impression' name='impression'
-                                          cols='25'
+                                          cols='10'
                                           rows='4'
                                           value={this.state.impression}
                                           onChange={this.handleInputChange.bind(this)}
