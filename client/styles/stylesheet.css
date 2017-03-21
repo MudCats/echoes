@@ -323,7 +323,11 @@ button.update {
 }
 
 table tr td div.btn-group {
-	display:none;
+	display:inline;
+}
+
+.sample {
+  vertical-align: middle;
 }
 
 table tr:hover td div.btn-group {

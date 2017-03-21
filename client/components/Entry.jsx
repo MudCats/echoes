@@ -64,7 +64,7 @@ class Entry extends React.Component {
           </div>
         </td>
 
-        <td className='sample col-md-3'>
+        <td className="sample col-md-3">
           <audio src={this.state.sampleURL} type="audio/mpeg" controls>
           </audio>
         </td>
