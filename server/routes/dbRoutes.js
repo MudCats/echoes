@@ -149,7 +149,7 @@ router.post('/', function (req, res) {
                           user_id: userId,
                           album_id: albumId
                         }).then(function(impressId) {
-                          var impressId = impressId[0].id;
+                          var impressId = impressId[0];
                           // add new listen date for album
                           knex('listen_date').insert({
                             'date': date,
