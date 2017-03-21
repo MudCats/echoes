@@ -71,6 +71,7 @@ class Entry extends React.Component {
             <p>{this.props.genre}</p>
           </div>
         </td>
+
         <td className='impression col-md-4 col-lg-4'>
           <div>{this.props.impression}</div>
         </td>
@@ -95,7 +96,9 @@ class Entry extends React.Component {
         />
 
        <td className='impression col-md-2'>
-         <div>{this.props.impression}</div>
+         <div>
+          {this.props.impression}
+         </div>
        </td>
       </tr>
     )
