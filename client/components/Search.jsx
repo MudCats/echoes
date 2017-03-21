@@ -15,7 +15,7 @@ class Search extends React.Component {
 			selectedListenDate: this.setDate()
 		})
 	}
-  // gets the current date
+  // gets and formats the current date
 	setDate () {
 		// generates current date
 		var todayDate = new Date();
@@ -77,10 +77,11 @@ class Search extends React.Component {
 					console.log('SUCCESS!')
 					// assigns current date to state
 					// clears previously set state
+					var date = this.setDate();
 					this.setState({
 						term: '',
 						results: [],
-						selectedListenDate: this.setDate()
+						selectedListenDate: date
 					});
           // gets user entries from db and rerenders entry list
 					this.props.getUserEntries();
@@ -97,6 +98,13 @@ class Search extends React.Component {
 
 	render() {
 
+		// only renders the add album button if one album is selected
+		if (this.state.results.length === 1) {
+			$('#add-album-btn').show();
+		} else {
+			$('#add-album-btn').hide();
+		}
+
     return (
       <div>
 	   	  <div className='search-container'>
@@ -105,9 +113,9 @@ class Search extends React.Component {
 					<br></br>
 		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
 						         className="search-bar" />
-                   <a id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
-									   <button type="button" className="btn btn-default">Add an album</button>
-					         </a>
+									 <div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
+									   <button type="button" className="btn btn-default">Add this album</button>
+					         </div>
 				</div>
 				<div className="results-container">
 					<ResultsList albums={this.state.results}

@@ -162,6 +162,11 @@ a.signout {
 	margin-top:40px;
 	vertical-align:middle;
 }
+
+#add-album-btn {
+	display: none;
+}
+
 .btn-group button {
 	margin-left:170px;
 }
