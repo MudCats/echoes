@@ -7,8 +7,7 @@ class Entry extends React.Component {
       sampleURL: '',
       rating: this.props.rating
     }
-    console.log('9: this.state', this.state)
-    this.sampleSearch(this.props.title);
+    this.sampleSearch(this.props.title, this.props.artist);
   }
 
   componentWillMount () {
@@ -17,10 +16,9 @@ class Entry extends React.Component {
     })
   }
 
-  sampleSearch (term) {
-    console.log('term', term)
-    // this.setState({term});
-    var query = term.split(' ').join('%20');
+  sampleSearch (title, artist) {
+    console.log(title, artist)
+    var query = title +' '+ artist;
     var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=song&limit=1';
 
     $.ajax({
@@ -58,11 +56,13 @@ class Entry extends React.Component {
           <span className='day'><h4>{this.props.date.slice(8, 10)}</h4></span>
           <span className='year'>{this.props.date.slice(0,4)}</span>
         </td>
+
         <td className='col-md-1 col-lg-1'>
           <div>
             <img className='albumArt' src={this.props.art_url100} />
           </div>
         </td>
+
         <td className='albumInfo col-md-2 col-lg-2'>
           <div>
             <h3>{this.props.title}</h3>
@@ -71,6 +71,7 @@ class Entry extends React.Component {
             <p>{this.props.genre}</p>
           </div>
         </td>
+
         <td>
         <ReactStarRatingComponent
           name="ratetest"
@@ -79,10 +80,12 @@ class Entry extends React.Component {
           onStarClick={this.onStarClick.bind(this)}
         />
         </td>
+
         <td className='sample col-md-3'>
           <audio src={this.state.sampleURL} type="audio/mpeg" controls>
           </audio>
         </td>
+
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
@@ -97,6 +100,7 @@ class Entry extends React.Component {
           {this.props.impression}
          </div>
        </td>
+
       </tr>
     )
   }
