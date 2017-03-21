@@ -71,21 +71,18 @@ class Entry extends React.Component {
             <p>{this.props.genre}</p>
           </div>
         </td>
-
-        <td className='impression col-md-4 col-lg-4'>
-          <div>{this.props.impression}</div>
-        </td>
+        <td>
         <ReactStarRatingComponent
           name="ratetest"
           starcount={5}
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
         />
+        </td>
         <td className='sample col-md-3'>
           <audio src={this.state.sampleURL} type="audio/mpeg" controls>
           </audio>
         </td>
-        <td className='rating col-md-1'><h3>{this.props.rating}</h3></td>
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
