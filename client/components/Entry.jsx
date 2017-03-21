@@ -15,7 +15,11 @@ class Entry extends React.Component {
   }
 
   onStarClick(nextValue, prevValue, name) {
+    console.log("nextvalue", nextValue)
+    console.log("prevValue", prevValue)
+    console.log("name", name)
     this.setState({rating: nextValue});
+    console.log("this.state", this.state.rating)
   }
 
 
