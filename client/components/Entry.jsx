@@ -86,6 +86,12 @@ class Entry extends React.Component {
           </audio>
         </td>
 
+        <td className='impression col-md-2'>
+          <div>
+           {this.props.impression}
+          </div>
+        </td>
+
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
@@ -94,12 +100,6 @@ class Entry extends React.Component {
                    getUserEntries={this.props.getUserEntries}
                    deleteUserEntries={this.props.deleteUserEntries}
         />
-
-       <td className='impression col-md-2'>
-         <div>
-          {this.props.impression}
-         </div>
-       </td>
 
       </tr>
     )
