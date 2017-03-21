@@ -80,7 +80,9 @@ class Entry extends React.Component {
         />
 
        <td className='impression col-md-2'>
-         <div>{this.props.impression}</div>
+         <div>
+          {this.props.impression}
+         </div>
        </td>
       </tr>
     )

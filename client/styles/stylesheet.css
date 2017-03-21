@@ -50,7 +50,7 @@ table {
 -------------------------*/
 
 body {
-  background: #4b6ecc;
+  background: #251c1c;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -59,7 +59,7 @@ body.dashboard {
 }
 
 span {
-  color: #4b6ecc;
+  color: ##251c1c;
 }
 
 /*-------------------------
@@ -267,7 +267,7 @@ h2.greeting {
 }
 
 header {
-  background-color: #4b6ecc;
+  background-color: #251c1c;
 }
 
 .navbar {
