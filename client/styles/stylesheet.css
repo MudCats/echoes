@@ -324,6 +324,7 @@ button.update {
 
 table tr td div.btn-group {
 	display:inline;
+  vertical-align: middle;
 }
 
 .sample {
@@ -332,7 +333,6 @@ table tr td div.btn-group {
 
 table tr:hover td div.btn-group {
 	display:inline-block;
-	vertical-align: middle;
 }
 
 table tr.entry:hover {
