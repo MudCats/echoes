@@ -3,7 +3,8 @@ class Entry extends React.Component {
     super (props)
     this.state = {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      month:''
+      month:'',
+      rating: this.props.rating
     }
   }
 
@@ -11,6 +12,10 @@ class Entry extends React.Component {
     this.setState ({
       month:this.props.date.slice(5,7)
     })
+  }
+
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({rating: nextValue});
   }
 
 
@@ -38,6 +43,12 @@ class Entry extends React.Component {
         <td className='impression col-md-4'>
           <div>{this.props.impression}</div>
         </td>
+        <ReactStarRatingComponent
+          name="ratetest"
+          starcount={5}
+          rating={this.state.rating}
+          onStarClick={this.onStarClick.bind(this)}
+        />
         <td className='rating col-md-1'><h3>{this.props.rating}</h3></td>
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
