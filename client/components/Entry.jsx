@@ -46,7 +46,7 @@ class Entry extends React.Component {
         <ReactStarRatingComponent
           name="ratetest"
           starcount={5}
-          rating={this.state.rating}
+          value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
         />
         <UpdateBox impressionId={this.props.impressionId}
