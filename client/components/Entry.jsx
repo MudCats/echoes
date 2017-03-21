@@ -4,7 +4,7 @@ class Entry extends React.Component {
     this.state = {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       month:'',
-      sampleURL: ''
+      sampleURL: '',
       rating: this.props.rating
     }
     console.log('9: this.state', this.state)

@@ -332,7 +332,8 @@ table tr td div.btn-group {
 }
 
 table tr:hover td div.btn-group {
-	display:inline-block;
+	display:inline;
+  vertical-align: middle;
 }
 
 table tr.entry:hover {
