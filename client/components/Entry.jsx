@@ -4,8 +4,11 @@ class Entry extends React.Component {
     this.state = {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       month:'',
+      sampleURL: ''
       rating: this.props.rating
     }
+    console.log('9: this.state', this.state)
+    this.sampleSearch(this.props.title);
   }
 
   componentWillMount () {
@@ -13,6 +16,30 @@ class Entry extends React.Component {
       month:this.props.date.slice(5,7)
     })
   }
+
+  sampleSearch (term) {
+    console.log('term', term)
+    // this.setState({term});
+    var query = term.split(' ').join('%20');
+    var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=song&limit=1';
+
+    $.ajax({
+      url: searchUrl,
+      data : {
+        format: 'json'
+      },
+      type: 'GET',
+      dataType: 'jsonp',
+      success: (data) => {
+        console.log('data', data);
+        this.setState({sampleURL: data.results[0].previewUrl});
+      },
+      error: (error) => {
+        console.log(error);
+        return;
+      }
+    })
+  };
 
   onStarClick(nextValue, prevValue, name) {
     console.log("nextvalue", nextValue)
@@ -53,13 +80,23 @@ class Entry extends React.Component {
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
         />
+        <td className='sample col-md-3'>
+          <audio src={this.state.sampleURL} type="audio/mpeg" controls>
+          </audio>
+        </td>
+        <td className='rating col-md-1'><h3>{this.props.rating}</h3></td>
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
                    rating={this.props.rating}
                    updateUserEntries={this.props.updateUserEntries}
                    getUserEntries={this.props.getUserEntries}
-                   deleteUserEntries={this.props.deleteUserEntries}/>
+                   deleteUserEntries={this.props.deleteUserEntries}
+        />
+
+       <td className='impression col-md-2'>
+         <div>{this.props.impression}</div>
+       </td>
       </tr>
     )
   }
