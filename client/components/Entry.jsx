@@ -72,7 +72,7 @@ class Entry extends React.Component {
           </div>
         </td>
 
-        <td>
+        <td className="col-md-3">
         <ReactStarRatingComponent
           name="ratetest"
           starcount={5}
@@ -81,7 +81,7 @@ class Entry extends React.Component {
         />
         </td>
 
-        <td className='sample col-md-3'>
+        <td className='sample col-md-2'>
           <audio src={this.state.sampleURL} type="audio/mpeg" controls>
           </audio>
         </td>
@@ -92,6 +92,7 @@ class Entry extends React.Component {
           </div>
         </td>
 
+        <td className="col-md-2">
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
@@ -100,7 +101,7 @@ class Entry extends React.Component {
                    getUserEntries={this.props.getUserEntries}
                    deleteUserEntries={this.props.deleteUserEntries}
         />
-
+        </td>
       </tr>
     )
   }
