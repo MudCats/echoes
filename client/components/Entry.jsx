@@ -3,7 +3,8 @@ class Entry extends React.Component {
     super (props)
     this.state = {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      month:''
+      month:'',
+      rating: this.props.rating
     }
   }
 
@@ -13,21 +14,29 @@ class Entry extends React.Component {
     })
   }
 
+  onStarClick(nextValue, prevValue, name) {
+    console.log("nextvalue", nextValue)
+    console.log("prevValue", prevValue)
+    console.log("name", name)
+    this.setState({rating: nextValue});
+    console.log("this.state", this.state.rating)
+  }
+
 
   render () {
     return (
       <tr className='entry row'>
-        <td className='listenDate col-md-1'>
+        <td className='listenDate col-md-1 col-lg-1'>
           <span className='month'><h4>{moment.months(this.state.month - 1)}</h4> </span>
           <span className='day'><h4>{this.props.date.slice(8, 10)}</h4></span>
           <span className='year'>{this.props.date.slice(0,4)}</span>
         </td>
-        <td className='col-md-1'>
+        <td className='col-md-1 col-lg-1'>
           <div>
             <img className='albumArt' src={this.props.art_url100} />
           </div>
         </td>
-        <td className='albumInfo col-md-2'>
+        <td className='albumInfo col-md-2 col-lg-2'>
           <div>
             <h3>{this.props.title}</h3>
             <h4>{this.props.artist}</h4>
@@ -35,10 +44,15 @@ class Entry extends React.Component {
             <p>{this.props.genre}</p>
           </div>
         </td>
-        <td className='impression col-md-4'>
+        <td className='impression col-md-4 col-lg-4'>
           <div>{this.props.impression}</div>
         </td>
-        <td className='rating col-md-1'><h3>{this.props.rating}</h3></td>
+        <ReactStarRatingComponent
+          name="ratetest"
+          starcount={5}
+          value={this.state.rating}
+          onStarClick={this.onStarClick.bind(this)}
+        />
         <UpdateBox impressionId={this.props.impressionId}
                    date={this.props.date}
                    impression={this.props.impression}
