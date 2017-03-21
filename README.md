@@ -26,8 +26,9 @@ Seed data is pre-fabricated data that allows you to interact with a filled datab
 1. Comment out all foreign key constraints in the migration file
 2. Run: ``` knex migrate:rollback ``` followed by ``` knex migrate:latest ```
 3. Run: ``` knex seed:run ```
-4. Comment foreign key constraints back in
-5. Run: ``` knex migrate:rollback ``` followed by ``` knex migrate:latest ```
+To use data you get from creating your own users and grabbing data from the API:
+1. Comment foreign key constraints back in
+2. Run: ``` knex migrate:rollback ``` followed by ``` knex migrate:latest ```
 
 # Viewing Console-Logs For Server Request #
 1. To view console logs for server request, go into the knexfile and uncomment 'debug: true'. Then, any time you make changes server side:
