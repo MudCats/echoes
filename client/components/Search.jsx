@@ -108,7 +108,7 @@ class Search extends React.Component {
       <div>
 	   	  <div className='search-container'>
 					<h3 className='search-prompt'>Add an album:</h3>
-					<input type="date" name="date" className="form-group search-bar"></input>
+					<input type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
 					<br></br>
 		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
 						         className="search-bar" />
