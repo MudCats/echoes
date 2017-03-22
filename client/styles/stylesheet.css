@@ -74,7 +74,7 @@ button.btn.btn-default.landing {
   margin-bottom: 20px;
   border-radius:0;
 }
-button.btn.btn-default { 
+button.btn.btn-default {
   border-radius:0;
 }
 
@@ -360,6 +360,11 @@ td.albumArt {
 	display: inline-block;
 	height: 100%;
 	vertical-align: middle;
+}
+
+.album-info {
+  font-size: 10px;
+  vertical-align: middle;
 }
 
 /*--------------------------
