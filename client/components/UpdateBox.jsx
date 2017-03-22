@@ -83,7 +83,9 @@ class UpdateBox extends React.Component {
                 <div className='input-group'>
                   {/* rating dropdown */}
                   <span className='input-group-btn'>
-                    <button className='btn btn-default' type='submit' id="submit" name='button' >Save</button>
+                    <button className='btn btn-default' type='submit' id="submit" name='button' > Save </button>
+                    {/* cancel button */}
+                    <button className='btn btn-default' type='submit' id="submit" name='button' onClick={this.closeModal.bind(this)} >Cancel</button>
                   </span>
                 </div>
               </form>
