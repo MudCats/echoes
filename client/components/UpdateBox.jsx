@@ -54,7 +54,7 @@ class UpdateBox extends React.Component {
               <a onClick={this.handleDelete.bind(this)}>
                 <button className='remove btn btn-default'>
                   {/* remove button */}
-                  <span className='glyphicon glyphicon-remove-circle'></span>
+                  <span className='glyphicon glyphicon-remove'></span>
                 </button>
               </a>
               {/* update button -- do not remove a tags.
@@ -70,7 +70,7 @@ class UpdateBox extends React.Component {
           {this.state.modalActive && (
             <div className='update'>
               {/* remove icon */}
-              <span className='close glyphicon glyphicon-remove' onClick={this.closeModal.bind(this)}></span>
+
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
                 {/* impression box */}
                 <textarea className='form-control' id='impression' name='impression'
@@ -81,22 +81,9 @@ class UpdateBox extends React.Component {
                                           placeholder='Write your impression...'></textarea>
                 <br></br>
                 <div className='input-group'>
-                  {/* rating dropdown */}
-                  <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
-                    <option value={null}>Rating</option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    <option value={6}>6</option>
-                    <option value={7}>7</option>
-                    <option value={8}>8</option>
-                    <option value={9}>9</option>
-                    <option value={10}>10</option>
-                  </select>
+
                   <span className='input-group-btn'>
-                    <button className='btn btn-default' type='submit' id="submit" name='button' value='Save'></button>
+                    <button className='btn btn-default' type='submit' id="submit" name='button' value='Save'>Save</button>
                   </span>
                 </div>
               </form>

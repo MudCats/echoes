@@ -72,6 +72,10 @@ span {
 
 button.btn.btn-default.landing {
   margin-bottom: 20px;
+  border-radius:0;
+}
+button.btn.btn-default { 
+  border-radius:0;
 }
 
 .blurb {
@@ -250,6 +254,7 @@ h2.greeting {
 
 .impression {
   text-align:left;
+  border-radius: 0;
 }
 
 .rating {
