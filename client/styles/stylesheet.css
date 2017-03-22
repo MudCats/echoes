@@ -155,6 +155,10 @@ audio::-webkit-media-controls-enclosure {
   margin-bottom: 20px;
 }
 
+.glyphicon-search, .glyphicon-calendar{
+  padding-bottom: 15px;
+}
+
 
 .add-album {
   margin: auto;
