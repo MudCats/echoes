@@ -29,6 +29,7 @@ router.get('/', function (req, res) {
       .catch(function (err) {
         console.log('Problem grabbing user info');
       })
+
 });
 
 // post new album to the database

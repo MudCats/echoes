@@ -8,7 +8,7 @@ class EntryList extends React.Component {
     <tbody className='container-fluid entryList'>
       <tr className='row'>
         <th className='col-md-1'>
-          <span className='glyphicon glyphicon-calendar'></span>
+          <h5>Date</h5>
         </th>
         <th className='col-md-1'><h5>Album</h5></th>
         <th className='col-md-2'></th>

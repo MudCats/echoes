@@ -27,7 +27,7 @@ class Search extends React.Component {
   // displays only the clicked album
 	setSelected (album) {
 		// date defaults to current date
-		var date = $('input').val() || this.state.selectedListenDate;
+		var date = $('#calDate').val() || this.state.selectedListenDate;
     // sets state to display one album and sets state of listen date
 		this.setState({
 			results: [album],
@@ -107,14 +107,30 @@ class Search extends React.Component {
     return (
       <div>
 	   	  <div className='search-container'>
-					<h3 className='search-prompt'>Add an album:</h3>
-					<input type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
 					<br></br>
-		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
-						         className="search-bar" />
-									 <div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
-									   <button type="button" className="btn btn-default">Add this album</button>
-					         </div>
+					<table>
+						<tr>
+							<td>
+								<span className='glyphicon glyphicon-search'>&nbsp;</span>
+							</td>
+							<td width="200px">
+					      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
+									         className="search-bar" />
+								<div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
+								  <button type="button" className="btn btn-default">Add this album</button>
+				        </div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
+							</td>
+							<td>
+								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
+							</td>
+						</tr>
+					</table>		      
+					
 				</div>
 				<div className="results-container">
 					<ResultsList albums={this.state.results}
