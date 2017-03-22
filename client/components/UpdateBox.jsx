@@ -82,21 +82,8 @@ class UpdateBox extends React.Component {
                 <br></br>
                 <div className='input-group'>
                   {/* rating dropdown */}
-                  <select className='form-control' name='rating' id='rating' value={this.state.rating} onChange={this.handleInputChange.bind(this)}>
-                    <option value={null}>Rating</option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                    <option value={6}>6</option>
-                    <option value={7}>7</option>
-                    <option value={8}>8</option>
-                    <option value={9}>9</option>
-                    <option value={10}>10</option>
-                  </select>
                   <span className='input-group-btn'>
-                    <button className='btn btn-default' type='submit' id="submit" name='button' value='Save'></button>
+                    <button className='btn btn-default' type='submit' id="submit" name='button' >Save</button>
                   </span>
                 </div>
               </form>
