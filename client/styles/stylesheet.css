@@ -240,12 +240,6 @@ h2.greeting {
 	margin-bottom:-20px;
 }
 
-.albumArt {
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-}
-
 .impression {
   text-align:left;
 }
@@ -343,6 +337,12 @@ table tr.entry:hover {
 .close {
 	margin-bottom: 10px;
 	margin-right:10px;
+}
+
+td.albumArt {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
 }
 
 /*--------------------------

@@ -58,7 +58,7 @@ class Entry extends React.Component {
           <span className='year'>{this.props.date.slice(0,4)}</span>
         </td>
 
-        <td className='col-md-1 col-lg-1'>
+        <td className='albumArt col-md-1'>
           <div>
             <img className='albumArt' src={this.props.art_url100} />
           </div>
@@ -66,10 +66,9 @@ class Entry extends React.Component {
 
         <td className='albumInfo col-md-2 col-lg-2'>
           <div>
-            <h3>{this.props.title}</h3>
-            <h4>{this.props.artist}</h4>
+            <h4>{this.props.title}</h4>
+            <h5>{this.props.artist}</h5>
             <p>{this.props.year}</p>
-            <p>{this.props.genre}</p>
           </div>
         </td>
 
@@ -83,7 +82,7 @@ class Entry extends React.Component {
         </td>
 
         <td className='sample col-md-2'>
-          <h4>{this.state.track}</h4>
+          <h5>{this.state.track}</h5>
           <audio src={this.state.sampleURL} type="audio/mpeg" controls>
           </audio>
         </td>
