@@ -27,14 +27,14 @@
     <script src="/public/index.js"></script>
 
     <script>
-    document.addEventListener('play', function(e){
-    var audios = document.getElementsByTagName('audio');
-      for(var i = 0, len = audios.length; i < len;i++){
-          if(audios[i] != e.target){
-              audios[i].pause();
+      window.addEventListener("play", function(evt)
+      {
+          if(window.$_currentlyPlaying)
+          {
+              window.$_currentlyPlaying.pause();
           }
-      }
-    }, true);
+          window.$_currentlyPlaying = evt.target;
+      }, true);
     </script>
   </body>
 </html>
