@@ -83,8 +83,7 @@ class Entry extends React.Component {
 
         <td className='sample col-md-2'>
           <h5>{this.state.track}</h5>
-          <audio src={this.state.sampleURL} type="audio/mpeg" preload="auto" controls>
-          </audio>
+          <audio src={this.state.sampleURL} type="audio/mpeg" controls />
         </td>
 
         <td className='impression col-md-2'>
