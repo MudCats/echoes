@@ -27,7 +27,7 @@ class Search extends React.Component {
   // displays only the clicked album
 	setSelected (album) {
 		// date defaults to current date
-		var date = $('input').val() || this.state.selectedListenDate;
+		var date = $('#calDate').val() || this.state.selectedListenDate;
     // sets state to display one album and sets state of listen date
 		this.setState({
 			results: [album],
@@ -126,7 +126,7 @@ class Search extends React.Component {
 								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
 							</td>
 							<td>
-								<input type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
+								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
 							</td>
 						</tr>
 					</table>		      
