@@ -9,7 +9,6 @@ class Entry extends React.Component {
       rating: this.props.rating
     }
     this.sampleSearch(this.props.title, this.props.artist);
-  }
 
   componentWillMount () {
     this.setState ({
