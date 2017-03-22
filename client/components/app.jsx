@@ -89,7 +89,6 @@ class App extends React.Component {
   // renders the app to the DOM
   render () {
     return (
-
       <div>
         <div className="container-fluid app">
           <header className="navbar">
