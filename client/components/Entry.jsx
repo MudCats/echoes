@@ -8,7 +8,16 @@ class Entry extends React.Component {
       track: '',
       rating: this.props.rating
     }
-      this.sampleSearch(this.props.title, this.props.artist);
+
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+      $('[data-toggle="popover"]').popover({
+        trigger: 'focus',
+        html: true
+      });
+    });
+
+    this.sampleSearch(this.props.title, this.props.artist);
   }
 
   componentWillMount () {
@@ -31,7 +40,11 @@ class Entry extends React.Component {
       dataType: 'jsonp',
       success: (data) => {
         console.log('data', data);
-        this.setState({sampleURL: data.results[0].previewUrl, track: data.results[0].trackName});
+        this.setState({
+          sampleURL: data.results[0].previewUrl,
+          track: data.results[0].trackName,
+          albumId: data.results[0].collectionId
+        });
       },
       error: (error) => {
         console.log(error);
@@ -59,9 +72,9 @@ class Entry extends React.Component {
         </td>
 
         <td className='albumArt col-md-1'>
-          <div>
-            <img className='albumArt' src={this.props.art_url100} />
-          </div>
+          <a tabIndex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
+            <img src={this.props.art_url100} />
+          </a>
         </td>
 
         <td className='albumInfo col-md-2 col-lg-2'>
