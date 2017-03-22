@@ -72,9 +72,12 @@ class Entry extends React.Component {
         </td>
 
         <td className='albumArt col-md-1'>
-          <a tabIndex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
+          <a tabIndex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
             <img src={this.props.art_url100} />
           </a>
+          <p className="album-info">
+            Click to sample.
+          </p>
         </td>
 
         <td className='albumInfo col-md-2 col-lg-2'>
@@ -92,11 +95,6 @@ class Entry extends React.Component {
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
         />
-        </td>
-
-        <td className='sample col-md-2'>
-          <h5>{this.state.track}</h5>
-          <audio src={this.state.sampleURL} type="audio/mpeg" controls />
         </td>
 
         <td className='impression col-md-2'>
