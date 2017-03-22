@@ -17,7 +17,6 @@ class EntryList extends React.Component {
         <th className='impression col-md-2'><h5>Impression</h5></th>
       </tr>
       {this.props.allEntries.map((entry) => {
-        console.log(entry)
         return (
           <Entry date={entry.date.slice(0,10)}
                  title={entry.title}

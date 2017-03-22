@@ -99,15 +99,14 @@ class Search extends React.Component {
 
 		// only renders the add album button if one album is selected
 		if (this.state.results.length === 1) {
-			$('#add-album-btn').show();
+			$('#add-album-btn').show(800);
 		} else {
-			$('#add-album-btn').hide();
+			$('#add-album-btn').hide(800);
 		}
 
     return (
       <div>
 	   	  <div className='search-container'>
-					<br></br>
 					<table>
 						<tr>
 							<td>
@@ -115,10 +114,7 @@ class Search extends React.Component {
 							</td>
 							<td width="200px">
 					      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
-									         className="search-bar" />
-								<div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
-								  <button type="button" className="btn btn-default">Add this album</button>
-				        </div>
+									className="search-bar" />
 							</td>
 						</tr>
 						<tr>
@@ -128,6 +124,14 @@ class Search extends React.Component {
 							<td>
 								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
 							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>
+								<div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
+								  <button type="button" className="btn btn-default">Add this album</button>
+				        </div>
+			        </td>
 						</tr>
 					</table>		      
 					
