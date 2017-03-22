@@ -9,8 +9,8 @@ class Entry extends React.Component {
       rating: this.props.rating
     }
       this.sampleSearch(this.props.title, this.props.artist);
-    }
-    
+  }
+
   componentWillMount () {
     this.setState ({
       month:this.props.date.slice(5,7)
