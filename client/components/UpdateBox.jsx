@@ -54,7 +54,7 @@ class UpdateBox extends React.Component {
               <a onClick={this.handleDelete.bind(this)}>
                 <button className='remove btn btn-default'>
                   {/* remove button */}
-                  <span className='glyphicon glyphicon-remove-circle'></span>
+                  <span className='glyphicon glyphicon-remove'></span>
                 </button>
               </a>
               {/* update button -- do not remove a tags.
@@ -70,7 +70,7 @@ class UpdateBox extends React.Component {
           {this.state.modalActive && (
             <div className='update'>
               {/* remove icon */}
-              <span className='close glyphicon glyphicon-remove' onClick={this.closeModal.bind(this)}></span>
+
               <form id='update' onSubmit={this.handleSubmit.bind(this)}>
                 {/* impression box */}
                 <textarea className='form-control' id='impression' name='impression'
