@@ -114,7 +114,7 @@ class Search extends React.Component {
 							</td>
 							<td width="200px">
 					      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
-									         className="search-bar" />
+									className="search-bar" />
 							</td>
 						</tr>
 						<tr>
