@@ -81,9 +81,9 @@ class UpdateBox extends React.Component {
                                           placeholder='Write your impression...'></textarea>
                 <br></br>
                 <div className='input-group'>
-
+                  {/* rating dropdown */}
                   <span className='input-group-btn'>
-                    <button className='btn btn-default' type='submit' id="submit" name='button' value='Save'>Save</button>
+                    <button className='btn btn-default' type='submit' id="submit" name='button' >Save</button>
                   </span>
                 </div>
               </form>
