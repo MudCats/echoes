@@ -7,13 +7,14 @@ class App extends React.Component {
       allEntries: [],
       searchResults: [],
       currentUser: '',
-      spotifyAuthToken: ''
+      greeting: 'Hello!'
     }
   }
   // when the component loads successfully
   componentWillMount () {
     // load all of the user's data
     this.getUserEntries();
+    this.greetUser();
   }
 
   getUserEntries () {
@@ -73,7 +74,18 @@ class App extends React.Component {
         if (response.length) {
           this.setState({
             currentUser: response[0].user
-          })
+          });
+          if (this.state.currentUser) {
+            // greet them by name
+            this.setState({
+              greeting: `Hello, ${this.state.currentUser}!`
+            });
+          } else {
+            // new users are greetedwith Hello
+            this.setState({
+              greeting: 'Hello!'
+            });
+          }
         }
       },
       error: function (error) {
@@ -81,14 +93,6 @@ class App extends React.Component {
         throw error;
         }
       })
-    }
-
-    if (this.state.currentUser) {
-      // greet them by name
-      return `Hello, ${this.state.currentUser}!`
-    } else {
-      // new users are greetedwith Hello
-      return `Hello!`
     }
   }
   // deletes a listening instance from the db
@@ -143,7 +147,7 @@ class App extends React.Component {
       <div>
         <div className="container-fluid app">
           <header className="navbar">
-            <div><h2 className="greeting">{this.greetUser()}</h2></div>
+            <div><h2 className="greeting">{this.state.greeting}</h2></div>
             <a href="/signout" className='navbar-right signout'>
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
