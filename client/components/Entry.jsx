@@ -12,7 +12,7 @@ class Entry extends React.Component {
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
       $('[data-toggle="popover"]').popover({
-        trigger: 'focus',
+        trigger: 'manual click',
         html: true
       });
     });

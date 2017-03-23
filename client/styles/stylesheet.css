@@ -138,14 +138,6 @@ span.close {
   font-weight: 500px;
 }
 
-audio::-webkit-media-controls {
-    overflow: hidden !important
-}
-audio::-webkit-media-controls-enclosure {
-    width: calc(100% + 180px);
-    margin-left: auto;
-}
-
 /*-----------------------------
 	UPDATE BOX/DASHBOARD
 ------------------------------*/
@@ -157,8 +149,14 @@ audio::-webkit-media-controls-enclosure {
 
 .glyphicon-search, .glyphicon-calendar{
   padding-bottom: 15px;
+  text-decoration: none;
 }
 
+#main-search {
+  font-size: 1.4em;
+  padding-left: 32px;
+  text-decoration: none;
+}
 
 .add-album {
   margin: auto;
@@ -235,6 +233,10 @@ div.col-md-6.text-center {
   width: 100%
 }
 
+.search-container {
+  padding-left: 10px;
+}
+
 .container-fluid.app {
   padding-left: 0px;
   padding-right: 0px;
@@ -308,10 +310,6 @@ tbody {
 
 .add-album {
   margin: auto;
-}
-
-a:hover {
-  text-decoration: none;
 }
 
 a.signout {
@@ -426,4 +424,27 @@ td.albumArt {
 
 td {
 	vertical-align: middle;
+}
+
+/*side bar slide out*/
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #fff; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
