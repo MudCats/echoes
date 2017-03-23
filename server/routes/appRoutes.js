@@ -5,6 +5,12 @@ var util = require('../utilities.js');
 var knex = require('../../db/db.js');
 
 router.get('/', function (req, res) {
+
+  //var state = generateRandomString(16);
+  //res.cookie(stateKey, state);
+
+  // your application requests authorization
+
   // if the user has a session
   if (req.cookies.signedIn && req.cookies.username) {
     // serve the dashboard

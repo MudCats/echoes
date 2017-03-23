@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "nodemon server/server.js | babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline"
+    "start": "nodemon server/server.js | babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
+    "compile": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,migrations,spec,server,seeds --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-star-rating-component": "^1.2.4",
-    "react-stars": "^2.1.0"
+    "react-stars": "^2.1.0",
+    "whatwg-fetch": "^2.0.3"
   }
 }
