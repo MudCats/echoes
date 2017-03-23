@@ -28,7 +28,7 @@ class Entry extends React.Component {
   sampleSearch (title, artist) {
     console.log(title, artist)
     var query = title +' '+ artist;
-    var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=song&limit=1';
+    var searchUrl = 'https://itunes.apple.com/search?term=?$' + query.split(' ').join('%20') + '&entity=song&limit=1';
 
     $.ajax({
       url: searchUrl,
