@@ -40,7 +40,7 @@ class Search extends React.Component {
 		// used percent encoding for iTunes API search
 		var query = this.state.term.split(' ').join('%20');
 		// creates search URL with limit of four results
-		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=4';
+		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=10';
 
 		$.ajax({
 			url: searchUrl,
