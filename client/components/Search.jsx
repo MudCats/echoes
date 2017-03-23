@@ -98,8 +98,8 @@ class Search extends React.Component {
 
 
   closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("app").style.marginLeft = "0";
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("app").style.marginLeft = "0";
   }
 
 	render() {
@@ -110,10 +110,6 @@ class Search extends React.Component {
 		} else {
 			$('#add-album-btn').hide(800);
 		}
-
-    $('.main-search').click(function(e) {
-      e.preventDefault();
-    })
 
     return (
       <div id="mySidenav" className="sidenav">
