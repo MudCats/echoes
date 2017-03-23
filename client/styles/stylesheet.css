@@ -448,3 +448,8 @@ td {
     font-size: 36px;
     margin-left: 50px;
 }
+
+#app {
+    transition: margin-left .5s;
+    padding: 20px;
+}

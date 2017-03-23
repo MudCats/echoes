@@ -12,7 +12,7 @@ class EntryList extends React.Component {
         </th>
         <th className='col-md-1'><h5>Album</h5></th>
         <th className='col-md-2'></th>
-        <th className='rating col-md-2'><h5>Rating</h5></th>
+        <th className='rating col-md-3'><h5>Rating</h5></th>
         <th className='impression col-md-2'><h5>Impression</h5></th>
       </tr>
       {this.props.allEntries.map((entry) => {
