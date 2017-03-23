@@ -114,7 +114,7 @@ class Search extends React.Component {
 								<span className='glyphicon glyphicon-search'>&nbsp;</span>
 							</td>
 							<td width="200px">
-					      <SearchBar search={_.debounce(this.iTunesSearch.bind(this))}
+					      <SearchBar search={this.iTunesSearch.bind(this)}
 									className="search-bar" />
 							</td>
 						</tr>
