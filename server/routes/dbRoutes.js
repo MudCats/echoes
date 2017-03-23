@@ -86,6 +86,15 @@ router.get('/filter', function (req, res) {
 
 });
 
+router.get('/user', (req, res) => {
+  var username = req.cookies.username;
+  knex.from('users')
+    .where('username', username)
+    .then(result => {
+      res.status(200).send(result);
+    });
+})
+
 // post new album to the database
 router.post('/', function (req, res) {
   var album = req.body.album;

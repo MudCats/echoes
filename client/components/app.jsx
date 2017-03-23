@@ -61,6 +61,28 @@ class App extends React.Component {
   // generates greeting in banner
   greetUser () {
     // if current user is identified
+    var cookie = document.cookie;
+    if (cookie.includes('username')) {
+      $.ajax({
+      url: '/querydb/user',
+      type: 'GET',
+      success: (response) => {
+        // sets state of all entries
+        // sets current user name
+        
+        if (response.length) {
+          this.setState({
+            currentUser: response[0].user
+          })
+        }
+      },
+      error: function (error) {
+        console.log(error);
+        throw error;
+        }
+      })
+    }
+
     if (this.state.currentUser) {
       // greet them by name
       return `Hello, ${this.state.currentUser}!`
