@@ -68,7 +68,7 @@ var authOptions = {
 
 
        var options = {
-          url: 'https://api.spotify.com/v1/search?q=songs%20about%20jane&type=album',
+          url: 'https://api.spotify.com/v1/search' + req.url + '&type=album',
           headers: { 'Authorization': 'Bearer ' + spotify.access_token },
           json: true
         };

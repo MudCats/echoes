@@ -58,8 +58,9 @@ class Entry extends React.Component {
 
   onReccomendClick() {
     var query = this.props.title.split(' ').join('%20');
-    fetch('/spotify=?$' + query )
-    .then((response) => {
+    
+    fetch('/spotify?q=' + query )
+    .then(response => {
       return response.json();
     })
     .then(data => {
