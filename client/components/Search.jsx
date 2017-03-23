@@ -50,6 +50,7 @@ class Search extends React.Component {
 			type: 'GET',
 			dataType: 'jsonp',
 			success: (data) => {
+        console.log('data', data)
 				// changes state of results, triggering view change
 				this.setState({results: data.results});
 			},
@@ -95,6 +96,12 @@ class Search extends React.Component {
 		}
 	}
 
+
+  closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("app").style.marginLeft = "0";
+  }
+
 	render() {
 
 		// only renders the add album button if one album is selected
@@ -104,17 +111,23 @@ class Search extends React.Component {
 			$('#add-album-btn').hide(800);
 		}
 
+    $('.main-search').click(function(e) {
+      e.preventDefault();
+    })
+
     return (
-      <div>
+      <div id="mySidenav" className="sidenav">
+
 	   	  <div className='search-container'>
 					<table>
           <tbody>
 						<tr>
 							<td>
 								<span className='glyphicon glyphicon-search'>&nbsp;</span>
+                  <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav.bind(this)}>&times;</a>
 							</td>
 							<td width="200px">
-					      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
+					      <SearchBar search={this.iTunesSearch.bind(this)}
 									className="search-bar" />
 							</td>
 						</tr>
@@ -147,6 +160,7 @@ class Search extends React.Component {
 						setSelected={this.setSelected.bind(this)}
 						className='results-container' />
 				</div>
+
 			</div>
 
 

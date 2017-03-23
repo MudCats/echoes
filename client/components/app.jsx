@@ -86,6 +86,11 @@ class App extends React.Component {
     })
   }
 
+  openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("app").style.marginLeft = "250px";
+  }
+
 
   // renders the app to the DOM
 
@@ -99,11 +104,14 @@ class App extends React.Component {
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
             <img className='navbar-center header logo' src="styles/logo.svg"></img>
+            <div  className="col-md-2 search">
+              <Search getUserEntries={this.getUserEntries.bind(this)}/>
+            </div>
           </header>
-          <div  className="col-md-2 search">
-            <Search getUserEntries={this.getUserEntries.bind(this)}/>
+          <div>
+            <a onClick={this.openNav.bind(this)} id="main-search" className='glyphicon-search glyphicon'>&nbsp;</a>
           </div>
-          <div className="col-md-10">
+          <div className="col-md-12">
             <table className="table-responsive table">
               <EntryList allEntries={this.state.allEntries}
                 updateUserEntries={this.updateUserEntries.bind(this)}
