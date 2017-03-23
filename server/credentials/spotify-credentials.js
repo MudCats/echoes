@@ -4,7 +4,8 @@ var spotify = {
   redirect_uri: 'http://localhost:1337/spotify/auth',
   stateKey: 'spotify_auth_state',
   scope: 'user-read-private user-read-email',
-  access_token: 'BQC-o-WleAwkiDgbZzuKX2kLy8pH8T8nuMRbSWvz6QIk56TsTvpCe9d4UlsqMtepBFaGWxBl7TcHkJXjpwJT8DxWJfeUsVUhnIW9G2NWZGWoVpP1cB6emTAWw_UqhITTuu4N0gRl0vD4R5kX9ARR2KUYqWKOlkglYWM'
+  access_token: '',
+  refresh_token: 'AQBy-VIVgeEfzqNi4iOgeng_c6UdKnXCGCDv9T2Ef6tSxobDVvmqdvTf3Q-8a3S-mYqKFEhiJQl1A7mVbRA5EF1leam6iIBAyQ5dGTYhlfk35d3JsSghhPO7oe_RdhOF63c'
 }
 
 
