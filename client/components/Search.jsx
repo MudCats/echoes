@@ -108,6 +108,7 @@ class Search extends React.Component {
       <div>
 	   	  <div className='search-container'>
 					<table>
+          <tbody>
 						<tr>
 							<td>
 								<span className='glyphicon glyphicon-search'>&nbsp;</span>
@@ -117,6 +118,7 @@ class Search extends React.Component {
 									className="search-bar" />
 							</td>
 						</tr>
+
 						<tr>
 							<td>
 								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
@@ -125,6 +127,7 @@ class Search extends React.Component {
 								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
 							</td>
 						</tr>
+
 						<tr>
 							<td>&nbsp;</td>
 							<td>
@@ -133,8 +136,10 @@ class Search extends React.Component {
 				        </div>
 			        </td>
 						</tr>
-					</table>		      
-					
+
+            </tbody>
+					</table>
+
 				</div>
 				<div className="results-container">
 					<ResultsList albums={this.state.results}

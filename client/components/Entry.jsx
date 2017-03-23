@@ -38,7 +38,6 @@ class Entry extends React.Component {
       type: 'GET',
       dataType: 'jsonp',
       success: (data) => {
-        console.log('data', data);
         this.setState({
           sampleURL: data.results[0].previewUrl,
           track: data.results[0].trackName,
@@ -53,11 +52,7 @@ class Entry extends React.Component {
   };
 
   onStarClick(nextValue, prevValue, name) {
-    console.log("nextvalue", nextValue)
-    console.log("prevValue", prevValue)
-    console.log("name", name)
     this.setState({rating: nextValue});
-    console.log("this.state", this.state.rating)
   }
 
 
@@ -65,13 +60,13 @@ class Entry extends React.Component {
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
-          <span className='month'><h4>{moment.months(this.state.month - 1)}</h4> </span>
-          <span className='day'><h4>{this.props.date.slice(8, 10)}</h4></span>
+          <span className='month'><h5>{moment.months(this.state.month - 1)}</h5> </span>
+          <span className='day'><h5>{this.props.date.slice(8, 10)}</h5></span>
           <span className='year'>{this.props.date.slice(0,4)}</span>
         </td>
 
         <td className='albumArt col-md-1'>
-          <a tabIndex="0" role="button" data-toggle="popover" data-trigger="click" data-placement="left" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
+          <a tabIndex="0" role="button" data-toggle="popover" data-trigger="manual focus" data-placement="left" width="300px" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
             <img src={this.props.art_url100} />
           </a>
           <p className="album-info">
