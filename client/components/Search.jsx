@@ -50,6 +50,7 @@ class Search extends React.Component {
 			type: 'GET',
 			dataType: 'jsonp',
 			success: (data) => {
+        console.log('data', data)
 				// changes state of results, triggering view change
 				this.setState({results: data.results});
 			},
@@ -114,7 +115,7 @@ class Search extends React.Component {
 								<span className='glyphicon glyphicon-search'>&nbsp;</span>
 							</td>
 							<td width="200px">
-					      <SearchBar search={this.iTunesSearch.bind(this))}
+					      <SearchBar search={this.iTunesSearch.bind(this)}
 									className="search-bar" />
 							</td>
 						</tr>
