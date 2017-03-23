@@ -91,7 +91,7 @@ class UpdateBox extends React.Component {
             </form>
           </div>
         )}
-    </td>
+      </td>
     )
   }
 }

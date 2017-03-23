@@ -53,6 +53,7 @@ class Entry extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
+    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getUserEntries)
   }
 
 
