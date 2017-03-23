@@ -46,8 +46,7 @@ class UpdateBox extends React.Component {
 
   render () {
       return (
-        // td
-        <td className='col-md-2'>
+        <div className='col-md-2'>
           {!this.state.modalActive && (
             <div className='btn-group' role="group">
               {/*  delete button */}
@@ -91,7 +90,7 @@ class UpdateBox extends React.Component {
               </form>
             </div>
           )}
-      </td>
+      </div>
       )
     }
 }
