@@ -99,15 +99,15 @@ class Entry extends React.Component {
         </td>
 
         <td className="col-md-2">
-        <UpdateBox
-          impressionId={this.props.impressionId}
-          date={this.props.date}
-          impression={this.props.impression}
-          rating={this.props.rating}
-          updateUserEntries={this.props.updateUserEntries}
-          getUserEntries={this.props.getUserEntries}
-          deleteUserEntries={this.props.deleteUserEntries}
-        />
+          <UpdateBox 
+            impressionId={this.props.impressionId}
+            date={this.props.date}
+            impression={this.props.impression}
+            rating={this.props.rating}
+            updateUserEntries={this.props.updateUserEntries}
+            getUserEntries={this.props.getUserEntries}
+            deleteUserEntries={this.props.deleteUserEntries}
+          />
         </td>
       </tr>
     )
