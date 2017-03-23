@@ -6,7 +6,8 @@ class App extends React.Component {
       viewingEntry: '',
       allEntries: [],
       searchResults: [],
-      currentUser: ''
+      currentUser: '',
+      spotifyAuthToken: ''
     }
   }
   // when the component loads successfully
@@ -87,7 +88,8 @@ class App extends React.Component {
 
 
   // renders the app to the DOM
-  render () {
+
+  render () { 
     return (
       <div>
         <div className="container-fluid app">
