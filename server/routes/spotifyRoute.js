@@ -6,27 +6,23 @@ var knex = require('../../db/db.js');
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var spotify = require('../credentials/spotify-credentials.js');
 
 
 //var state = generateRandomString(16);
 //res.cookie(stateKey, state);
 
 // your application requests authorization
-var client_id = 'f545518611dc4aab8a2a791f7cab37ac';
-var client_secret = '27731d5a59b946c5bcf6904c718bdb13';
-var redirect_uri = 'http://localhost:1337/spotify/auth';
-var stateKey = 'spotify_auth_state';
-var scope = 'user-read-private user-read-email';
 
 router.get('/', function (req, res) {
 
-
+/* code to get refresh token (shouldn't need to be used again, but hey, who knows)
 res.redirect('https://accounts.spotify.com/authorize?' +
   querystring.stringify({
     response_type: 'code',
-    client_id: client_id,
-    scope: scope,
-    redirect_uri: redirect_uri
+    client_id: spotify.client_id,
+    scope: spotify.scope,
+    redirect_uri: spotify.redirect_uri
   }));
 
 // if the user has a session
@@ -48,11 +44,11 @@ var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     form: {
       code: code,
-      redirect_uri: redirect_uri,
+      redirect_uri: spotify.redirect_uri,
       grant_type: 'authorization_code'
     },
     headers: {
-      'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+      'Authorization': 'Basic ' + (new Buffer(spotify.client_id + ':' + spotify.client_secret).toString('base64'))
     },
     json: true
   };
@@ -64,22 +60,67 @@ var authOptions = {
 
       var access_token = body.access_token,
           refresh_token = body.refresh_token;
+      spotify.access_token = access_token;
+      spotify.refresh_token = refresh_token;
       console.log('This is the access_token:', access_token);
-      
-       var options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
+      console.log('This is the access_token:', refresh_token);
+      console.log('Access token was saved in-----', spotify.access_token);
+      res.sendFile(path.join(__dirname, '/../../client/signin.html'));
+
+*/
+
+var albumTitle = req.url;
+
+ var authOptions = {
+    url: 'https://accounts.spotify.com/api/token',
+    headers: { 'Authorization': 'Basic ' + (new Buffer(spotify.client_id + ':' + spotify.client_secret).toString('base64')) },
+    form: {
+      grant_type: 'refresh_token',
+      refresh_token: spotify.refresh_token
+    },
+    json: true
+  };
+
+  request.post(authOptions, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      spotify.access_token = body.access_token;
+      // use the access token to access the Spotify Web API
+      //options to access Spotify album api and retrieve the id
+        var albumOptions = {
+          url: 'https://api.spotify.com/v1/search' + req.url + '&type=album',
+          headers: { 'Authorization': 'Bearer ' + spotify.access_token },
           json: true
         };
+      request.get(albumOptions, function(error, response, body) {
+        
+        var artistId = body.albums.items[0].artists[0].id;
+        var albumId = body.albums.items[0].id;
 
-        // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
+        var reccomendationsOptions = {
+          url: 'https://api.spotify.com/v1/recommendations?seed_artists=' + artistId
+          +'&seed_tracks=' + artistId,
+          headers: { 'Authorization': 'Bearer ' + spotify.access_token },
+          json: true
+        }
+
+        request.get(reccomendationsOptions, (error, response, body) => {
+          console.log(response);
           console.log(body);
+          res.send(body); //sends the first album back
         });
-
-      //console.log('Access token:', access_token);
+        
+  })     
     }
   });
+
+
+
+  
+ 
+  
+
+    //}
+  //});
 });
 
 module.exports = router;

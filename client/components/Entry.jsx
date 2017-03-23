@@ -56,9 +56,24 @@ class Entry extends React.Component {
     this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getUserEntries)
   }
 
+  onReccomendClick() {
+    var query = this.props.title.split(' ').join('%20');
+    
+    fetch('/spotify?q=' + query )
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+  }
+
 
   render () {
-    console.log("Entry render was called!!! rating: ", this.state.rating)
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
@@ -91,6 +106,10 @@ class Entry extends React.Component {
             value={this.state.rating}
             onStarClick={this.onStarClick.bind(this)}
           />
+
+          <button onClick={this.onReccomendClick.bind(this)}> 
+            Click for more like this
+          </button>
         </td>
 
         <td className='impression col-md-2'>
