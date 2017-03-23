@@ -74,7 +74,6 @@ class Entry extends React.Component {
 
 
   render () {
-    console.log("Entry render was called!!! rating: ", this.state.rating)
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>

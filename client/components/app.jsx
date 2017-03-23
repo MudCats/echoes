@@ -6,8 +6,7 @@ class App extends React.Component {
       viewingEntry: '',
       allEntries: [],
       searchResults: [],
-      currentUser: '',
-      spotifyAuthToken: ''
+      currentUser: ''
     }
   }
   // when the component loads successfully
