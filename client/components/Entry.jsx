@@ -12,7 +12,7 @@ class Entry extends React.Component {
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
       $('[data-toggle="popover"]').popover({
-        trigger: 'manual click',
+        trigger: 'click',
         html: true
       });
     });
@@ -59,7 +59,7 @@ class Entry extends React.Component {
 
   onReccomendClick() {
     var query = this.props.title.split(' ').join('%20');
-    
+
     fetch('/spotify?q=' + query )
     .then(response => {
       return response.json();
@@ -84,7 +84,7 @@ class Entry extends React.Component {
         </td>
 
         <td className='albumArt col-md-1'>
-          <a id="popover" tabIndex="0" role="button" data-toggle="popover" data-placement="left" width="300px" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
+          <a id="popover" tabIndex="0" role="button" data-toggle="popover" data-placement="auto" width="300px" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
             <img src={this.props.art_url100} />
           </a>
           <p className="album-info">
@@ -108,7 +108,7 @@ class Entry extends React.Component {
             onStarClick={this.onStarClick.bind(this)}
           />
 
-          <button onClick={this.onReccomendClick.bind(this)}> 
+          <button onClick={this.onReccomendClick.bind(this)}>
             Click for more like this
           </button>
         </td>
@@ -120,7 +120,7 @@ class Entry extends React.Component {
         </td>
 
         <td className="col-md-2">
-          <UpdateBox 
+          <UpdateBox
             impressionId={this.props.impressionId}
             date={this.props.date}
             impression={this.props.impression}
