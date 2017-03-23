@@ -29,6 +29,7 @@ router.get('/', function (req, res) {
       .catch(function (err) {
         console.log('Problem grabbing user info');
       })
+
 });
 
 // post new album to the database
@@ -257,6 +258,7 @@ router.post('/update', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
+  console.log("dbroutes /update rating", rating)
   var impression = impress.impression;
   console.log('impress', impress);
 

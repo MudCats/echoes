@@ -46,6 +46,7 @@
     "react-dom": "^15.4.2",
     "react-star-rating-component": "^1.2.4",
     "react-stars": "^2.1.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "tether": "^1.4.0"
   }
 }

@@ -74,7 +74,7 @@ button.btn.btn-default.landing {
   margin-bottom: 20px;
   border-radius:0;
 }
-button.btn.btn-default { 
+button.btn.btn-default {
   border-radius:0;
 }
 
@@ -153,6 +153,10 @@ audio::-webkit-media-controls-enclosure {
 .results-container {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.glyphicon-search, .glyphicon-calendar{
+  padding-bottom: 15px;
 }
 
 
@@ -258,7 +262,7 @@ h2.greeting {
 }
 
 .rating {
-  text-align:center;
+  text-align:left;
 }
 
 .entry {
@@ -356,6 +360,11 @@ td.albumArt {
 	display: inline-block;
 	height: 100%;
 	vertical-align: middle;
+}
+
+.album-info {
+  font-size: 10px;
+  vertical-align: middle;
 }
 
 /*--------------------------

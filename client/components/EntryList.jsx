@@ -8,16 +8,14 @@ class EntryList extends React.Component {
     <tbody className='container-fluid entryList'>
       <tr className='row'>
         <th className='col-md-1'>
-          <span className='glyphicon glyphicon-calendar'></span>
+          <h5>Date</h5>
         </th>
         <th className='col-md-1'><h5>Album</h5></th>
         <th className='col-md-2'></th>
         <th className='rating col-md-2'><h5>Rating</h5></th>
-        <th className='col-md-2'></th>
         <th className='impression col-md-2'><h5>Impression</h5></th>
       </tr>
       {this.props.allEntries.map((entry) => {
-        console.log(entry)
         return (
           <Entry date={entry.date.slice(0,10)}
                  title={entry.title}
