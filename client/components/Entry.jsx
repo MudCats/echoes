@@ -53,10 +53,12 @@ class Entry extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
+    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getUserEntries)
   }
 
 
   render () {
+    console.log("Entry render was called!!! rating: ", this.state.rating)
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
@@ -93,20 +95,20 @@ class Entry extends React.Component {
 
         <td className='impression col-md-2'>
           <div>
-           {this.props.impression}
+            {this.props.impression}
           </div>
         </td>
 
         <td className="col-md-2">
-        <UpdateBox
-          impressionId={this.props.impressionId}
-          date={this.props.date}
-          impression={this.props.impression}
-          rating={this.props.rating}
-          updateUserEntries={this.props.updateUserEntries}
-          getUserEntries={this.props.getUserEntries}
-          deleteUserEntries={this.props.deleteUserEntries}
-        />
+          <UpdateBox 
+            impressionId={this.props.impressionId}
+            date={this.props.date}
+            impression={this.props.impression}
+            rating={this.props.rating}
+            updateUserEntries={this.props.updateUserEntries}
+            getUserEntries={this.props.getUserEntries}
+            deleteUserEntries={this.props.deleteUserEntries}
+          />
         </td>
       </tr>
     )
