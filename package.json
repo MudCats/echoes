@@ -48,5 +48,6 @@
     "react-stars": "^2.1.0",
     "tether": "^1.4.0",
     "whatwg-fetch": "^2.0.3"
+
   }
 }

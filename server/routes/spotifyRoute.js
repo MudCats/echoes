@@ -14,7 +14,6 @@ var spotify = require('../credentials/spotify-credentials.js');
 
 // your application requests authorization
 
-
 router.get('/', function (req, res) {
 
 /* code to get refresh token (shouldn't need to be used again, but hey, who knows)
