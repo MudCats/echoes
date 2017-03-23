@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var knex = require('../../db/db.js');
 var util = require('../utilities.js');
-
+var querystring = require('querystring');
 // get requests are served static sign in page
 router.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/../../client/signin.html'));
