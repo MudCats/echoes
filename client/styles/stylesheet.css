@@ -55,7 +55,7 @@ body {
 }
 
 body.dashboard {
-	background: #f9f9f9;
+	background: #251c1c;
 }
 
 span {
@@ -271,17 +271,21 @@ h2.greeting {
   border: 1px, solid, #000;
 }
 
+.entryList {
+
+}
+
 .updateBox {
-  position: absolute;
+  position: blockquote;
   margin: auto;
   border-style: solid;
   border: 1px;
   border-radius: 5px;
 }
 
-header {
+/*header {
   background-color: #251c1c;
-}
+}*/
 
 .navbar {
 	vertical-align: middle;
@@ -429,16 +433,16 @@ td {
 /*side bar slide out*/
 
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
-    background-color: #fff; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
 }
 
 .sidenav .closebtn {
@@ -452,4 +456,5 @@ td {
 #app {
     transition: margin-left .5s;
     padding: 20px;
+    background: #181818;
 }
