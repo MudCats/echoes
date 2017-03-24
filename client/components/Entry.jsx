@@ -125,6 +125,7 @@ class Entry extends React.Component {
             date={this.props.date}
             impression={this.props.impression}
             rating={this.props.rating}
+            title={this.props.title}
             updateUserEntries={this.props.updateUserEntries}
             getUserEntries={this.props.getUserEntries}
             deleteUserEntries={this.props.deleteUserEntries}

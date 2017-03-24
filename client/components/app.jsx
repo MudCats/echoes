@@ -103,13 +103,14 @@ class App extends React.Component {
     }
   }
   // deletes a listening instance from the db
-  deleteUserEntries (id, date, callback) {
+  deleteUserEntries (id, date, albumName callback) {
     $.ajax({
       url:'/querydb/delete',
       type:'POST',
       data: {
         impressionId: id,
-        date: date
+        date: date,
+        albumName: albumName
       },
       success: function (response) {
         console.log(response);

@@ -39,7 +39,7 @@ class UpdateBox extends React.Component {
   // handles deleting whole entry from the database
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.getUserEntries);
+    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
     this.closeModal();
   }
 

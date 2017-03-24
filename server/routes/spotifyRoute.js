@@ -86,28 +86,69 @@ var albumTitle = req.url;
       spotify.access_token = body.access_token;
       // use the access token to access the Spotify Web API
       //options to access Spotify album api and retrieve the id
+
+      //parens will probably mess up the album name, so if it contains one, let's remove it
+      
+      if (req.url.indexOf('(') > -1) {
+        albumTitle = req.url.substring(0, req.url.indexOf('('));
+      }
+
         var albumOptions = {
-          url: 'https://api.spotify.com/v1/search' + req.url + '&type=album',
+          url: 'https://api.spotify.com/v1/search' + albumTitle + '&type=album',
           headers: { 'Authorization': 'Bearer ' + spotify.access_token },
           json: true
         };
       request.get(albumOptions, function(error, response, body) {
-        
-        var artistId = body.albums.items[0].artists[0].id;
-        var albumId = body.albums.items[0].id;
-
-        var reccomendationsOptions = {
-          url: 'https://api.spotify.com/v1/recommendations?seed_artists=' + artistId
-          +'&seed_tracks=' + artistId,
-          headers: { 'Authorization': 'Bearer ' + spotify.access_token },
-          json: true
+        if (error) {
+          console.log(error);
         }
+        if (body.albums.items.length) {
+          var artistId = body.albums.items[0].artists[0].id;
+          var albumId = body.albums.items[0].id;
 
-        request.get(reccomendationsOptions, (error, response, body) => {
-          console.log(response);
-          console.log(body);
-          res.send(body); //sends the first album back
+          var recomendationsOptions = {
+            url: 'https://api.spotify.com/v1/recommendations?seed_artists=' + artistId
+            +'&seed_tracks=' + artistId,
+            headers: { 'Authorization': 'Bearer ' + spotify.access_token },
+            json: true
+          }
+
+          request.get(recomendationsOptions, (error, response, body) => {
+            var asyncCount = 0;
+            var numberOfRecomendations = 5;
+            var tracks = [];
+            var recommendedAlbums = [];
+            var i = 0;
+            
+            while (tracks.length !== numberOfRecomendations) {
+              if (body.tracks[i].album.id !== albumId) { //make sure we don't recommend the same album
+                tracks.push(body.tracks[i]);
+                i++;
+              }
+              
+            } //end of while loop
+
+            for (var track of tracks) {
+              var recAlbumOptions = {
+                url: 'https://api.spotify.com/v1/albums/' + track.album.id,
+                headers: { 'Authorization': 'Bearer ' + spotify.access_token },
+                json: true
+              };
+
+              request.get(recAlbumOptions, (error, response, body) => {
+              //sends requests for the track's album
+              
+              recommendedAlbums.push(body);
+              asyncCount++;
+              if (asyncCount === numberOfRecomendations) {
+                res.send(recommendedAlbums); //sends back only after all tracks have gotten a response
+              }
+            }); //end of getRequest
+          } //end of for loop
         });
+        } else {
+          res.send({albums: 'None found'});
+        }
         
   })     
     }

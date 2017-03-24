@@ -395,7 +395,7 @@ router.post('/delete', function (req, res) {
           .del()
           .then(function () {
             knex('album')
-            .where('album_name', listenEntry.album_name);
+            .where('album_name', listenEntry.albumName);
             res.status(201).send('Successfully removed album');
           });
         });
