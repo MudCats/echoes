@@ -264,6 +264,30 @@ router.post('/update', function (req, res) {
   var impression = impress.impression;
   console.log('impress', impress);
 
+  //if filter exists this function is being used from the filters
+  if(filter){
+    var username = req.cookies.username;
+    // find all listen instances by the user
+    knex.from('users')
+      .join('album_impression', 'users.id', 'album_impression.user_id')
+      .where('users.username', username)
+      .join('album', 'album_impression.album_id', 'album.id')
+      .join('artist', 'artist.id', 'album.artist_id')
+      .join('listen_date', 'listen_date.album_impression_id', 'album_impression.id')
+      .select('users.user',
+              'listen_date.date',
+              'album.title', 'artist.name', 'album.genre', 'album.year',
+              'album_impression.rating', 'album_impression.impression', 'album_impression.id',
+              'album.art_url60', 'album.art_url100')
+      .orderBy('album_impression.rating', 'desc')
+      .then(function (result) {
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem grabbing albums while filtering');
+      })
+  }
+
   // if impression exists and rating doesn't
   if (impression && !rating) {
     knex('album_impression')

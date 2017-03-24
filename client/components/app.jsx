@@ -78,7 +78,7 @@ class App extends React.Component {
         filter: filter
       },
       success: function (response) {
-         callback();
+        callback();
       },
       error: function (error) {
         console.log(error);
@@ -88,8 +88,8 @@ class App extends React.Component {
   }
 
   openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-      document.getElementById("app").style.marginLeft = "250px";
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("app").style.marginLeft = "250px";
   }
 
 
