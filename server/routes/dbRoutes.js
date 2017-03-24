@@ -3,6 +3,7 @@ var router = express.Router();
 var path = require('path');
 var util = require('../utilities.js');
 var knex = require('../../db/db.js');
+var queryString = require('query-string');
 
 // queries database and returns user's album entries
 router.get('/', function (req, res) {
@@ -29,6 +30,59 @@ router.get('/', function (req, res) {
       .catch(function (err) {
         console.log('Problem grabbing user info');
       })
+
+});
+
+//filter endpoint
+router.get('/filter', function (req, res) {
+  // get username from the cookie
+  var username = req.cookies.username;
+  var choice = queryString.parse(req.url.split("?")[1])
+  console.log("choice", choice)
+  // find all listen instances by the user
+  var albumQuery = 
+  knex.from('users')
+    .join('album_impression', 'users.id', 'album_impression.user_id')
+    .where('users.username', username)
+    .join('album', 'album_impression.album_id', 'album.id')
+    .join('artist', 'artist.id', 'album.artist_id')
+    .join('listen_date', 'listen_date.album_impression_id', 'album_impression.id')
+    .select('users.user',
+            'listen_date.date',
+            'album.title', 'artist.name', 'album.genre', 'album.year',
+            'album_impression.rating', 'album_impression.impression', 'album_impression.id',
+            'album.art_url60', 'album.art_url100')
+
+  if(choice.choice === 'date'){
+    albumQuery
+      .orderBy('listen_date.date', 'desc')
+      .then(function(result){
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem filtering by date', err);
+      })
+  }else if(choice.choice === 'stars'){
+    albumQuery
+      .orderBy('album_impression.rating', 'desc')
+      .then(function(result){
+        console.log("stars filter result", result)
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem filtering by stars', err);
+      })
+  }else if(choice.choice === 'album name'){
+    albumQuery
+      .orderBy('album.title')
+      .then(function(result){
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem filtering by album name', err);
+      })
+  }
+  
 
 });
 
@@ -258,7 +312,7 @@ router.post('/update', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
-  console.log("dbroutes /update rating", rating)
+
   var impression = impress.impression;
   console.log('impress', impress);
 
