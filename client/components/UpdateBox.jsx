@@ -47,7 +47,7 @@ class UpdateBox extends React.Component {
   render () {
     return (
       // div
-      <div className='col-md-2'>
+      <div className='col-md-3'>
         {!this.state.modalActive && (
           <div className='btn-group' role="group">
             {/*  delete button */}
