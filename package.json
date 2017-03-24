@@ -42,12 +42,12 @@
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
     "pg": "^6.1.5",
+    "query-string": "^4.3.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-star-rating-component": "^1.2.4",
     "react-stars": "^2.1.0",
     "tether": "^1.4.0",
     "whatwg-fetch": "^2.0.3"
-
   }
 }
