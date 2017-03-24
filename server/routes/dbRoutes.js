@@ -107,6 +107,7 @@ router.post('/', function (req, res) {
     .where({name : album.artistName})
     .select('id')
     .then(function(artistId) {
+      //the artist returns
       if (artistId.length) {
       var artistId = artistId[0].id;
       // check if the album is already in the database
@@ -115,6 +116,7 @@ router.post('/', function (req, res) {
           .where('title', album.collectionName)
           .where('artist_id', artistId)
           .then(function(albumId) {
+            
             // if the album exists
             if (albumId.length) {
               var albumId = albumId[0].id;
@@ -142,7 +144,7 @@ router.post('/', function (req, res) {
                               date: date,
                               album_impression_id: impressId
                             }).then(function() {
-                              res.status(201).send('Successful Post!');
+                              res.status(201).send('Successful Post to listen_date!');
                             })
                             .catch(function (err) {
                               console.log('Problem with inserting listen_date #1');
@@ -168,7 +170,7 @@ router.post('/', function (req, res) {
                           'date': date,
                           'album_impression_id': impressId
                         }).then(function() {
-                          res.status(201).send('Successful Post!');
+                          res.status(201).send('Successful Post to listen_date 2!');
                         })
                         .catch(function (err) {
                           console.log('Problem with inserting listen_date #2');
@@ -220,7 +222,7 @@ router.post('/', function (req, res) {
                             'date': date,
                             'album_impression_id': impressId})
                           .then(function() {
-                            res.status(201).send('Successful Post!');
+                            res.status(201).send('Successful Post to listen_date (this inserts into the album)!');
                           })
                           .catch(function (err) {
                             console.log('Problem with inserting listen_date #3');
@@ -392,6 +394,8 @@ router.post('/delete', function (req, res) {
           .where('id', listenEntry.impressionId)
           .del()
           .then(function () {
+            knex('album')
+            .where('album_name', listenEntry.album_name);
             res.status(201).send('Successfully removed album');
           });
         });

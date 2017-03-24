@@ -18,17 +18,24 @@ class App extends React.Component {
   }
 
   getUserEntries () {
+    console.log('getUserEntries invoked');
     $.ajax({
       url: '/querydb',
       type: 'GET',
       success: (response) => {
         // sets state of all entries
         // sets current user name
+        console.log(response.length);
         if (response.length) {
           this.setState({
             allEntries: response,
             currentUser: response[0].user
           })
+        } else {
+          this.setState({
+            allEntries: []  
+          });
+          
         }
       },
       error: function (error) {
