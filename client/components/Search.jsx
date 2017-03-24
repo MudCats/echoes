@@ -74,7 +74,7 @@ class Search extends React.Component {
 				contentType: 'application/json',
 				data: JSON.stringify(newEntry),
 				success: (results) => {
-					console.log('SUCCESS!')
+					console.log(results)
 					// assigns current date to state
 					// clears previously set state
 					var date = this.setDate();

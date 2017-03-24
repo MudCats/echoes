@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
       .orderBy('listen_date.date', 'desc')
       .then(function (result) {
         // send the result back to the user
-        console.log(result);
+        //console.log(result);
         res.status(200).send(result);
       })
       .catch(function (err) {
@@ -38,7 +38,7 @@ router.get('/filter', function (req, res) {
   // get username from the cookie
   var username = req.cookies.username;
   var choice = queryString.parse(req.url.split("?")[1])
-  console.log("choice", choice)
+  //console.log("choice", choice)
   // find all listen instances by the user
   var albumQuery = 
   knex.from('users')
@@ -86,10 +86,19 @@ router.get('/filter', function (req, res) {
 
 });
 
+router.get('/user', (req, res) => {
+  var username = req.cookies.username;
+  knex.from('users')
+    .where('username', username)
+    .then(result => {
+      res.status(200).send(result);
+    });
+})
+
 // post new album to the database
 router.post('/', function (req, res) {
   var album = req.body.album;
-  console.log(album)
+  //console.log(album)
   // put date into correct format for db
   var date = req.body.date.slice(0, 10);
   var username = req.cookies.username;
@@ -98,6 +107,7 @@ router.post('/', function (req, res) {
     .where({name : album.artistName})
     .select('id')
     .then(function(artistId) {
+      //the artist returns
       if (artistId.length) {
       var artistId = artistId[0].id;
       // check if the album is already in the database
@@ -106,6 +116,7 @@ router.post('/', function (req, res) {
           .where('title', album.collectionName)
           .where('artist_id', artistId)
           .then(function(albumId) {
+            
             // if the album exists
             if (albumId.length) {
               var albumId = albumId[0].id;
@@ -133,7 +144,7 @@ router.post('/', function (req, res) {
                               date: date,
                               album_impression_id: impressId
                             }).then(function() {
-                              res.status(201).send('Successful Post!');
+                              res.status(201).send('Successful Post to listen_date!');
                             })
                             .catch(function (err) {
                               console.log('Problem with inserting listen_date #1');
@@ -159,7 +170,7 @@ router.post('/', function (req, res) {
                           'date': date,
                           'album_impression_id': impressId
                         }).then(function() {
-                          res.status(201).send('Successful Post!');
+                          res.status(201).send('Successful Post to listen_date 2!');
                         })
                         .catch(function (err) {
                           console.log('Problem with inserting listen_date #2');
@@ -211,7 +222,7 @@ router.post('/', function (req, res) {
                             'date': date,
                             'album_impression_id': impressId})
                           .then(function() {
-                            res.status(201).send('Successful Post!');
+                            res.status(201).send('Successful Post to listen_date (this inserts into the album)!');
                           })
                           .catch(function (err) {
                             console.log('Problem with inserting listen_date #3');
@@ -244,7 +255,7 @@ router.post('/', function (req, res) {
         .insert({name: album.artistName})
         .then(function(artistId) {
           var artistId = artistId[0];
-          console.log('artistId', artistId);
+          //console.log('artistId', artistId);
           // add album to db
           knex('album').returning('id')
           .insert({
@@ -314,7 +325,7 @@ router.post('/update', function (req, res) {
   var rating = Number(impress.rating);
 
   var impression = impress.impression;
-  console.log('impress', impress);
+  //console.log('impress', impress);
 
   // if impression exists and rating doesn't
   if (impression && !rating) {
@@ -357,6 +368,7 @@ router.post('/update', function (req, res) {
 // remove listen_date
 router.post('/delete', function (req, res) {
   var listenEntry = req.body;
+  console.log('Did the album name get passed in?', listenEntry.albumName);
   //find the listen_date Entry
   knex('listen_date')
     // check if there is more than 1 date for that impression_id
@@ -369,7 +381,7 @@ router.post('/delete', function (req, res) {
         .where('date', listenEntry.date)
         .del()
         .then(function () {
-          res.status(201).send('Successfully removed album');
+          res.status(201).send('Successfully removed album with multiple impressions');
         });
         // if album_impress_id = 1
       } else {
@@ -383,7 +395,12 @@ router.post('/delete', function (req, res) {
           .where('id', listenEntry.impressionId)
           .del()
           .then(function () {
-            res.status(201).send('Successfully removed album');
+            knex('album')
+            .where('title', listenEntry.albumName)
+            .del()
+            .then(() => {
+              res.status(201).send('Successfully removed album ' + listenEntry.albumName);
+            });
           });
         });
       }

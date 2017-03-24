@@ -7,27 +7,35 @@ class App extends React.Component {
       allEntries: [],
       searchResults: [],
       currentUser: '',
-      spotifyAuthToken: ''
+      greeting: 'Hello!'
     }
   }
   // when the component loads successfully
   componentWillMount () {
     // load all of the user's data
     this.getUserEntries();
+    this.greetUser();
   }
 
   getUserEntries () {
+    console.log('getUserEntries invoked');
     $.ajax({
       url: '/querydb',
       type: 'GET',
       success: (response) => {
         // sets state of all entries
         // sets current user name
+        console.log(response.length);
         if (response.length) {
           this.setState({
             allEntries: response,
             currentUser: response[0].user
           })
+        } else {
+          this.setState({
+            allEntries: []  
+          });
+          
         }
       },
       error: function (error) {
@@ -61,22 +69,48 @@ class App extends React.Component {
   // generates greeting in banner
   greetUser () {
     // if current user is identified
-    if (this.state.currentUser) {
-      // greet them by name
-      return `Hello, ${this.state.currentUser}!`
-    } else {
-      // new users are greetedwith Hello
-      return `Hello!`
+    var cookie = document.cookie;
+    if (cookie.includes('username')) {
+      $.ajax({
+      url: '/querydb/user',
+      type: 'GET',
+      success: (response) => {
+        // sets state of all entries
+        // sets current user name
+        
+        if (response.length) {
+          this.setState({
+            currentUser: response[0].user
+          });
+          if (this.state.currentUser) {
+            // greet them by name
+            this.setState({
+              greeting: `Hello, ${this.state.currentUser}!`
+            });
+          } else {
+            // new users are greetedwith Hello
+            this.setState({
+              greeting: 'Hello!'
+            });
+          }
+        }
+      },
+      error: function (error) {
+        console.log(error);
+        throw error;
+        }
+      })
     }
   }
   // deletes a listening instance from the db
-  deleteUserEntries (id, date, callback) {
+  deleteUserEntries (id, date, albumName, callback) {
     $.ajax({
       url:'/querydb/delete',
       type:'POST',
       data: {
         impressionId: id,
-        date: date
+        date: date,
+        albumName: albumName
       },
       success: function (response) {
         console.log(response);
@@ -121,7 +155,7 @@ class App extends React.Component {
       <div>
         <div className="container-fluid app">
           <header className="navbar">
-            <div><h2 className="greeting">{this.greetUser()}</h2></div>
+            <div><h2 className="greeting">{this.state.greeting}</h2></div>
             <a href="/signout" className='navbar-right signout'>
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
