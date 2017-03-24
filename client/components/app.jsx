@@ -36,6 +36,28 @@ class App extends React.Component {
       }
     })
   };
+
+   getFilterEntries (choice) {
+    console.log("choice", choice)
+    $.ajax({
+      url: '/querydb/filter',
+      type: 'GET',
+      success: (response) => {
+        // sets state of all entries
+        // sets current user name
+        if (response.length) {
+          this.setState({
+            allEntries: response,
+            currentUser: response[0].user
+          })
+        }
+      },
+      error: function (error) {
+        console.log(error);
+        throw error;
+      }
+    })
+  };
   // generates greeting in banner
   greetUser () {
     // if current user is identified
@@ -116,6 +138,7 @@ class App extends React.Component {
               <EntryList allEntries={this.state.allEntries}
                 updateUserEntries={this.updateUserEntries.bind(this)}
                 getUserEntries={this.getUserEntries.bind(this)}
+                getFilterEntries={this.getFilterEntries.bind(this)}
                 deleteUserEntries={this.deleteUserEntries.bind(this)}/>
               </table>
             </div>

@@ -5,7 +5,7 @@ class EntryList extends React.Component {
 
   onFilterClick(e) {
     console.log("e.target.text", e.target.text)
-    //this.props.updateUserEntries(this.props.impressionId, this.props.rating, this.props.impression, this.props.getUserEntries)
+    this.props.getFilterEntries(e.target.text)
   }
 
   render () {
@@ -47,6 +47,7 @@ class EntryList extends React.Component {
                  impressionId={entry.id}
                  updateUserEntries={this.props.updateUserEntries}
                  getUserEntries={this.props.getUserEntries}
+                 getFilterEntries={this.props.getFilterEntries}
                  deleteUserEntries={this.props.deleteUserEntries}
                  key={entry.date + entry.id}
             />
