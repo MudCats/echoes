@@ -67,14 +67,15 @@ class App extends React.Component {
     })
   }
   // updates a user entry
-  updateUserEntries (id, rating, impression, callback) {
+  updateUserEntries (id, rating, impression, filter, callback) {
     $.ajax({
       url:'/querydb/update',
       type:'POST',
       data:{
         id: id,
         rating: rating,
-        impression: impression
+        impression: impression,
+        filter: filter
       },
       success: function (response) {
          callback();

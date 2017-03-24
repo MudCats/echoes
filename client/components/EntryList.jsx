@@ -3,8 +3,9 @@ class EntryList extends React.Component {
     super (props)
   }
 
-  onFilterClick() {
-    console.log("dropdown click")
+  onFilterClick(e) {
+    console.log("e.target.text", e.target.text)
+    this.props.updateUserEntries(this.props.impressionId, this.props.rating, this.props.impression, e.target.text, this.props.getUserEntries)
   }
 
   render () {
@@ -26,9 +27,9 @@ class EntryList extends React.Component {
               <span className="caret"></span>
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li onClick={this.onFilterClick}><a >Date</a></li>
-              <li onClick={this.onFilterClick}><a >Stars</a></li>
-              <li onClick={this.onFilterClick}><a >Album Name</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a >Date</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a >Stars</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a >Album Name</a></li>
             </ul>
           </div>
         </th>
