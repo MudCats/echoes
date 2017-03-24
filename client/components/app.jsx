@@ -74,7 +74,7 @@ class App extends React.Component {
       data:{
         id: id,
         rating: rating,
-        impression: impression,
+        impression: impression
       },
       success: function (response) {
         callback();
