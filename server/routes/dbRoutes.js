@@ -36,6 +36,7 @@ router.get('/', function (req, res) {
 router.get('/filter', function (req, res) {
   // get username from the cookie
   var username = req.cookies.username;
+  console.log("req.url", req.url)
   // find all listen instances by the user
   knex.from('users')
     .join('album_impression', 'users.id', 'album_impression.user_id')

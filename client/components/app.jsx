@@ -40,7 +40,7 @@ class App extends React.Component {
    getFilterEntries (choice) {
     console.log("choice", choice)
     $.ajax({
-      url: '/querydb/filter',
+      url: '/querydb/filter' + '?choice=' + choice.toLowerCase(),
       type: 'GET',
       success: (response) => {
         // sets state of all entries
