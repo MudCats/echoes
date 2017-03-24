@@ -74,7 +74,7 @@ router.get('/filter', function (req, res) {
       })
   }else if(choice.choice === 'album name'){
     albumQuery
-      .orderBy('album.title', 'desc')
+      .orderBy('album.title')
       .then(function(result){
         res.status(200).send(result);
       })
