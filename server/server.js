@@ -20,7 +20,7 @@ var spotifyServer = require('./routes/spotifyRoute.js');
 // MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(morgan('combined'));
+//app.use(morgan('combined'));
 // TODO: add cookie secret!
 app.use(cookie());
 app.use('/public', express.static(path.join(__dirname, '/../compiled/client')));
