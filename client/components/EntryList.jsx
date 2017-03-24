@@ -5,7 +5,7 @@ class EntryList extends React.Component {
 
   onFilterClick(e) {
     console.log("e.target.text", e.target.text)
-    this.props.updateUserEntries(this.props.impressionId, this.props.rating, this.props.impression, e.target.text, this.props.getUserEntries)
+    //this.props.updateUserEntries(this.props.impressionId, this.props.rating, this.props.impression, this.props.getUserEntries)
   }
 
   render () {

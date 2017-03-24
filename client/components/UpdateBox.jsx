@@ -32,7 +32,7 @@ class UpdateBox extends React.Component {
   //handles submiting form
   handleSubmit (e) {
     e.preventDefault();
-    this.props.updateUserEntries(this.props.impressionId, this.state.rating, this.state.impression, '', this.props.getUserEntries);
+    this.props.updateUserEntries(this.props.impressionId, this.state.rating, this.state.impression, this.props.getUserEntries);
     this.closeModal();
   }
 
