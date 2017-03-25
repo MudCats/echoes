@@ -6,24 +6,30 @@ class Search extends React.Component {
 		this.state = {
 			term: '',
 			results: [],
-			selectedListenDate: null
+			selectedListenDate: this.setDate
 		};
+
+		this.state.selectedListenDate = this.setDate()
 	}
   // sets default date for calendar input field
-	componentWillMount () {
-		this.setState({
-			selectedListenDate: this.setDate()
-		})
-	}
-  // gets and formats the current date
 	setDate () {
+    console.log("setDate")
 		// generates current date
 		var todayDate = new Date();
 		// uses moment.js to format date
 		var formattedDate = moment(todayDate).format('YYYY-MM-DD');
     // return the date
+    console.log("formattedDate", formattedDate)
 		return formattedDate;
 	}
+	componentWillMount () {
+		var date = this.setDate()
+		this.setState({
+			selectedListenDate: date
+		});
+		    console.log("mounted2")
+	}
+  // gets and formats the current date
   // displays only the clicked album
 	setSelected (album) {
 		// date defaults to current date
@@ -37,7 +43,7 @@ class Search extends React.Component {
     }
 	}
 
-	setDate () {
+	setDateState () {
 		// date defaults to current date
 		var date = $('#calDate').val() || this.state.selectedListenDate;
 
@@ -141,7 +147,7 @@ class Search extends React.Component {
 								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
 							</td>
 							<td>
-								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} onChange={this.setDate.bind(this)}className="form-group search-bar"></input>
+								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} onChange={this.setDateState.bind(this)}className="form-group search-bar"></input>
 							</td>
 						</tr>
 
