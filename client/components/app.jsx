@@ -18,7 +18,6 @@ class App extends React.Component {
   }
 
   getUserEntries () {
-    console.log('getUserEntries invoked');
     $.ajax({
       url: '/querydb',
       type: 'GET',

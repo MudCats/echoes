@@ -25,7 +25,6 @@ class Search extends React.Component {
 		this.setState({
 			selectedListenDate: date
 		});
-		    console.log("mounted2")
 	}
   // gets and formats the current date
   // displays only the clicked album
