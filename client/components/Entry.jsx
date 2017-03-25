@@ -17,7 +17,6 @@ class Entry extends React.Component {
       });
     });
 
-    this.sampleSearch(this.props.title, this.props.artist);
   }
 
   componentWillMount () {
@@ -25,32 +24,6 @@ class Entry extends React.Component {
       month:this.props.date.slice(5,7)
     })
   }
-
-  sampleSearch (title, artist) {
-    console.log(title, artist)
-    var query = title +' '+ artist;
-    var searchUrl = 'https://itunes.apple.com/search?term=?$' + query.split(' ').join('%20') + '&entity=song&limit=1';
-
-    $.ajax({
-      url: searchUrl,
-      data : {
-        format: 'json'
-      },
-      type: 'GET',
-      dataType: 'jsonp',
-      success: (data) => {
-        this.setState({
-          sampleURL: data.results[0].previewUrl,
-          track: data.results[0].trackName,
-          albumId: data.results[0].collectionId
-        });
-      },
-      error: (error) => {
-        console.log(error);
-        return;
-      }
-    })
-  };
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
@@ -84,7 +57,7 @@ class Entry extends React.Component {
         </td>
 
         <td className='albumArt col-md-1'>
-          <a id="popover" tabIndex="0" role="button" data-toggle="popover" data-placement="auto" width="300px" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.state.albumId}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
+          <a id="popover" tabIndex="0" role="button" data-toggle="popover" data-placement="auto" width="300px" data-content={`<iframe src="//tools.applemusic.com/embed/v1/album/${this.props.collection_id}?country=us" height="500px" width="100%" frameborder="0"></iframe>`}>
             <img src={this.props.art_url100} />
           </a>
           <p className="album-info">

@@ -20,6 +20,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title').notNullable();
       table.integer('artist_id');
+      table.integer('collection_id');
       table.string('genre').notNullable();
       table.integer('year').notNullable();
       table.string('art_url60').notNullable(); //saves album art 60px size square
