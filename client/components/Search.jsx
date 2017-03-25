@@ -43,7 +43,7 @@ class Search extends React.Component {
     }
 	}
 
-	setDate () {
+	setDateState () {
 		// date defaults to current date
 		var date = $('#calDate').val() || this.state.selectedListenDate;
 
@@ -147,7 +147,7 @@ class Search extends React.Component {
 								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
 							</td>
 							<td>
-								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} onChange={this.setDate.bind(this)}className="form-group search-bar"></input>
+								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} onChange={this.setDateState.bind(this)}className="form-group search-bar"></input>
 							</td>
 						</tr>
 
