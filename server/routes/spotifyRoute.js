@@ -70,7 +70,7 @@ var authOptions = {
 */
 
 var albumTitle = req.url;
-
+  console.log('Retrieving Spotify access token. . .');
  var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     headers: { 'Authorization': 'Basic ' + (new Buffer(spotify.client_id + ':' + spotify.client_secret).toString('base64')) },
@@ -92,6 +92,7 @@ var albumTitle = req.url;
       if (req.url.indexOf('(') > -1) {
         albumTitle = req.url.substring(0, req.url.indexOf('('));
       }
+      console.log('Beginning request for album', albumTitle);
 
         var albumOptions = {
           url: 'https://api.spotify.com/v1/search' + albumTitle + '&type=album',
@@ -150,7 +151,9 @@ var albumTitle = req.url;
           res.send({albums: 'None found'});
         }
         
-  })     
+      })     
+    } else {
+      res.status(400).send({message: 'Spotify API is not responding' + error});
     }
   });
 

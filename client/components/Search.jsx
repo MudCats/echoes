@@ -20,6 +20,7 @@ class Search extends React.Component {
     // return the date
 		return formattedDate;
 	}
+	
 	componentWillMount () {
 		var date = this.setDate()
 		this.setState({
@@ -63,7 +64,6 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				// changes state of results, triggering view change
-
 				this.setState({results: data.results});
 			},
 			error: (error) => {

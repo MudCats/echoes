@@ -1,3 +1,9 @@
+var Modal = ReactBootstrap.Modal;
+var Button = ReactBootstrap.Button;
+var Overlay = ReactBootstrap.Overlay;
+var Popover = ReactBootstrap.Popover;
+var Tooltip = ReactBootstrap.Tooltip;
+var OverlayTrigger = ReactBootstrap.OverlayTrigger;
 class Entry extends React.Component {
   constructor (props) {
     super (props)
@@ -5,7 +11,9 @@ class Entry extends React.Component {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       month:'',
       track: '',
-      rating: this.props.rating
+      rating: this.props.rating,
+      showModal: false,
+      recommendations: []
     }
 
     $(document).ready(function(){
@@ -14,8 +22,18 @@ class Entry extends React.Component {
         trigger: 'click',
         html: true
       });
+      $('[data-toggle="recommend"]').popover({
+        trigger: 'click',
+        html: true
+      });
     });
 
+  }
+
+  close() {
+    this.setState({ 
+      showModal: false, 
+    });
   }
 
   componentWillMount () {
@@ -26,27 +44,73 @@ class Entry extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
-    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getUserEntries)
+    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getFilterEntries, this.props.filter)
   }
 
   onReccomendClick() {
     var query = this.props.title.split(' ').join('%20');
+    if (this.state.recommendations.length) {
+      this.setState({ showModal: true });
+    } else {
+      fetch('/spotify?q=' + query )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ showModal: true });
+        //this.setState({ target: e.target, show: !this.state.show });
+        for (var track of data) {
+          this.iTunesSearch(track.name, (song) => {
+            if (song.resultCount) {
+              var newRecomends = this.state.recommendations;
+              newRecomends.push(song.results[0]);
+              this.setState(
+              {
+                recommendations: newRecomends
+              });  
+            }
+            
+          })
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      
+    }
 
-    fetch('/spotify?q=' + query )
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  }
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getFilterEntries, this.props.filter);
+  }
 
+  iTunesSearch (title, callback) {
+    // used percent encoding for iTunes API search
+    var query = title.split(' ').join('%20');
+    // creates search URL with limit of four results
+    var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=1';
+
+    $.ajax({
+      url: searchUrl,
+      data : {
+        format: 'json'
+      },
+      type: 'GET',
+      dataType: 'jsonp',
+      success: (data) => {
+        callback(data);
+        // changes state of results, triggering view change
+      },
+      error: (error) => {
+        callback(error);
+      }
+    })
   }
 
 
   render () {
+  
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
@@ -80,12 +144,32 @@ class Entry extends React.Component {
             onStarClick={this.onStarClick.bind(this)}
           />
 
-          <button onClick={this.onReccomendClick.bind(this)}>
-            Click for more like this
-          </button>
+            <div>
+
+        <Button
+          bsStyle="default"
+          bsSize="small"
+          onClick={this.onReccomendClick.bind(this)}
+        >
+          Discover more
+        </Button>
+
+        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Recommendations</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+            <Recommendations recommendations={this.state.recommendations} />
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.close.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+          
         </td>
-
-
 
         <td className="col-md-6">
           <UpdateBox
@@ -96,8 +180,18 @@ class Entry extends React.Component {
             title={this.props.title}
             updateUserEntries={this.props.updateUserEntries}
             getUserEntries={this.props.getUserEntries}
-            deleteUserEntries={this.props.deleteUserEntries}
+            getFilterEntries={this.props.getFilterEntries}
+            filter={this.props.filter}
           />
+        </td>
+
+        <td>
+          <a onClick={this.handleDelete.bind(this)}>
+            <button className='remove btn btn-default'>
+              {/* remove button */}
+              <span className='glyphicon glyphicon-remove'></span>
+            </button>
+          </a>
         </td>
       </tr>
     )
