@@ -69,7 +69,7 @@ class UpdateBox extends React.Component {
           
             {/*  EDIT button */}
             <a onClick={this.openModal.bind(this)}>
-              <button class="btn" className='update btn btn-default'>
+              <button className='update btn btn-default'>
                 {/* pencil icon */}
                 <span className='glyphicon glyphicon-pencil'></span>
               </button>
