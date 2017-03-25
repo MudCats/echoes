@@ -1,3 +1,6 @@
+var Button = ReactBootstrap.Button;
+var Overlay = ReactBootstrap.Overlay;
+var Popover = ReactBootstrap.Popover;
 class Entry extends React.Component {
   constructor (props) {
     super (props)
@@ -5,12 +8,17 @@ class Entry extends React.Component {
       months:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       month:'',
       track: '',
-      rating: this.props.rating
+      rating: this.props.rating,
+      show: false
     }
 
     $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip();
       $('[data-toggle="popover"]').popover({
+        trigger: 'click',
+        html: true
+      });
+      $('[data-toggle="recommend"]').popover({
         trigger: 'click',
         html: true
       });
@@ -38,6 +46,8 @@ class Entry extends React.Component {
     })
     .then(data => {
       console.log(data);
+      this.setState({ target: e.target, show: !this.state.show });
+      this.iTunesSearch(data[0].name);
     })
     .catch(error => {
       console.log(error);
@@ -47,6 +57,30 @@ class Entry extends React.Component {
   handleDelete(e) {
     e.preventDefault();
     this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
+  }
+
+  iTunesSearch (title) {
+    // used percent encoding for iTunes API search
+    var query = title.split(' ').join('%20');
+    // creates search URL with limit of four results
+    var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=1';
+
+    $.ajax({
+      url: searchUrl,
+      data : {
+        format: 'json'
+      },
+      type: 'GET',
+      dataType: 'jsonp',
+      success: (data) => {
+        console.log('data', data)
+        // changes state of results, triggering view change
+      },
+      error: (error) => {
+        console.log(error);
+        return;
+      }
+    })
   }
 
 
@@ -84,9 +118,22 @@ class Entry extends React.Component {
             onStarClick={this.onStarClick.bind(this)}
           />
 
-          <button onClick={this.onReccomendClick.bind(this)}>
-            Click for more like this
-          </button>
+            <Button onClick={this.onReccomendClick.bind(this)}>
+              Click for more like this
+            </Button>
+
+            <Overlay
+              show={this.state.show}
+              target={this.state.target}
+              placement="bottom"
+              container={this}
+              containerPadding={20}
+            >
+            <Popover id="popover-contained" title="Popover bottom">
+              <strong>Holy guacamole!</strong> Check this info.
+            </Popover>
+          </Overlay>
+          
         </td>
 
         <td className="col-md-6">
