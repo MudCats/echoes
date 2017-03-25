@@ -125,7 +125,6 @@ class App extends React.Component {
   }
   // updates a user entry
   updateUserEntries (id, rating, impression, callback, filter) {
-    console.log("callback", callback)
     $.ajax({
       url:'/querydb/update',
       type:'POST',
@@ -152,9 +151,6 @@ class App extends React.Component {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("app").style.marginLeft = "250px";
   }
-
-
-  // renders the app to the DOM
 
   render () {
     return (

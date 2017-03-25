@@ -36,14 +36,6 @@ class UpdateBox extends React.Component {
     this.closeModal();
   }
 
-  // handles deleting whole entry from the database
-  handleDelete(e) {
-    e.preventDefault();
-    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
-    this.closeModal();
-  }
-
-
   render () {
     return (
       <div className='impression col-md-8 pull-left'>
