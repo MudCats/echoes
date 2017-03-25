@@ -1,10 +1,15 @@
 class EntryList extends React.Component {
   constructor (props) {
     super (props)
+
+    this.state = {
+      filter: 'date'
+    }
   }
 
   onFilterClick(e) {
     console.log("e.target.text", e.target.text)
+    //this.setState({filter: e.target.text.toLowerCase()})
     this.props.getFilterEntries(e.target.text)
   }
 
