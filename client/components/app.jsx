@@ -196,7 +196,7 @@ class App extends React.Component {
 
             <div id="status">
             </div>
-              <button className="btn btn-default landing" onClick={this.logout}><span>Sign Out</span></button>
+              <button className="btn btn-default landing" style={{float: 'right'}} onClick={this.logout}><span>Sign Out</span></button>
           
 
 

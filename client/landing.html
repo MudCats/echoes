@@ -14,7 +14,7 @@
         if (response.status === 'connected') {
           testAPI();
         } else {
-          document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+          //document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
         }
       }
 
@@ -93,20 +93,12 @@
           <img src="styles/logo.svg" class="logo">
           <p class="blurb">Your living listening history.</p>
            
-            <fb:login-button class= col-md-6 scope="public_profile,email" onlogin="checkLoginState();">
+            <fb:login-button class= 'nav-button' align='center' style='padding: 8px'  scope="public_profile,email" onlogin="checkLoginState();">
             </fb:login-button>
 
             <div id="status">
             </div>
 
-            <a href="/signup" class="nav-button">
-            <button class="btn btn-default landing"><span>Sign Up</span></button>
-          s</a>
-          <a href="/signin" class="nav-button">
-            <button class="btn btn-default landing"><span>Sign In</span></button>
-
-
-          </a>
         </div>
         <div class="col-md-3"></div>
     </div>
