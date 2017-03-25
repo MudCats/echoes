@@ -13,13 +13,11 @@ class Search extends React.Component {
 	}
   // sets default date for calendar input field
 	setDate () {
-    console.log("setDate")
 		// generates current date
 		var todayDate = new Date();
 		// uses moment.js to format date
 		var formattedDate = moment(todayDate).format('YYYY-MM-DD');
     // return the date
-    console.log("formattedDate", formattedDate)
 		return formattedDate;
 	}
 	componentWillMount () {
