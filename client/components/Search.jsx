@@ -78,6 +78,7 @@ class Search extends React.Component {
 	// send selected album and listen date to db via post request
 	addNewEntry (album, date) {
 		// send object with keys album and date
+    console.log('addNewEntry', album)
 		var newEntry = {album: album, date: date.slice(0,10)};
 		// user can only submit one album
 		if (this.state.results.length === 1) {
@@ -88,7 +89,6 @@ class Search extends React.Component {
 				contentType: 'application/json',
 				data: JSON.stringify(newEntry),
 				success: (results) => {
-					console.log(results)
 					// assigns current date to state
 					// clears previously set state
 					var date = this.setDate();

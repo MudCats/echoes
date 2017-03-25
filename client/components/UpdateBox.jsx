@@ -47,30 +47,42 @@ class UpdateBox extends React.Component {
   render () {
     return (
       // div
-      <div className='col-md-3'>
+      <div className='col-md-8'>
+        <td className='impression col-md-8 pull-left'>
+          <div>
+            {this.props.impression}
+          </div>
+        </td>      
+
         {!this.state.modalActive && (
           <div className='btn-group' role="group">
-            {/*  delete button */}
+            
+            {/* update button -- do not remove a tags.
+              They are necessary to maintain working buttons while keeping bootstrap styling */}
+                      {/*  delete button */}
             <a onClick={this.handleDelete.bind(this)}>
-              <button className='remove btn btn-default'>
+              <button class="btn" className='remove btn btn-default'>
                 {/* remove button */}
                 <span className='glyphicon glyphicon-remove'></span>
               </button>
             </a>
-            {/* update button -- do not remove a tags.
-              They are necessary to maintain working buttons while keeping bootstrap styling */}
+          
+            {/*  EDIT button */}
             <a onClick={this.openModal.bind(this)}>
               <button className='update btn btn-default'>
                 {/* pencil icon */}
                 <span className='glyphicon glyphicon-pencil'></span>
               </button>
-            </a>
+            </a>  
+
+
+
           </div>
         )}
+
         {this.state.modalActive && (
           <div className='update'>
             {/* remove icon */}
-
             <form id='update' onSubmit={this.handleSubmit.bind(this)}>
               {/* impression box */}
               <textarea className='form-control' id='impression' name='impression'
@@ -80,7 +92,6 @@ class UpdateBox extends React.Component {
                 onChange={this.handleInputChange.bind(this)}
                 placeholder='Write your impression...'>
               </textarea>
-              <br></br>
               <div className='input-group'>
                 <span className='input-group-btn'>
                   <button className='btn btn-default' type='submit' id="submit" name='button' > Save </button>
@@ -91,7 +102,12 @@ class UpdateBox extends React.Component {
             </form>
           </div>
         )}
+
+
+
+
       </div>
+
     )
   }
 }
