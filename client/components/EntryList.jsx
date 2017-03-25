@@ -40,7 +40,6 @@ class EntryList extends React.Component {
 
       </tr>
       {this.props.allEntries.map((entry) => {
-        {console.log('entry', entry)}
         return (
           <Entry date={entry.date.slice(0,10)}
                  title={entry.title}
