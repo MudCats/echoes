@@ -89,8 +89,6 @@ class Entry extends React.Component {
           </button>
         </td>
 
-
-
         <td className="col-md-6">
           <UpdateBox
             impressionId={this.props.impressionId}
@@ -103,6 +101,7 @@ class Entry extends React.Component {
             deleteUserEntries={this.props.deleteUserEntries}
           />
         </td>
+        
         <td>
           <a onClick={this.handleDelete.bind(this)}>
             <button className='remove btn btn-default'>

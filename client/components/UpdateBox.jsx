@@ -46,8 +46,6 @@ class UpdateBox extends React.Component {
 
   render () {
     return (
-      // div
-
       <div className='impression col-md-8 pull-left'>
           <div>
             {this.props.impression}

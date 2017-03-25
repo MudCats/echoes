@@ -24,19 +24,17 @@ class EntryList extends React.Component {
         <th className='rating col-md-3'><h5>Rating</h5></th>
         <th className='impression col-md-6'><h5>Impression</h5></th>
         <th>
-          <td>
-            <div className="dropdown">
-              <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Filter
-                <span className="caret"></span>
-              </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Date</a></li>
-                <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Stars</a></li>
-                <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Album Name</a></li>
-              </ul>
-            </div>
-          </td>
+          <div className="dropdown">
+            <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Filter
+              <span className="caret"></span>
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Date</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Stars</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Album Name</a></li>
+            </ul>
+          </div>
         </th>
 
       </tr>
