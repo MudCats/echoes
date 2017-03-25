@@ -50,7 +50,7 @@ router.get('/filter', function (req, res) {
             'listen_date.date',
             'album.title', 'artist.name', 'album.genre', 'album.year',
             'album_impression.rating', 'album_impression.impression', 'album_impression.id',
-            'album.art_url60', 'album.art_url100')
+            'album.art_url60', 'album.art_url100', 'album.collection_id')
 
   if(choice.choice === 'date'){
     albumQuery
@@ -260,6 +260,7 @@ router.post('/', function (req, res) {
           .insert({
             title: album.collectionName,
             artist_id: artistId,
+            collection_id: album.collectionId,
             genre: album.primaryGenreName,
             year: album.releaseDate.slice(0,4),
             art_url60: album.artworkUrl60,
