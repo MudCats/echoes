@@ -1,3 +1,19 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 class App extends React.Component {
   constructor (props) {
     super (props);
@@ -151,11 +167,22 @@ class App extends React.Component {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("app").style.marginLeft = "250px";
   }
+  logout(){
+        FB.getLoginStatus(function(response) {
+          console.log(response);
+            if (response.status === 'connected') {
+                FB.logout(function(response) {
+                    // this part just clears the $_SESSION var
+                    // replace with your own code
+                        document.cookie.split(";").forEach(function(c) { 
+                          document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                         });
+                        window.location.reload();
+                });
+            }
+        });
+    }
   
-   //FB.logout(function(response) {
-   // Person is now logged out
-   //response 
-  //});
 
   // renders the app to the DOM
 
@@ -169,9 +196,8 @@ class App extends React.Component {
 
             <div id="status">
             </div>
-            <a href="/signout" className='navbar-right signout'>
-              <button className="btn btn-default landing"><span>Sign Out</span></button>
-            </a>
+              <button className="btn btn-default landing" onClick={this.logout}><span>Sign Out</span></button>
+          
 
 
 
