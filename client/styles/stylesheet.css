@@ -456,6 +456,7 @@ td {
     background: #181818;
 }
 
-#popover {
-  background-color: red;
+html {
+  background-color: #181818;
 }
+

@@ -44,7 +44,7 @@ class Entry extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
-    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getUserEntries)
+    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getFilterEntries, this.props.filter)
   }
 
   onReccomendClick() {
@@ -82,7 +82,7 @@ class Entry extends React.Component {
   }
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
+    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getFilterEntries, this.props.filter);
   }
 
   iTunesSearch (title, callback) {
@@ -180,10 +180,11 @@ class Entry extends React.Component {
             title={this.props.title}
             updateUserEntries={this.props.updateUserEntries}
             getUserEntries={this.props.getUserEntries}
-            deleteUserEntries={this.props.deleteUserEntries}
+            getFilterEntries={this.props.getFilterEntries}
+            filter={this.props.filter}
           />
         </td>
-        
+
         <td>
           <a onClick={this.handleDelete.bind(this)}>
             <button className='remove btn btn-default'>

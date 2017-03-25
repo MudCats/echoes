@@ -64,7 +64,6 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				// changes state of results, triggering view change
-
 				this.setState({results: data.results});
 			},
 			error: (error) => {

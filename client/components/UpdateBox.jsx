@@ -32,17 +32,9 @@ class UpdateBox extends React.Component {
   //handles submiting form
   handleSubmit (e) {
     e.preventDefault();
-    this.props.updateUserEntries(this.props.impressionId, this.state.rating, this.state.impression, this.props.getUserEntries);
+    this.props.updateUserEntries(this.props.impressionId, this.state.rating, this.state.impression, this.props.getFilterEntries, this.props.filter);
     this.closeModal();
   }
-
-  // handles deleting whole entry from the database
-  handleDelete(e) {
-    e.preventDefault();
-    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
-    this.closeModal();
-  }
-
 
   render () {
     return (

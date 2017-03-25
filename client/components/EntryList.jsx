@@ -8,8 +8,9 @@ class EntryList extends React.Component {
   }
 
   onFilterClick(e) {
-    //this.setState({filter: e.target.text.toLowerCase()})
-    this.props.getFilterEntries(e.target.text)
+    var text = e.target.text.toLowerCase();
+    this.setState({filter: text})
+    this.props.getFilterEntries(text)
   }
 
   render () {
@@ -55,6 +56,7 @@ class EntryList extends React.Component {
                  getUserEntries={this.props.getUserEntries}
                  getFilterEntries={this.props.getFilterEntries}
                  deleteUserEntries={this.props.deleteUserEntries}
+                 filter={this.state.filter}
                  key={entry.date + entry.id}
             />
         )})
