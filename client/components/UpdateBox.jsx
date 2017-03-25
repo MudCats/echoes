@@ -47,12 +47,10 @@ class UpdateBox extends React.Component {
   render () {
     return (
       // div
-      <div className='col-md-8'>
-        <td className='impression col-md-8 pull-left'>
+      <div className='impression col-md-8 pull-left'>
           <div>
             {this.props.impression}
           </div>
-        </td>
 
         {!this.state.modalActive && (
           <div className='btn-group' role="group">
