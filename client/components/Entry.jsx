@@ -86,13 +86,9 @@ class Entry extends React.Component {
           </button>
         </td>
 
-        <td className='impression col-md-2'>
-          <div>
-            {this.props.impression}
-          </div>
-        </td>
 
-        <td className="col-md-2">
+
+        <td className="col-md-6">
           <UpdateBox
             impressionId={this.props.impressionId}
             date={this.props.date}

@@ -76,6 +76,7 @@ button.btn.btn-default.landing {
 }
 button.btn.btn-default {
   border-radius:0;
+  margin-left: 400px;
 }
 
 .blurb {
@@ -182,10 +183,11 @@ a.signout {
 }
 
 .btn-group button {
-	margin-left:170px;
+	margin-left:400px;
 }
 button.update {
 	margin-bottom: 20px;
+  margin-left: 400px;
 }
 
 table tr td div.btn-group {
@@ -328,11 +330,12 @@ a.signout {
 }
 
 .btn-group button {
-	margin-left:170px;
+	margin-left:400px;
 }
 
 button.update {
 	margin-bottom: 20px;
+  margin-left: :400px;
 }
 
 table tr td div.btn-group {
