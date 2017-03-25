@@ -121,7 +121,8 @@ class App extends React.Component {
     })
   }
   // updates a user entry
-  updateUserEntries (id, rating, impression, callback) {
+  updateUserEntries (id, rating, impression, callback, filter) {
+    console.log("callback", callback)
     $.ajax({
       url:'/querydb/update',
       type:'POST',
@@ -131,7 +132,11 @@ class App extends React.Component {
         impression: impression
       },
       success: function (response) {
-        callback();
+        if (filter) {
+          callback(filter);
+        } else {
+          callback();
+        }
       },
       error: function (error) {
         console.log(error);

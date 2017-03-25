@@ -26,7 +26,7 @@ class Entry extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
-    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getFilterEntries(this.props.filter))
+    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getFilterEntries, this.props.filter)
   }
 
   onReccomendClick() {
@@ -46,7 +46,7 @@ class Entry extends React.Component {
   }
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getFilterEntries(this.props.filter));
+    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
   }
 
 
