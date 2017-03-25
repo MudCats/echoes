@@ -25,7 +25,6 @@ class App extends React.Component {
       success: (response) => {
         // sets state of all entries
         // sets current user name
-        console.log(response.length);
         if (response.length) {
           this.setState({
             allEntries: response,
@@ -33,9 +32,9 @@ class App extends React.Component {
           })
         } else {
           this.setState({
-            allEntries: []  
+            allEntries: []
           });
-          
+
         }
       },
       error: function (error) {
@@ -77,7 +76,7 @@ class App extends React.Component {
       success: (response) => {
         // sets state of all entries
         // sets current user name
-        
+
         if (response.length) {
           this.setState({
             currentUser: response[0].user

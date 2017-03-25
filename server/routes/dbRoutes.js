@@ -20,11 +20,10 @@ router.get('/', function (req, res) {
               'listen_date.date',
               'album.title', 'artist.name', 'album.genre', 'album.year',
               'album_impression.rating', 'album_impression.impression', 'album_impression.id',
-              'album.art_url60', 'album.art_url100')
+              'album.art_url60', 'album.art_url100', 'album.collection_id')
       .orderBy('listen_date.date', 'desc')
       .then(function (result) {
         // send the result back to the user
-        //console.log(result);
         res.status(200).send(result);
       })
       .catch(function (err) {
@@ -40,7 +39,7 @@ router.get('/filter', function (req, res) {
   var choice = queryString.parse(req.url.split("?")[1])
   //console.log("choice", choice)
   // find all listen instances by the user
-  var albumQuery = 
+  var albumQuery =
   knex.from('users')
     .join('album_impression', 'users.id', 'album_impression.user_id')
     .where('users.username', username)
@@ -82,7 +81,7 @@ router.get('/filter', function (req, res) {
         console.log('Problem filtering by album name', err);
       })
   }
-  
+
 
 });
 
@@ -115,7 +114,7 @@ router.post('/', function (req, res) {
           .where('title', album.collectionName)
           .where('artist_id', artistId)
           .then(function(albumId) {
-            
+
             // if the album exists
             if (albumId.length) {
               var albumId = albumId[0].id;
@@ -197,6 +196,7 @@ router.post('/', function (req, res) {
                 .insert({
                   title: album.collectionName,
                   artist_id: artistId,
+                  collection_id: album.collectionId,
                   genre: album.primaryGenreName,
                   year: album.releaseDate.slice(0,4),
                   art_url60: album.artworkUrl60,

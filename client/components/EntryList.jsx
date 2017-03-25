@@ -3,11 +3,6 @@ class EntryList extends React.Component {
     super (props)
   }
 
-  onFilterClick(e) {
-    console.log("e.target.text", e.target.text)
-    this.props.getFilterEntries(e.target.text)
-  }
-
   render () {
     return (
     <tbody className='container-fluid entryList'>
@@ -18,6 +13,7 @@ class EntryList extends React.Component {
         <th className='col-md-1'><h5>Album</h5></th>
         <th className='col-md-2'></th>
         <th className='rating col-md-3'><h5>Rating</h5></th>
+
         <th className='impression col-md-6'><h5>Impression</h5></th>
         <th>
           <div className="dropdown">
@@ -32,11 +28,14 @@ class EntryList extends React.Component {
             </ul>
           </div>
         </th>
+
       </tr>
       {this.props.allEntries.map((entry) => {
+        {console.log('entry', entry)}
         return (
           <Entry date={entry.date.slice(0,10)}
                  title={entry.title}
+                 collection_id={entry.collection_id}
                  artist={entry.name}
                  genre={entry.genre}
                  year={entry.year}
@@ -47,7 +46,6 @@ class EntryList extends React.Component {
                  impressionId={entry.id}
                  updateUserEntries={this.props.updateUserEntries}
                  getUserEntries={this.props.getUserEntries}
-                 getFilterEntries={this.props.getFilterEntries}
                  deleteUserEntries={this.props.deleteUserEntries}
                  key={entry.date + entry.id}
             />
