@@ -13,13 +13,11 @@ class Search extends React.Component {
 	}
   // sets default date for calendar input field
 	setDate () {
-    console.log("setDate")
 		// generates current date
 		var todayDate = new Date();
 		// uses moment.js to format date
 		var formattedDate = moment(todayDate).format('YYYY-MM-DD');
     // return the date
-    console.log("formattedDate", formattedDate)
 		return formattedDate;
 	}
 	componentWillMount () {
@@ -27,7 +25,6 @@ class Search extends React.Component {
 		this.setState({
 			selectedListenDate: date
 		});
-		    console.log("mounted2")
 	}
   // gets and formats the current date
   // displays only the clicked album
@@ -66,6 +63,7 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				// changes state of results, triggering view change
+
 				this.setState({results: data.results});
 			},
 			error: (error) => {

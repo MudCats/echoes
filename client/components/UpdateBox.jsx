@@ -47,33 +47,31 @@ class UpdateBox extends React.Component {
   render () {
     return (
       // div
-      <div className='col-md-8'>
-        <td className='impression col-md-8 pull-left'>
+      <div className='impression col-md-8 pull-left'>
           <div>
             {this.props.impression}
           </div>
-        </td>      
 
         {!this.state.modalActive && (
           <div className='btn-group' role="group">
-            
+
             {/* update button -- do not remove a tags.
               They are necessary to maintain working buttons while keeping bootstrap styling */}
                       {/*  delete button */}
             <a onClick={this.handleDelete.bind(this)}>
-              <button class="btn" className='remove btn btn-default'>
+              <button className='remove btn btn-default'>
                 {/* remove button */}
                 <span className='glyphicon glyphicon-remove'></span>
               </button>
             </a>
-          
+
             {/*  EDIT button */}
             <a onClick={this.openModal.bind(this)}>
               <button className='update btn btn-default'>
                 {/* pencil icon */}
                 <span className='glyphicon glyphicon-pencil'></span>
               </button>
-            </a>  
+            </a>
 
 
 
