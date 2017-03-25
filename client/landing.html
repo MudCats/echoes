@@ -11,7 +11,7 @@
     <script>
       function statusChangeCallback(response) {
         console.log('statusChangeCallback');
-        console.log(response);
+        console.log(response.authResponse);
         if (response.status === 'connected') {
           testAPI();
         } else {
@@ -47,9 +47,46 @@
       function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
+          console.log(response);
           console.log('Successful login for: ' + response.name);
           document.getElementById('status').innerHTML =
           'Thanks for logging in, ' + response.name + '!';
+          var username = response.name.split(' ');
+          console.log(username);
+          $.ajax({
+            url: '/signup',
+            type: 'POST',
+            data: {
+              username: username[0] + '.' + username[1],
+              password: 'facebook',
+              user: username[0]
+            },
+            success: (response) => {
+              // sets state of all entries
+              // sets current user name
+              $.ajax({
+                url: '/signin',
+                type: 'POST',
+                data: {
+                  username: username[0] + '.' + username[1]
+                },
+                success: (response) => {
+                  // sets state of all entries
+                  // sets current user name
+                  window.location.reload();
+                  //reload to the dashboard
+                },
+                error: function (error) {
+                  console.log(error);
+                  throw error;
+                }
+              })
+            },
+            error: function (error) {
+              console.log(error);
+              throw error;
+            }
+          });
         });
       }
     </script>
@@ -68,7 +105,7 @@
 
             <a href="/signup" class="nav-button">
             <button class="btn btn-default landing"><span>Sign Up</span></button>
-          </a>
+          s</a>
           <a href="/signin" class="nav-button">
             <button class="btn btn-default landing"><span>Sign In</span></button>
 
@@ -81,7 +118,7 @@
  
 
   <a href="http://github.com/project-pretzel/echoes"><img src="/styles/github-octocat.png" class="github-octocat"></a>
-
+  <script src="/node_modules/jquery/dist/jquery.js"></script>
   <footer class="navbar-fixed-bottom landing">
     <p class="author-credit">Refactored with lollipops by Clark Baumgartner, Carla Clay, James Contreras and Nathan Turinski.</p>
   </footer>
