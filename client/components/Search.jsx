@@ -25,7 +25,6 @@ class Search extends React.Component {
 		this.setState({
 			selectedListenDate: date
 		});
-
 	}
   // gets and formats the current date
   // displays only the clicked album
@@ -64,7 +63,6 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				// changes state of results, triggering view change
-
 				this.setState({results: data.results});
 			},
 			error: (error) => {
