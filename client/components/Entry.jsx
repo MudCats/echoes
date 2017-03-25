@@ -110,13 +110,13 @@ class Entry extends React.Component {
 
 
   render () {
-  
+
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
-          <span className='month'><h5>{moment.months(this.state.month - 1)}</h5> </span>
-          <span className='day'><h5>{this.props.date.slice(8, 10)}</h5></span>
-          <span className='year'>{this.props.date.slice(0,4)}</span>
+          <span style={{textAlign: 'center'}} className='month'><h5>{moment.months(this.state.month - 1)}</h5></span>
+          <span style={{textAlign: 'center'}} className='day'><h1>{this.props.date.slice(8, 10)}</h1></span>
+          <span style={{textAlign: 'center'}} className='year'><h5>{this.props.date.slice(0,4)}</h5></span>
         </td>
 
         <td className='albumArt col-md-1'>
