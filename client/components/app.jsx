@@ -101,7 +101,7 @@ class App extends React.Component {
     }
   }
   // deletes a listening instance from the db
-  deleteUserEntries (id, date, albumName, callback) {
+  deleteUserEntries (id, date, albumName, callback, filter) {
     $.ajax({
       url:'/querydb/delete',
       type:'POST',
@@ -111,8 +111,11 @@ class App extends React.Component {
         albumName: albumName
       },
       success: function (response) {
-        console.log(response);
-        callback();
+        if (filter) {
+          callback(filter);
+        } else {
+          callback();
+        }
       },
       error: function (error) {
         console.log(error);
@@ -121,7 +124,7 @@ class App extends React.Component {
     })
   }
   // updates a user entry
-  updateUserEntries (id, rating, impression, callback) {
+  updateUserEntries (id, rating, impression, callback, filter) {
     $.ajax({
       url:'/querydb/update',
       type:'POST',
@@ -131,7 +134,11 @@ class App extends React.Component {
         impression: impression
       },
       success: function (response) {
-        callback();
+        if (filter) {
+          callback(filter);
+        } else {
+          callback();
+        }
       },
       error: function (error) {
         console.log(error);
@@ -144,9 +151,6 @@ class App extends React.Component {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("app").style.marginLeft = "250px";
   }
-
-
-  // renders the app to the DOM
 
   render () {
     return (
