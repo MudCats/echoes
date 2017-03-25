@@ -53,7 +53,7 @@ class Search extends React.Component {
 	iTunesSearch (term) {
 		this.setState({term});
 		// used percent encoding for iTunes API search
-		var query = term.split(' ').join('%20');
+		var query = this.state.term.split(' ').join('%20');
 		// creates search URL with limit of four results
 		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=10';
 
@@ -66,6 +66,7 @@ class Search extends React.Component {
 			dataType: 'jsonp',
 			success: (data) => {
 				// changes state of results, triggering view change
+
 				this.setState({results: data.results});
 			},
 			error: (error) => {
