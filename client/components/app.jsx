@@ -151,6 +151,13 @@ class App extends React.Component {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("app").style.marginLeft = "250px";
   }
+  
+   //FB.logout(function(response) {
+   // Person is now logged out
+   //response 
+  //});
+
+  // renders the app to the DOM
 
   render () {
     return (
@@ -158,9 +165,18 @@ class App extends React.Component {
         <div className="container-fluid app">
           <header className="navbar">
             <div><h2 className="greeting">{this.state.greeting}</h2></div>
+            
+
+            <div id="status">
+            </div>
             <a href="/signout" className='navbar-right signout'>
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
+
+
+
+
+
             <img className='navbar-center header logo' src="styles/logo.svg"></img>
             <div  className="col-md-2 search">
               <Search getUserEntries={this.getUserEntries.bind(this)}/>

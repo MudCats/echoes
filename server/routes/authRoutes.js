@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   // get username and password from request body
   var username = req.body.username;
-  var password = req.body.password;
+  //var password = req.body.password;
   // knex query to search database for user
   var query = knex('users').where('username', username);
   query.then(function(result) {
@@ -24,34 +24,34 @@ router.post('/', function (req, res) {
       // if user exists
     } else {
       // find their hashed password in the db
-      var hash = knex('users').where('username', username).select('password');
-      hash.then(function (hash) {
+      //var hash = knex('users').where('username', username).select('password');
+      //hash.then(function (hash) {
         //knex returns an array with hash object at index 0
-        hash = hash[0].password;
-         util.checkPassword(password, hash, function (err, result) {
-           if (err) {
-             throw err;
-           } else {
+        //hash = hash[0].password;
+         //util.checkPassword(password, hash, function (err, result) {
+           //if (err) {
+           //  throw err;
+          // } else {
              // if password is correct
-             if (result) {
+           //  if (result) {
                // set cookies
                res.cookie('signedIn', true);
                res.cookie('username', username);
                // redirect to dashboard
                res.redirect('/');
+               console.log('redirecting. . .');
                // if password is incorrect
-             } else {
-               // send error
-               res.status(401).redirect('/signin');
-             }
-           }
-         });
-      })
-      .catch(function (err) {
-        console.log('Something went wrong comparing passwords!');
-        throw err;
-      });
-    }
+             // } else {
+             //   // send error
+             //   res.status(401).redirect('/signin');
+             // }
+      }
+    })
+    .catch(function (err) {
+      console.log('Something went wrong comparing passwords!');
+      throw err;
+    });
   });
-});
+  //});
+//});
 module.exports = router;
