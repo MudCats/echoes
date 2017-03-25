@@ -22,12 +22,9 @@ class EntryList extends React.Component {
         <th className='col-md-1'><h5>Album</h5></th>
         <th className='col-md-2'></th>
         <th className='rating col-md-3'><h5>Rating</h5></th>
-        <th className='impression col-md-6'>
+        <th className='impression col-md-6'><h5>Impression</h5></th>
+        <th>
           <td>
-            <h5>Impression</h5>
-          </td>
-
-          <td >
             <div className="dropdown">
               <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Filter

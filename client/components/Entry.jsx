@@ -44,6 +44,10 @@ class Entry extends React.Component {
     });
 
   }
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
+  }
 
 
   render () {
@@ -98,6 +102,14 @@ class Entry extends React.Component {
             getUserEntries={this.props.getUserEntries}
             deleteUserEntries={this.props.deleteUserEntries}
           />
+        </td>
+        <td>
+          <a onClick={this.handleDelete.bind(this)}>
+            <button className='remove btn btn-default'>
+              {/* remove button */}
+              <span className='glyphicon glyphicon-remove'></span>
+            </button>
+          </a>
         </td>
       </tr>
     )

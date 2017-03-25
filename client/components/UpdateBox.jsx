@@ -55,17 +55,6 @@ class UpdateBox extends React.Component {
 
         {!this.state.modalActive && (
           <div className='btn-group' role="group">
-
-            {/* update button -- do not remove a tags.
-              They are necessary to maintain working buttons while keeping bootstrap styling */}
-                      {/*  delete button */}
-            <a onClick={this.handleDelete.bind(this)}>
-              <button className='remove btn btn-default'>
-                {/* remove button */}
-                <span className='glyphicon glyphicon-remove'></span>
-              </button>
-            </a>
-
             {/*  EDIT button */}
             <a onClick={this.openModal.bind(this)}>
               <button className='update btn btn-default'>
@@ -73,9 +62,6 @@ class UpdateBox extends React.Component {
                 <span className='glyphicon glyphicon-pencil'></span>
               </button>
             </a>
-
-
-
           </div>
         )}
 
@@ -101,12 +87,7 @@ class UpdateBox extends React.Component {
             </form>
           </div>
         )}
-
-
-
-
       </div>
-
     )
   }
 }
