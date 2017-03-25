@@ -26,9 +26,9 @@ class EntryList extends React.Component {
               <span className="caret"></span>
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li onClick={this.onFilterClick.bind(this)}><a onmouseover="" style={{cursor: 'pointer'}}>Date</a></li>
-              <li onClick={this.onFilterClick.bind(this)}><a onmouseover="" style={{cursor: 'pointer'}}>Stars</a></li>
-              <li onClick={this.onFilterClick.bind(this)}><a onmouseover="" style={{cursor: 'pointer'}}>Album Name</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Date</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Stars</a></li>
+              <li onClick={this.onFilterClick.bind(this)}><a style={{cursor: 'pointer'}}>Album Name</a></li>
             </ul>
           </div>
         </th>

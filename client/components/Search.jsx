@@ -29,10 +29,19 @@ class Search extends React.Component {
 		// date defaults to current date
 		var date = $('#calDate').val() || this.state.selectedListenDate;
     // sets state to display one album and sets state of listen date
-		this.setState({
-			results: [album],
-			selectedListenDate: date
-		});
+    if(album){
+			this.setState({
+				results: [album],
+				selectedListenDate: date
+			});
+    }
+	}
+
+	setDate () {
+		// date defaults to current date
+		var date = $('#calDate').val() || this.state.selectedListenDate;
+
+		this.state.selectedListenDate = date;
 	}
   // sends request to iTunes api
 	iTunesSearch (term) {
@@ -50,7 +59,6 @@ class Search extends React.Component {
 			type: 'GET',
 			dataType: 'jsonp',
 			success: (data) => {
-        console.log('data', data)
 				// changes state of results, triggering view change
 				this.setState({results: data.results});
 			},
@@ -133,7 +141,7 @@ class Search extends React.Component {
 								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
 							</td>
 							<td>
-								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} className="form-group search-bar"></input>
+								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} onChange={this.setDate.bind(this)}className="form-group search-bar"></input>
 							</td>
 						</tr>
 

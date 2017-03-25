@@ -98,7 +98,6 @@ router.get('/user', (req, res) => {
 // post new album to the database
 router.post('/', function (req, res) {
   var album = req.body.album;
-  //console.log(album)
   // put date into correct format for db
   var date = req.body.date.slice(0, 10);
   var username = req.cookies.username;
