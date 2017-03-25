@@ -1,6 +1,9 @@
+var Modal = ReactBootstrap.Modal;
 var Button = ReactBootstrap.Button;
 var Overlay = ReactBootstrap.Overlay;
 var Popover = ReactBootstrap.Popover;
+var Tooltip = ReactBootstrap.Tooltip;
+var OverlayTrigger = ReactBootstrap.OverlayTrigger;
 class Entry extends React.Component {
   constructor (props) {
     super (props)
@@ -9,7 +12,8 @@ class Entry extends React.Component {
       month:'',
       track: '',
       rating: this.props.rating,
-      show: false
+      showModal: false,
+      recommendations: []
     }
 
     $(document).ready(function(){
@@ -24,6 +28,10 @@ class Entry extends React.Component {
       });
     });
 
+  }
+
+  close() {
+    this.setState({ showModal: false });
   }
 
   componentWillMount () {
@@ -45,9 +53,15 @@ class Entry extends React.Component {
       return response.json();
     })
     .then(data => {
+      this.setState({ showModal: true });
       console.log(data);
       this.setState({ target: e.target, show: !this.state.show });
-      this.iTunesSearch(data[0].name);
+      for (var track of data) {
+        return this.iTunesSearch(track.name)
+        .then(result => {
+          console.log(result);
+        })
+      }
     })
     .catch(error => {
       console.log(error);
@@ -59,7 +73,7 @@ class Entry extends React.Component {
     this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
   }
 
-  iTunesSearch (title) {
+  iTunesSearch (title, callback) {
     // used percent encoding for iTunes API search
     var query = title.split(' ').join('%20');
     // creates search URL with limit of four results
@@ -73,7 +87,7 @@ class Entry extends React.Component {
       type: 'GET',
       dataType: 'jsonp',
       success: (data) => {
-        console.log('data', data)
+        return data;
         // changes state of results, triggering view change
       },
       error: (error) => {
@@ -85,6 +99,17 @@ class Entry extends React.Component {
 
 
   render () {
+    const popover = (
+      <Popover id="modal-popover" title="popover">
+        very popover. such engagement
+      </Popover>
+    );
+    const tooltip = (
+      <Tooltip id="modal-tooltip">
+        wow.
+      </Tooltip>
+    );
+
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
@@ -118,21 +143,34 @@ class Entry extends React.Component {
             onStarClick={this.onStarClick.bind(this)}
           />
 
-            <Button onClick={this.onReccomendClick.bind(this)}>
-              Click for more like this
-            </Button>
+            <div>
+        <p>Click to get the full Modal experience!</p>
 
-            <Overlay
-              show={this.state.show}
-              target={this.state.target}
-              placement="bottom"
-              container={this}
-              containerPadding={20}
-            >
-            <Popover id="popover-contained" title="Popover bottom">
-              <strong>Holy guacamole!</strong> Check this info.
-            </Popover>
-          </Overlay>
+        <Button
+          bsStyle="default"
+          bsSize="small"
+          onClick={this.onReccomendClick.bind(this)}
+        >
+          Discover more
+        </Button>
+
+        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Recommendations</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+            <h4>Popover in a modal</h4>
+            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
+
+            <Recommendations recommendations={this.state.recommendations} />
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.close.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
           
         </td>
 

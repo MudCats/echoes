@@ -20,6 +20,7 @@ class Search extends React.Component {
     // return the date
 		return formattedDate;
 	}
+	
 	componentWillMount () {
 		var date = this.setDate()
 		this.setState({
