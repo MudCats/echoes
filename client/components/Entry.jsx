@@ -54,12 +54,18 @@ class Entry extends React.Component {
     })
     .then(data => {
       this.setState({ showModal: true });
-      console.log(data);
-      this.setState({ target: e.target, show: !this.state.show });
+      //this.setState({ target: e.target, show: !this.state.show });
       for (var track of data) {
-        return this.iTunesSearch(track.name)
-        .then(result => {
-          console.log(result);
+        this.iTunesSearch(track.name, (song) => {
+          if (song.resultCount) {
+            var newRecomends = this.state.recommendations;
+            newRecomends.push(song.results[0]);
+            this.setState(
+            {
+              recommendations: newRecomends
+            });  
+          }
+          
         })
       }
     })
@@ -87,29 +93,18 @@ class Entry extends React.Component {
       type: 'GET',
       dataType: 'jsonp',
       success: (data) => {
-        return data;
+        callback(data);
         // changes state of results, triggering view change
       },
       error: (error) => {
-        console.log(error);
-        return;
+        callback(error);
       }
     })
   }
 
 
   render () {
-    const popover = (
-      <Popover id="modal-popover" title="popover">
-        very popover. such engagement
-      </Popover>
-    );
-    const tooltip = (
-      <Tooltip id="modal-tooltip">
-        wow.
-      </Tooltip>
-    );
-
+  
     return (
       <tr className='entry row'>
         <td className='listenDate col-md-1 col-lg-1'>
@@ -159,9 +154,6 @@ class Entry extends React.Component {
             <Modal.Title>Recommendations</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
-            <h4>Popover in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
 
             <Recommendations recommendations={this.state.recommendations} />
             
