@@ -26,7 +26,7 @@ class Entry extends React.Component {
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({rating: nextValue});
-    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getUserEntries)
+    this.props.updateUserEntries(this.props.impressionId, nextValue, '', this.props.getFilterEntries(this.props.filter))
   }
 
   onReccomendClick() {
@@ -101,7 +101,7 @@ class Entry extends React.Component {
             deleteUserEntries={this.props.deleteUserEntries}
           />
         </td>
-        
+
         <td>
           <a onClick={this.handleDelete.bind(this)}>
             <button className='remove btn btn-default'>
