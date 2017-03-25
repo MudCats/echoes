@@ -98,6 +98,8 @@ class Entry extends React.Component {
             title={this.props.title}
             updateUserEntries={this.props.updateUserEntries}
             getUserEntries={this.props.getUserEntries}
+            getFilterEntries={this.props.getFilterEntries}
+            filter={this.props.filter}
           />
         </td>
 
