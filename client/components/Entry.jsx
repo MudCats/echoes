@@ -31,7 +31,9 @@ class Entry extends React.Component {
   }
 
   close() {
-    this.setState({ showModal: false });
+    this.setState({ 
+      showModal: false, 
+    });
   }
 
   componentWillMount () {
@@ -47,31 +49,35 @@ class Entry extends React.Component {
 
   onReccomendClick() {
     var query = this.props.title.split(' ').join('%20');
-
-    fetch('/spotify?q=' + query )
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
+    if (this.state.recommendations.length) {
       this.setState({ showModal: true });
-      //this.setState({ target: e.target, show: !this.state.show });
-      for (var track of data) {
-        this.iTunesSearch(track.name, (song) => {
-          if (song.resultCount) {
-            var newRecomends = this.state.recommendations;
-            newRecomends.push(song.results[0]);
-            this.setState(
-            {
-              recommendations: newRecomends
-            });  
-          }
-          
-        })
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    } else {
+      fetch('/spotify?q=' + query )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        this.setState({ showModal: true });
+        //this.setState({ target: e.target, show: !this.state.show });
+        for (var track of data) {
+          this.iTunesSearch(track.name, (song) => {
+            if (song.resultCount) {
+              var newRecomends = this.state.recommendations;
+              newRecomends.push(song.results[0]);
+              this.setState(
+              {
+                recommendations: newRecomends
+              });  
+            }
+            
+          })
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      
+    }
 
   }
   handleDelete(e) {
@@ -139,7 +145,6 @@ class Entry extends React.Component {
           />
 
             <div>
-        <p>Click to get the full Modal experience!</p>
 
         <Button
           bsStyle="default"
