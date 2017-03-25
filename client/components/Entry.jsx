@@ -46,7 +46,7 @@ class Entry extends React.Component {
   }
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getUserEntries);
+    this.props.deleteUserEntries(this.props.impressionId, this.props.date, this.props.title, this.props.getFilterEntries, this.props.filter);
   }
 
 
