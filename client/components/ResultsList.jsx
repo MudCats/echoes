@@ -5,6 +5,7 @@ class ResultsList extends React.Component {
 	}
 
 	render () {
+		console.log('Album data structure', this.props.albums);
 
 		return (
 			<div>

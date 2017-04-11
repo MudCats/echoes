@@ -6,15 +6,37 @@
   <link rel="stylesheet" href="/styles/stylesheet.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" ic_search_black_24dp_2x.pngrel="stylesheet">
   <script src="/node_modules/lodash/lodash.js"></script>
   <script src="/node_modules/react/dist/react.js"></script>
   <script src="/node_modules/react-dom/dist/react-dom.js"></script>
   <script src="/node_modules/moment/moment.js"></script>
   <script src="/node_modules/jquery/dist/jquery.js"></script>
+  <script src="/node_modules/react-star-rating-component/dist/react-star-rating-component.min.js"></script>
+  <script src="/node_modules/whatwg-fetch/fetch.js"> </script>
+  <script src="/node_modules/tether/dist/js/tether.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="/node_modules/whatwg-fetch/fetch.js"> </script>
+  <script src="/node_modules/react-bootstrap/dist/react-bootstrap.min.js"></script>
+
   </head>
   <body>
+    <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=617099058485860";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
     <div id="app"/>
-    <script src="/public/components/getUserEntries.js"></script>
+    <!-- <script src="/public/components/getUserEntries.js"></script> // no longer need - file in app.js -->
     <script src="/public/components/UpdateBox.js"></script>
     <script src="/public/components/Entry.js"></script>
     <script src="/public/components/EntryList.js"></script>
@@ -22,8 +44,8 @@
     <script src="/public/components/ResultsList.js"></script>
     <script src="/public/components/SearchBar.js"></script>
     <script src="/public/components/Search.js"></script>
+    <script src="/public/components/Recommendations.js"></script>
     <script src="/public/components/app.js"></script>
     <script src="/public/index.js"></script>
-
   </body>
 </html>

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "nodemon server/server.js | babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline"
+    "start": "nodemon server/server.js | babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
+    "compile": "babel . --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,migrations,spec,server,seeds --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -33,14 +34,21 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "jquery": "^3.1.1",
-    "knex": "^0.12.7",
+    "knex": "^0.12.8",
+    "knex-migrate": "^1.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "morgan": "^1.8.1",
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
-    "pg": "^6.1.4",
+    "pg": "^6.1.5",
+    "query-string": "^4.3.2",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-bootstrap": "^0.30.8",
+    "react-dom": "^15.4.2",
+    "react-star-rating-component": "^1.2.4",
+    "react-stars": "^2.1.0",
+    "tether": "^1.4.0",
+    "whatwg-fetch": "^2.0.3"
   }
 }

@@ -3,6 +3,7 @@ var router = express.Router();
 var path = require('path');
 var util = require('../utilities.js');
 var knex = require('../../db/db.js');
+var queryString = require('query-string');
 
 // queries database and returns user's album entries
 router.get('/', function (req, res) {
@@ -19,17 +20,79 @@ router.get('/', function (req, res) {
               'listen_date.date',
               'album.title', 'artist.name', 'album.genre', 'album.year',
               'album_impression.rating', 'album_impression.impression', 'album_impression.id',
-              'album.art_url60', 'album.art_url100')
+              'album.art_url60', 'album.art_url100', 'album.collection_id')
       .orderBy('listen_date.date', 'desc')
       .then(function (result) {
         // send the result back to the user
-        console.log(result);
         res.status(200).send(result);
       })
       .catch(function (err) {
         console.log('Problem grabbing user info');
       })
+
 });
+
+//filter endpoint
+router.get('/filter', function (req, res) {
+  // get username from the cookie
+  var username = req.cookies.username;
+  var choice = queryString.parse(req.url.split("?")[1])
+  //console.log("choice", choice)
+  // find all listen instances by the user
+  var albumQuery =
+  knex.from('users')
+    .join('album_impression', 'users.id', 'album_impression.user_id')
+    .where('users.username', username)
+    .join('album', 'album_impression.album_id', 'album.id')
+    .join('artist', 'artist.id', 'album.artist_id')
+    .join('listen_date', 'listen_date.album_impression_id', 'album_impression.id')
+    .select('users.user',
+            'listen_date.date',
+            'album.title', 'artist.name', 'album.genre', 'album.year',
+            'album_impression.rating', 'album_impression.impression', 'album_impression.id',
+            'album.art_url60', 'album.art_url100', 'album.collection_id')
+
+  if(choice.choice === 'date'){
+    albumQuery
+      .orderBy('listen_date.date', 'desc')
+      .then(function(result){
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem filtering by date', err);
+      })
+  }else if(choice.choice === 'stars'){
+    albumQuery
+      .orderBy('album_impression.rating', 'desc')
+      .then(function(result){
+        console.log("stars filter result", result)
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem filtering by stars', err);
+      })
+  }else if(choice.choice === 'album name'){
+    albumQuery
+      .orderBy('album.title')
+      .then(function(result){
+        res.status(200).send(result);
+      })
+      .catch(function (err) {
+        console.log('Problem filtering by album name', err);
+      })
+  }
+
+
+});
+
+router.get('/user', (req, res) => {
+  var username = req.cookies.username;
+  knex.from('users')
+    .where('username', username)
+    .then(result => {
+      res.status(200).send(result);
+    });
+})
 
 // post new album to the database
 router.post('/', function (req, res) {
@@ -42,6 +105,7 @@ router.post('/', function (req, res) {
     .where({name : album.artistName})
     .select('id')
     .then(function(artistId) {
+      //the artist returns
       if (artistId.length) {
       var artistId = artistId[0].id;
       // check if the album is already in the database
@@ -50,6 +114,7 @@ router.post('/', function (req, res) {
           .where('title', album.collectionName)
           .where('artist_id', artistId)
           .then(function(albumId) {
+
             // if the album exists
             if (albumId.length) {
               var albumId = albumId[0].id;
@@ -77,7 +142,7 @@ router.post('/', function (req, res) {
                               date: date,
                               album_impression_id: impressId
                             }).then(function() {
-                              res.status(201).send('Successful Post!');
+                              res.status(201).send('Successful Post to listen_date!');
                             })
                             .catch(function (err) {
                               console.log('Problem with inserting listen_date #1');
@@ -103,7 +168,7 @@ router.post('/', function (req, res) {
                           'date': date,
                           'album_impression_id': impressId
                         }).then(function() {
-                          res.status(201).send('Successful Post!');
+                          res.status(201).send('Successful Post to listen_date 2!');
                         })
                         .catch(function (err) {
                           console.log('Problem with inserting listen_date #2');
@@ -131,6 +196,7 @@ router.post('/', function (req, res) {
                 .insert({
                   title: album.collectionName,
                   artist_id: artistId,
+                  collection_id: album.collectionId,
                   genre: album.primaryGenreName,
                   year: album.releaseDate.slice(0,4),
                   art_url60: album.artworkUrl60,
@@ -155,7 +221,7 @@ router.post('/', function (req, res) {
                             'date': date,
                             'album_impression_id': impressId})
                           .then(function() {
-                            res.status(201).send('Successful Post!');
+                            res.status(201).send('Successful Post to listen_date (this inserts into the album)!');
                           })
                           .catch(function (err) {
                             console.log('Problem with inserting listen_date #3');
@@ -188,12 +254,13 @@ router.post('/', function (req, res) {
         .insert({name: album.artistName})
         .then(function(artistId) {
           var artistId = artistId[0];
-          console.log('artistId', artistId);
+          //console.log('artistId', artistId);
           // add album to db
           knex('album').returning('id')
           .insert({
             title: album.collectionName,
             artist_id: artistId,
+            collection_id: album.collectionId,
             genre: album.primaryGenreName,
             year: album.releaseDate.slice(0,4),
             art_url60: album.artworkUrl60,
@@ -256,8 +323,9 @@ router.post('/update', function (req, res) {
   var impress = req.body;
   var id = Number(impress.id);
   var rating = Number(impress.rating);
+
   var impression = impress.impression;
-  console.log('impress', impress);
+  //console.log('impress', impress);
 
   // if impression exists and rating doesn't
   if (impression && !rating) {
@@ -300,6 +368,7 @@ router.post('/update', function (req, res) {
 // remove listen_date
 router.post('/delete', function (req, res) {
   var listenEntry = req.body;
+  console.log('Did the album name get passed in?', listenEntry.albumName);
   //find the listen_date Entry
   knex('listen_date')
     // check if there is more than 1 date for that impression_id
@@ -312,7 +381,7 @@ router.post('/delete', function (req, res) {
         .where('date', listenEntry.date)
         .del()
         .then(function () {
-          res.status(201).send('Successfully removed album');
+          res.status(201).send('Successfully removed album with multiple impressions');
         });
         // if album_impress_id = 1
       } else {
@@ -326,7 +395,12 @@ router.post('/delete', function (req, res) {
           .where('id', listenEntry.impressionId)
           .del()
           .then(function () {
-            res.status(201).send('Successfully removed album');
+            knex('album')
+            .where('title', listenEntry.albumName)
+            .del()
+            .then(() => {
+              res.status(201).send('Successfully removed album ' + listenEntry.albumName);
+            });
           });
         });
       }

@@ -50,16 +50,16 @@ table {
 -------------------------*/
 
 body {
-  background: #4b6ecc;
+  background: #251c1c;
   font-family: 'Raleway', sans-serif;
 }
 
 body.dashboard {
-	background: #f9f9f9;
+	background: #251c1c;
 }
 
 span {
-  color: #4b6ecc;
+  color: ##251c1c;
 }
 
 /*-------------------------
@@ -72,6 +72,10 @@ span {
 
 button.btn.btn-default.landing {
   margin-bottom: 20px;
+  border-radius:0;
+}
+button.btn.btn-default {
+  border-radius:0;
 }
 
 .blurb {
@@ -143,6 +147,16 @@ span.close {
   margin-bottom: 20px;
 }
 
+.glyphicon-search, .glyphicon-calendar{
+  padding-bottom: 15px;
+  text-decoration: none;
+}
+
+#main-search {
+  font-size: 1.4em;
+  padding-left: 32px;
+  text-decoration: none;
+}
 
 .add-album {
   margin: auto;
@@ -219,6 +233,10 @@ div.col-md-6.text-center {
   width: 100%
 }
 
+.search-container {
+  padding-left: 10px;
+}
+
 .container-fluid.app {
   padding-left: 0px;
   padding-right: 0px;
@@ -240,35 +258,34 @@ h2.greeting {
 	margin-bottom:-20px;
 }
 
-.albumArt {
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-}
-
 .impression {
   text-align:left;
+  border-radius: 0;
 }
 
 .rating {
-  text-align:center;
+  text-align:left;
 }
 
 .entry {
   border: 1px, solid, #000;
 }
 
+.entryList {
+
+}
+
 .updateBox {
-  position: absolute;
+  position: blockquote;
   margin: auto;
   border-style: solid;
   border: 1px;
   border-radius: 5px;
 }
 
-header {
-  background-color: #4b6ecc;
-}
+/*header {
+  background-color: #251c1c;
+}*/
 
 .navbar {
 	vertical-align: middle;
@@ -299,10 +316,6 @@ tbody {
   margin: auto;
 }
 
-a:hover {
-  text-decoration: none;
-}
-
 a.signout {
   float: right;
   margin-right: 20px;
@@ -314,21 +327,23 @@ a.signout {
 	vertical-align:middle;
 }
 
-.btn-group button {
-	margin-left:170px;
-}
-
 button.update {
 	margin-bottom: 20px;
+  margin-left: :400px;
 }
 
 table tr td div.btn-group {
-	display:none;
+	display:inline;
+  vertical-align: middle;
+}
+
+.sample.col-md-2 {
+  vertical-align: middle;
 }
 
 table tr:hover td div.btn-group {
-	display:inline-block;
-	vertical-align: middle;
+	display:inline;
+  vertical-align: middle;
 }
 
 table tr.entry:hover {
@@ -338,6 +353,17 @@ table tr.entry:hover {
 .close {
 	margin-bottom: 10px;
 	margin-right:10px;
+}
+
+td.albumArt {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.album-info {
+  font-size: 10px;
+  vertical-align: middle;
 }
 
 /*--------------------------
@@ -400,3 +426,37 @@ table tr.entry:hover {
 td {
 	vertical-align: middle;
 }
+
+/*side bar slide out*/
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#app {
+    transition: margin-left .5s;
+    padding: 20px;
+    background: #181818;
+}
+
+html {
+  background-color: #181818;
+}
+

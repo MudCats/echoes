@@ -8,8 +8,8 @@ class SearchBar extends React.Component {
 
 	render(){
 		return (
-			<input type='text' className="search-bar form-group" placeholder="Search for an album..."
-      		   onKeyUp={event => this.props.search(event.target.value)}
+			<input type='text' className="search-bar form-group" data-live-search="true" placeholder="Search for an album..."
+      		   onKeyDown={event => this.props.search(event.target.value)}
       		/>
 		)
 	}

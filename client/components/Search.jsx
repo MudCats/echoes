@@ -6,16 +6,12 @@ class Search extends React.Component {
 		this.state = {
 			term: '',
 			results: [],
-			selectedListenDate: null
+			selectedListenDate: this.setDate
 		};
+
+		this.state.selectedListenDate = this.setDate()
 	}
   // sets default date for calendar input field
-	componentWillMount () {
-		this.setState({
-			selectedListenDate: this.setDate()
-		})
-	}
-  // gets and formats the current date
 	setDate () {
 		// generates current date
 		var todayDate = new Date();
@@ -24,15 +20,32 @@ class Search extends React.Component {
     // return the date
 		return formattedDate;
 	}
+	
+	componentWillMount () {
+		var date = this.setDate()
+		this.setState({
+			selectedListenDate: date
+		});
+	}
+  // gets and formats the current date
   // displays only the clicked album
 	setSelected (album) {
 		// date defaults to current date
-		var date = $('input').val() || this.state.selectedListenDate;
+		var date = $('#calDate').val() || this.state.selectedListenDate;
     // sets state to display one album and sets state of listen date
-		this.setState({
-			results: [album],
-			selectedListenDate: date
-		});
+    if(album){
+			this.setState({
+				results: [album],
+				selectedListenDate: date
+			});
+    }
+	}
+
+	setDateState () {
+		// date defaults to current date
+		var date = $('#calDate').val() || this.state.selectedListenDate;
+
+		this.state.selectedListenDate = date;
 	}
   // sends request to iTunes api
 	iTunesSearch (term) {
@@ -40,7 +53,7 @@ class Search extends React.Component {
 		// used percent encoding for iTunes API search
 		var query = this.state.term.split(' ').join('%20');
 		// creates search URL with limit of four results
-		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=4';
+		var searchUrl = 'https://itunes.apple.com/search?term=?$' + query + '&entity=album&limit=10';
 
 		$.ajax({
 			url: searchUrl,
@@ -50,7 +63,6 @@ class Search extends React.Component {
 			type: 'GET',
 			dataType: 'jsonp',
 			success: (data) => {
-				console.log(data);
 				// changes state of results, triggering view change
 				this.setState({results: data.results});
 			},
@@ -64,6 +76,7 @@ class Search extends React.Component {
 	// send selected album and listen date to db via post request
 	addNewEntry (album, date) {
 		// send object with keys album and date
+    console.log('addNewEntry', album)
 		var newEntry = {album: album, date: date.slice(0,10)};
 		// user can only submit one album
 		if (this.state.results.length === 1) {
@@ -74,7 +87,6 @@ class Search extends React.Component {
 				contentType: 'application/json',
 				data: JSON.stringify(newEntry),
 				success: (results) => {
-					console.log('SUCCESS!')
 					// assigns current date to state
 					// clears previously set state
 					var date = this.setDate();
@@ -96,26 +108,59 @@ class Search extends React.Component {
 		}
 	}
 
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("app").style.marginLeft = "0";
+  }
+
 	render() {
 
 		// only renders the add album button if one album is selected
 		if (this.state.results.length === 1) {
-			$('#add-album-btn').show();
+			$('#add-album-btn').show(800);
 		} else {
-			$('#add-album-btn').hide();
+			$('#add-album-btn').hide(800);
 		}
 
     return (
-      <div>
+      <div id="mySidenav" className="sidenav">
+
 	   	  <div className='search-container'>
-					<h3 className='search-prompt'>Add an album:</h3>
-					<input type="date" name="date" className="form-group search-bar"></input>
-					<br></br>
-		      <SearchBar search={_.debounce(this.iTunesSearch.bind(this), 300)}
-						         className="search-bar" />
-									 <div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
-									   <button type="button" className="btn btn-default">Add this album</button>
-					         </div>
+					<table>
+          <tbody>
+						<tr>
+							<td>
+								<span className='glyphicon glyphicon-search'>&nbsp;</span>
+                  <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav.bind(this)}>&times;</a>
+							</td>
+							<td width="200px">
+					      <SearchBar search={this.iTunesSearch.bind(this)}
+									className="search-bar" />
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<span className='glyphicon glyphicon-calendar'>&nbsp;</span>
+							</td>
+							<td>
+								<input id="calDate" type="date" name="date" min="2017-01-01" max={this.setDate()} onChange={this.setDateState.bind(this)}className="form-group search-bar"></input>
+							</td>
+						</tr>
+
+						<tr>
+							<td>&nbsp;</td>
+							<td>
+								<div id='add-album-btn' onClick={() => {this.addNewEntry(this.state.results[0], this.state.selectedListenDate)}}>
+								  <button type="button" className="btn btn-default">Add this album</button>
+				        </div>
+			        </td>
+						</tr>
+
+            </tbody>
+					</table>
+
 				</div>
 				<div className="results-container">
 					<ResultsList albums={this.state.results}
@@ -123,6 +168,7 @@ class Search extends React.Component {
 						setSelected={this.setSelected.bind(this)}
 						className='results-container' />
 				</div>
+
 			</div>
 
 
