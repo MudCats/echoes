@@ -36,7 +36,7 @@ app.use('/styles', express.static(path.join(__dirname, '/../client/styles')));
 // ROUTERS
 app.use('/', appServer);
 app.use('/querydb', dbServer);
-app.use('/auth', authServer);
+app.use('/auth', authServer(passport));
 
 // HANDLE 404
 app.use(function (req, res, next) {
