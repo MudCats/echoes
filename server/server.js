@@ -3,15 +3,26 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var path = require('path');
-var pg = require('pg');
 var db = require('../db/db.js');
 var cookie = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
 var app = express();
 
 // ROUTE MODULES
 var appServer = require('./routes/appRoutes.js');
 var auth = require('./routes/authRoutes.js');
 var dbServer = require('./routes/dbRoutes.js');
+
+// PASSPORT INITIALIZATION
+app.use(session({
+  secret: 'echoes-super-secret',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./passport/init.js')(passport);
 
 // MIDDLEWARE
 app.use(bodyParser.urlencoded({extended: false}));
@@ -35,5 +46,5 @@ app.use(function (req, res, next) {
 var port = process.env.PORT || 1337;
 // LISTENER
 app.listen(port, function () {
-  console.log('Satan is listening.')
+  console.log('Satan is listening on port: ', port);
 });
