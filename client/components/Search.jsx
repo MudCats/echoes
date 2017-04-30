@@ -17,18 +17,14 @@ class Search extends React.Component {
 	}
   // gets and formats the current date
 	setDate () {
-		// generates current date
 		var todayDate = new Date();
-		// uses moment.js to format date
 		var formattedDate = moment(todayDate).format('YYYY-MM-DD');
-    // return the date
 		return formattedDate;
 	}
   // displays only the clicked album
 	setSelected (album) {
 		// date defaults to current date
 		var date = $('input').val() || this.state.selectedListenDate;
-    // sets state to display one album and sets state of listen date
 		this.setState({
 			results: [album],
 			selectedListenDate: date
@@ -85,7 +81,6 @@ class Search extends React.Component {
 					});
           // gets user entries from db and rerenders entry list
 					this.props.getUserEntries();
-					// clear the search bar
 					$('.search-bar').val('');
 				},
 				error: function (error) {
