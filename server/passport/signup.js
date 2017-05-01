@@ -10,7 +10,7 @@ module.exports = function(passport) {
 
     process.nextTick(function() {
 
-      users.getUser(username)
+      users.findUser(username)
         .then(user => {
           if (user.username) {
             return done(null, false);
