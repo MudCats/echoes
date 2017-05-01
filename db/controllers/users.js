@@ -12,7 +12,7 @@ exports.insertUser = (user, username, password) => {
     .then(hash => {
       return knex('users')
         .returning(['id', 'user', 'username'])
-        .insert({ user: user, username: username: password: hash })
+        .insert({ user: user, username: username, password: hash })
         .then(result => {
           return result[0];
         });

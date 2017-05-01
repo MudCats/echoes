@@ -6,10 +6,10 @@ const util = require('../utilities.js');
 
 module.exports = (passport) => {
   // STATIC ASSETS
-  router.get('/signin', function (req, res, next) => {
+  router.get('/signin', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/../../client/signin.html'));
   });
-  
+
   router.get('/signup', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/../../client/signup.html'));
   });
@@ -23,4 +23,6 @@ module.exports = (passport) => {
     const user = { user: req.body.user, username: req.body.username };
     res.status(201).send(user);
   });
+
+  return router;
 };

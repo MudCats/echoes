@@ -1,5 +1,5 @@
 var signIn = require('./signin');
-var signUp = require('./sugnUp');
+var signUp = require('./signUp');
 
 var users = require('../../db/controllers/users.js');
 
@@ -18,6 +18,6 @@ module.exports = function(passport) {
         done(err, null);
       });
   });
-  signin(passport);
-  signup(passport);
+  signIn(passport);
+  signUp(passport);
 };
