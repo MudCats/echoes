@@ -11,7 +11,7 @@ var app = express();
 
 // ROUTE MODULES
 var appServer = require('./routes/appRoutes.js');
-var auth = require('./routes/authRoutes.js');
+var authServer = require('./routes/authRoutes.js');
 var dbServer = require('./routes/dbRoutes.js');
 
 // PASSPORT INITIALIZATION
