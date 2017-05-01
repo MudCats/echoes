@@ -1,5 +1,5 @@
 var LocalStrategy = require('passport-local');
-var users = require('../../db/controllers/users');
+var users = require('../../db/controllers/users.js');
 var util = require('../utilities');
 
 module.exports = function(passport) {
@@ -8,7 +8,7 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
   function(req, username, password, done) {
-    users.getUser(username)
+    users.findUser(username)
       .then(user => {
         if (!user) {
           return done(null, false);

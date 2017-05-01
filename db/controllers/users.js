@@ -1,6 +1,13 @@
-var query = knex('users').where('username', username);
+const util = require('../../server/utilities.js');
 
-// TODO: make these work!
+exports.findUser = (username) => {
+  return knex('users').where('username', username);
+};
+
+exports.
+
+
+
 // LOGIN CONTROLLER
 query.then(function(result) {
   if (!result.length) {

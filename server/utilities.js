@@ -13,4 +13,4 @@ exports.hashPassword  = function (password, callback) {
 // helper to check entered plaintext password against hash in db
 exports.checkPassword = function (enteredPassword, hash, callback) {
   bcrypt.compare(enteredPassword, hash, callback);
-}
+};
