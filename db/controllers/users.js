@@ -1,4 +1,5 @@
 const util = require('../../server/utilities.js');
+const knex = require('../db.js');
 
 exports.findUser = (username) => {
   return knex('users').where('username', username)

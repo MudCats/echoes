@@ -16,12 +16,12 @@ module.exports = (passport) => {
   // post requests check username and password and redirect
   router.post('/signin', passport.authenticate('signin'), (req, res, next) => {
     const user = { user: req.body.user, username: req.body.username };
-    res.status(201).send(user);
+    res.redirect('/');
   });
   // post requests add user to the database and begin session
   router.post('/signup', passport.authenticate('signup'), (req, res, next) => {
     const user = { user: req.body.user, username: req.body.username };
-    res.status(201).send(user);
+    res.redirect('/');
   });
 
   return router;

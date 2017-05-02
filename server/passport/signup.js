@@ -7,15 +7,14 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
   function(req, username, password, done) {
-
     process.nextTick(function() {
 
-      users.findUser(username)
+      users.findUser(req.body.username)
         .then(user => {
-          if (user.username) {
+          if (user) {
             return done(null, false);
           }
-          return users.insertUser(req.user, username, password)
+          return users.insertUser(req.body.user, req.body.username, req.body.password)
             .then(newUser => {
               done(null, newUser);
             });
