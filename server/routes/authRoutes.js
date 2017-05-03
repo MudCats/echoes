@@ -5,6 +5,11 @@ const knex = require('../../db/db.js');
 const util = require('../utilities.js');
 
 module.exports = (passport) => {
+  // retrieves user data
+  router.get('/', (req, res, next) => {
+    let user = { user: req.body.user, username: req.body.username };
+    res.json(user);
+  });
   // server login page
   router.get('/signin', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/../../client/signin.html'));
