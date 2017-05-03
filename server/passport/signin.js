@@ -8,12 +8,12 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
   function(req, username, password, done) {
-    users.findUser(username)
+    users.findUser(req.body.username)
       .then(user => {
         if (!user) {
           return done(null, false);
         }
-        return util.checkPassword(password, user.password)
+        return util.checkPassword(req.body.password, user.password)
           .then(match => {
             if (match) {
               done(null, user);

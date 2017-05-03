@@ -9,7 +9,8 @@ class App extends React.Component {
       currentUser: ''
     }
   }
-  // when the component loads successfully
+  // load user data on component mount
+  // TODO: put get entries in success function of checkAuth
   componentWillMount () {
     // load all of the user's data
     this.getUserEntries();
@@ -20,8 +21,6 @@ class App extends React.Component {
       url: '/querydb',
       type: 'GET',
       success: (response) => {
-        // sets state of all entries
-        // sets current user name
         if (response.length) {
           this.setState({
             allEntries: response,
@@ -37,15 +36,9 @@ class App extends React.Component {
   };
   // generates greeting in banner
   greetUser () {
-    // if current user is identified
-    if (this.state.currentUser) {
-      // greet them by name
-      return `Hello, ${this.state.currentUser}!`
-    } else {
-      // new users are greetedwith Hello
-      return `Hello!`
-    }
-  }
+    return this.state.currentUser ?
+      `Hello, ${this.state.currentUser}!` : `Hello!`
+  };
   // deletes a listening instance from the db
   deleteUserEntries (id, date, callback) {
     $.ajax({
@@ -62,9 +55,9 @@ class App extends React.Component {
       error: function (error) {
         console.log(error);
         throw error;
-      }
-    })
-  }
+      };
+    });
+  };
   // updates a user entry
   updateUserEntries (id, rating, impression, callback) {
     $.ajax({
@@ -85,8 +78,6 @@ class App extends React.Component {
     })
   }
 
-
-  // renders the app to the DOM
   render () {
     return (
 
@@ -94,7 +85,7 @@ class App extends React.Component {
         <div className="container-fluid app">
           <header className="navbar">
             <div><h2 className="greeting">{this.greetUser()}</h2></div>
-            <a href="/signout" className='navbar-right signout'>
+            <a href="/auth/signout" className='navbar-right signout'>
               <button className="btn btn-default landing"><span>Sign Out</span></button>
             </a>
             <img className='navbar-center header logo' src="styles/logo.svg"></img>

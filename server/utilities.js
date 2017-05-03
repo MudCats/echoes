@@ -17,6 +17,14 @@ exports.hashPassword  = (password) => {
 };
 
 // helper to check entered plaintext password against hash in db
-exports.checkPassword = (enteredPassword, hash, callback) => {
-  bcrypt.compare(enteredPassword, hash, callback);
+exports.checkPassword = (enteredPassword, hash) => {
+  return new Promise((fulfill, reject) => {
+    bcrypt.compare(enteredPassword, hash, (err, match) => {
+      if (err) {
+        reject(err);
+      } else {
+        fulfill(match);
+      };
+    });
+  });
 };
