@@ -8,6 +8,13 @@ exports.findUser = (username) => {
     });
 };
 
+exports.findUserById = (id) => {
+  return knex('users').where('id', id)
+    .then(result => {
+      return result[0];
+    });
+};
+
 exports.insertUser = (user, username, password) => {
   return util.hashPassword(password)
     .then(hash => {
