@@ -55,7 +55,7 @@ class App extends React.Component {
       error: function (error) {
         console.log(error);
         throw error;
-      };
+      }
     });
   };
   // updates a user entry
