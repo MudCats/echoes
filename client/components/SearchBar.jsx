@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Searches iTunes
 class SearchBar extends React.Component {
 
@@ -15,4 +17,4 @@ class SearchBar extends React.Component {
 	}
 }
 
-window.SearchBar = SearchBar;
+export default SearchBar;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 class Result extends React.Component {
 	constructor(props){
 		super(props);
@@ -17,4 +19,4 @@ class Result extends React.Component {
 	}
 }
 
-window.Result = Result;
+export default Result;

@@ -1,4 +1,4 @@
-# MudCats Echoes #
+# Corgi-cat Echoes #
 
 # Initial Set Up #
 1. npm install

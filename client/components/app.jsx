@@ -1,3 +1,6 @@
+import React from 'react';
+import Search from './Search.jsx';
+import EntryList from './EntryList.jsx';
 class App extends React.Component {
   constructor (props) {
     super (props);
@@ -117,4 +120,4 @@ class App extends React.Component {
   }
 }
 
-window.App = App;
+export default App;

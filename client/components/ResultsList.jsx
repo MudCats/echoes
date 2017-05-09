@@ -1,3 +1,6 @@
+import React from 'react';
+import Result from './Result.jsx';
+
 // Component generatees each search result entry
 class ResultsList extends React.Component {
 	constructor(props){
@@ -23,4 +26,4 @@ class ResultsList extends React.Component {
 
 }
 
-window.ResultsList = ResultsList;
+export default ResultsList;

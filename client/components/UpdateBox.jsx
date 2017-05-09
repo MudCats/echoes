@@ -1,3 +1,5 @@
+import React from 'react';
+
 class UpdateBox extends React.Component {
   constructor (props) {
     super(props);
@@ -107,4 +109,4 @@ class UpdateBox extends React.Component {
     }
 }
 
-window.UpdateBox = UpdateBox;
+export default UpdateBox;

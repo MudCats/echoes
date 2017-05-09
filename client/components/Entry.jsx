@@ -1,3 +1,6 @@
+import React from 'react';
+import UpdateBox from './UpdateBox.jsx';
+
 class Entry extends React.Component {
   constructor (props) {
     super (props)
@@ -51,4 +54,4 @@ class Entry extends React.Component {
   }
 }
 
-window.Entry = Entry;
+export default Entry;

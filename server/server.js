@@ -38,5 +38,5 @@ app.use(function (req, res, next) {
 var port = process.env.PORT || 1337;
 // LISTENER
 app.listen(port, function () {
-  console.log('Satan is listening.')
+  console.log(`Listening on port ${port}`)
 });
