@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MudCats/echoes.git"
+    "url": "git+https://github.com/Corgi-cat/echoes.git"
   },
   "author": "Christian Arredondo, Tyler Holzer, Megan Rabuse, and Daniel Ricaud",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MudCats/echoes/issues"
+    "url": "https://github.com/Corgi-cat/echoes/issues"
   },
-  "homepage": "https://github.com/MudCats/echoes#readme",
+  "homepage": "https://github.com/Corgi-cat/echoes#readme",
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-preset-react": "^6.23.0",
