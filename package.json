@@ -4,8 +4,8 @@
   "description": "A listening journal app build on React, PostgreSQL, Express, and Node.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "start": "nodemon server/server.js | babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline"
+    "start": "nodemon server/server.js ",
+    "build": "babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline"
   },
   "repository": {
     "type": "git",
