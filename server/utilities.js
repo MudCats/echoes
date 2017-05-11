@@ -1,16 +1,30 @@
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 
-// AUTHENTICATION
-
 // helper for hashing password before storing in db
-exports.hashPassword  = function (password, callback) {
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(password, salt, callback);
+exports.hashPassword  = (password) => {
+  return new Promise((fulfill, reject) => {
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+      if (err) {
+        reject(err);
+      } else {
+        fulfill(hash);
+      };
+      });
+    });
   });
 };
 
 // helper to check entered plaintext password against hash in db
-exports.checkPassword = function (enteredPassword, hash, callback) {
-  bcrypt.compare(enteredPassword, hash, callback);
-}
+exports.checkPassword = (enteredPassword, hash) => {
+  return new Promise((fulfill, reject) => {
+    bcrypt.compare(enteredPassword, hash, (err, match) => {
+      if (err) {
+        reject(err);
+      } else {
+        fulfill(match);
+      };
+    });
+  });
+};

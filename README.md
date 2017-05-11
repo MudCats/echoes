@@ -4,7 +4,7 @@
 1. npm install
 2. Here are the instructions for installing and running postgresql:
 **https://slack-files.com/T2SVC7RB3-F4HMU4URL-04fa832f88**
-**Warning**: these are instructions for installing postgresql on a **Mac**. If you have a windows computer, good luck?
+**Warning**: these are instructions for installing postgresql on a **Mac**.
 3. Once psql is running, create your database
  1. Navigate into the echoes directory in terminal
  2. Enter: ``` createdb echoes ```

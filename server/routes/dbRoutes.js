@@ -7,7 +7,7 @@ var knex = require('../../db/db.js');
 // queries database and returns user's album entries
 router.get('/', function (req, res) {
   // get username from the cookie
-  var username = req.cookies.username;
+  var username = req.user.username;
   // find all listen instances by the user
   knex.from('users')
       .join('album_impression', 'users.id', 'album_impression.user_id')
@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
   var album = req.body.album;
   // put date into correct format for db
   var date = req.body.date.slice(0, 10);
-  var username = req.cookies.username;
+  var username = req.user.username;
   // check if artist is in db
   knex('artist')
     .where({name : album.artistName})
